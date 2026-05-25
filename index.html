@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo M Scarcia — Art Director & Graphic Designer</title> <!-- MODIFICAR: Nombre en la pestaña -->
+    <title>LEonardo M Scarcia — Art Director & Graphic Designer</title> <!-- MODIFICAR: Nombre en la pestaña -->
     
     <!-- Tipografía Moderna -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -136,14 +136,19 @@
             border-radius: 2px;
         }
 
-        .image-wrapper img {
+        /* ==========================================================================
+           AQUÍ ESTÁ LA MODIFICACIÓN: Se agrega "video" para que se comporte igual que la imagen
+           ========================================================================== */
+        .image-wrapper img, 
+        .image-wrapper video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .project:hover .image-wrapper img {
+        .project:hover .image-wrapper img, 
+        .project:hover .image-wrapper video {
             transform: scale(1.06); /* Zoom fluido al hacer hover */
         }
 
@@ -254,10 +259,10 @@
 
     <!-- Navegación Superior -->
     <nav class="navbar">
-        <div class="logo">Leonardo M Scarcia</div> <!-- MODIFICAR: Tu nombre o estudio -->
+        <div class="logo">© Tu Nombre</div> <!-- MODIFICAR: Tu nombre o estudio -->
         <div class="menu-items">
-            <a href="#work" class="menu-link">Trabajos</a>
-            <a href="#contact" class="menu-link">Contacto</a>
+            <a href="#work" class="menu-link">Projects</a>
+            <a href="#contact" class="menu-link">Contact</a>
         </div>
     </nav>
 
@@ -266,42 +271,42 @@
         <div class="hero-content">
             <!-- MODIFICAR: Títulos profesionales y enfoque -->
             <h1>Art Director <br> & Graphic Designer</h1>
-            <p>Portafolio personal enfocado en la dirección de arte, branding estratégico y diseño de experiencias visuales minimalistas.</p>
+            <p>Portafolio  enfocado en la dirección de arte, branding estratégico y diseño de experiencias visuales.</p>
         </div>
     </header>
 
     <!-- Galería de Trabajos -->
     <section class="work-section" id="work">
         
-        <!-- PROYECTO 1 -->
+        <!-- PROYECTO 1: EJEMPLO CON IMAGEN -->
         <a href="#" class="project">
             <div class="image-wrapper">
-                <!-- MODIFICAR: Reemplaza la URL por la ruta de tu imagen (ej. img/proyecto1.jpg) -->
-                <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=1200&auto=format&fit=crop" alt="Proyecto de Identidad Visual">
+                <!-- MODIFICAR: Nombre de tu imagen aquí (asegúrate de que esté en la carpeta "img") -->
+                <img src="img/imagen1.jpg" alt="Proyecto de Identidad Visual">
             </div>
             <div class="project-info">
-                <h2>Campaña Brand</h2> <!-- MODIFICAR: Título -->
-                <span>Dirección de Arte / 2026</span> <!-- MODIFICAR: Disciplina -->
+                <h2>Buda Collective Artist</h2> <!-- MODIFICAR: Título -->
+                <span>Developing a web3 Art directory in HTML and P5js </span> <!-- MODIFICAR: Disciplina -->
             </div>
         </a>
 
-        <!-- PROYECTO 2 -->
+        <!-- PROYECTO 2: EJEMPLO CON IMAGEN -->
         <a href="#" class="project">
             <div class="image-wrapper">
-                <!-- MODIFICAR: Reemplaza la URL por tu imagen -->
-                <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?q=80&w=1200&auto=format&fit=crop" alt="Proyecto Editorial">
+                <!-- MODIFICAR: Nombre de tu imagen aquí -->
+                <img src="img/imagen2.jpg" alt="Pleain Air Paintings">
             </div>
             <div class="project-info">
-                <h2>Editorial Design</h2>
-                <span>Diseño Gráfico</span>
+                <h2>Pleain air Painting</h2>
+                <span>Art in real life</span>
             </div>
         </a>
 
-        <!-- PROYECTO 3 -->
+        <!-- PROYECTO 3: EJEMPLO CON IMAGEN -->
         <a href="#" class="project">
             <div class="image-wrapper">
-                <!-- MODIFICAR: Reemplaza la URL por tu imagen -->
-                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1200&auto=format&fit=crop" alt="Proyecto de Rebranding">
+                <!-- MODIFICAR: Nombre de tu imagen aquí -->
+                <img src="img/image3.jpg" alt="Proyecto de Rebranding">
             </div>
             <div class="project-info">
                 <h2>Rebranding</h2>
@@ -309,11 +314,13 @@
             </div>
         </a>
 
-        <!-- PROYECTO 4 -->
+        <!-- PROYECTO 4: EJEMPLO CON VIDEO -->
         <a href="#" class="project">
             <div class="image-wrapper">
-                <!-- MODIFICAR: Reemplaza la URL por tu imagen -->
-                <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1200&auto=format&fit=crop" alt="Proyecto Audiovisual">
+                <!-- MODIFICAR: Nombre de tu video aquí. Las etiquetas autoplay loop muted playsinline son obligatorias para el fondo silencioso -->
+                <video autoplay loop muted playsinline>
+                    <source src="img/tu-video-1.mp4" type="video/mp4">
+                </video>
             </div>
             <div class="project-info">
                 <h2>Exhibition</h2>
@@ -327,10 +334,10 @@
     <footer class="footer" id="contact">
         <h2>¿Tienes un proyecto? <br> Trabajemos juntos.</h2>
         <!-- MODIFICAR: Cambia tu correo en el atributo 'href' y en el texto de pantalla -->
-        <a href="mailto:lscarcia@gmail.com" class="email-link">lscarcia@gmail.com</a>
+        <a href="mailto:hola@tuemail.com" class="email-link">hola@tuemail.com</a>
         
         <div class="credits">
-            <div>© 2026 Buda Studio. Todos los derechos reservados.</div>
+            <div>© 2026 Tu Nombre. Todos los derechos reservados.</div>
             <div>Inspirado en D.S.</div>
         </div>
     </footer>
