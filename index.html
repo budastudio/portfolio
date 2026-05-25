@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Nombre — Art Director & Graphic Designer</title> <!-- MODIFICAR: Nombre en la pestaña -->
+    
+    <!-- Tipografía Moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           DISEÑO Y ESTILOS (CSS) — Inspirado en el estilo minimalista/brutalista premium
+           ========================================================================== */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Oculta el cursor nativo para usar el personalizado */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F0F0F; /* Fondo oscuro profundo */
+            color: #F0F0F0; /* Texto gris claro/blanco roto */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* Cursor Personalizado (Interactivo) */
+        .custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #FFFFFF;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Barra de Navegación */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2.5rem 4rem;
+            font-size: 1.1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            mix-blend-mode: difference;
+        }
+
+        .logo {
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+        }
+
+        .menu-items {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .menu-link {
+            color: #F0F0F0;
+            text-decoration: none;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-link:hover {
+            opacity: 1;
+        }
+
+        /* Sección Principal (Hero) */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 4rem;
+            background-color: #0F0F0F;
+        }
+
+        .hero-content h1 {
+            font-size: 8.5vw;
+            font-weight: 400;
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-size: 1.6rem;
+            font-weight: 300;
+            max-width: 600px;
+            line-height: 1.5;
+            opacity: 0.7;
+        }
+
+        /* Grilla de Proyectos (Estilo Asimétrico) */
+        .work-section {
+            padding: 6rem 4rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6rem;
+            background-color: #0F0F0F;
+        }
+
+        .project {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Desplazamiento asimétrico para proyectos pares (Efecto Snellenberg) */
+        .project:nth-child(even) {
+            margin-top: 12rem; 
+        }
+
+        .image-wrapper {
+            overflow: hidden;
+            width: 100%;
+            aspect-ratio: 4/5;
+            background-color: #1A1A1A;
+            border-radius: 2px;
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project:hover .image-wrapper img {
+            transform: scale(1.06); /* Zoom fluido al hacer hover */
+        }
+
+        .project-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-top: 1.8rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .project-info h2 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+
+        .project-info span {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.5;
+        }
+
+        /* Footer / Sección de Contacto */
+        .footer {
+            padding: 14rem 4rem 8rem 4rem;
+            text-align: center;
+            background-color: #0F0F0F;
+        }
+
+        .footer h2 {
+            font-size: 7vw;
+            font-weight: 400;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+        }
+
+        .email-link {
+            font-size: 3vw;
+            color: #F0F0F0;
+            text-decoration: none;
+            font-weight: 300;
+            border-bottom: 2px solid rgba(240, 240, 240, 0.3);
+            padding-bottom: 0.8rem;
+            transition: border-color 0.4s ease;
+        }
+
+        .email-link:hover {
+            border-color: rgba(240, 240, 240, 1);
+        }
+
+        .credits {
+            margin-top: 8rem;
+            font-size: 0.9rem;
+            opacity: 0.4;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Diseño Adaptable (Responsivo para Móviles y Tablets) */
+        @media (max-width: 968px) {
+            .work-section {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                padding: 4rem 2rem;
+            }
+            .project:nth-child(even) {
+                margin-top: 0;
+            }
+            .hero {
+                padding: 0 2rem;
+            }
+            .navbar {
+                padding: 2rem;
+            }
+            .hero-content h1 {
+                font-size: 12vw;
+            }
+            .footer {
+                padding: 8rem 2rem 4rem 2rem;
+            }
+            .footer h2 {
+                font-size: 10vw;
+            }
+            .email-link {
+                font-size: 1.8rem;
+            }
+            .custom-cursor {
+                display: none; /* Desactivar cursor de autor en pantallas táctiles */
+            }
+            * {
+                cursor: auto; /* Restaurar puntero estándar */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenedor del Cursor Personalizado -->
+    <div class="custom-cursor" id="cursor"></div>
+
+    <!-- ==========================================================================
+       ESTRUCTURA DE CONTENIDO (HTML)
+       ========================================================================== -->
+
+    <!-- Navegación Superior -->
+    <nav class="navbar">
+        <div class="logo">© Tu Nombre</div> <!-- MODIFICAR: Tu nombre o estudio -->
+        <div class="menu-items">
+            <a href="#work" class="menu-link">Trabajo</a>
+            <a href="#contact" class="menu-link">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- Presentación de Bienvenida (Hero) -->
+    <header class="hero">
+        <div class="hero-content">
+            <!-- MODIFICAR: Títulos profesionales y enfoque -->
+            <h1>Art Director <br> & Graphic Designer</h1>
+            <p>Portafolio personal enfocado en la dirección de arte, branding estratégico y diseño de experiencias visuales minimalistas.</p>
+        </div>
+    </header>
+
+    <!-- Galería de Trabajos -->
+    <section class="work-section" id="work">
+        
+        <!-- PROYECTO 1 -->
+        <a href="#" class="project">
+            <div class="image-wrapper">
+                <!-- MODIFICAR: Reemplaza la URL por la ruta de tu imagen (ej. img/proyecto1.jpg) -->
+                <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=1200&auto=format&fit=crop" alt="Proyecto de Identidad Visual">
+            </div>
+            <div class="project-info">
+                <h2>Campaña Brand</h2> <!-- MODIFICAR: Título -->
+                <span>Dirección de Arte / 2026</span> <!-- MODIFICAR: Disciplina -->
+            </div>
+        </a>
+
+        <!-- PROYECTO 2 -->
+        <a href="#" class="project">
+            <div class="image-wrapper">
+                <!-- MODIFICAR: Reemplaza la URL por tu imagen -->
+                <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?q=80&w=1200&auto=format&fit=crop" alt="Proyecto Editorial">
+            </div>
+            <div class="project-info">
+                <h2>Editorial Design</h2>
+                <span>Diseño Gráfico</span>
+            </div>
+        </a>
+
+        <!-- PROYECTO 3 -->
+        <a href="#" class="project">
+            <div class="image-wrapper">
+                <!-- MODIFICAR: Reemplaza la URL por tu imagen -->
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1200&auto=format&fit=crop" alt="Proyecto de Rebranding">
+            </div>
+            <div class="project-info">
+                <h2>Rebranding</h2>
+                <span>Identidad Visual</span>
+            </div>
+        </a>
+
+        <!-- PROYECTO 4 -->
+        <a href="#" class="project">
+            <div class="image-wrapper">
+                <!-- MODIFICAR: Reemplaza la URL por tu imagen -->
+                <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1200&auto=format&fit=crop" alt="Proyecto Audiovisual">
+            </div>
+            <div class="project-info">
+                <h2>Exhibition</h2>
+                <span>Motion Graphics</span>
+            </div>
+        </a>
+        
+    </section>
+
+    <!-- Sección Final de Contacto (Footer) -->
+    <footer class="footer" id="contact">
+        <h2>¿Tienes un proyecto? <br> Trabajemos juntos.</h2>
+        <!-- MODIFICAR: Cambia tu correo en el atributo 'href' y en el texto de pantalla -->
+        <a href="mailto:hola@tuemail.com" class="email-link">hola@tuemail.com</a>
+        
+        <div class="credits">
+            <div>© 2026 Tu Nombre. Todos los derechos reservados.</div>
+            <div>Inspirado en D.S.</div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+       INTERACTIVIDAD Y ANIMACIONES (JAVASCRIPT)
+       ========================================================================== -->
+    
+    <!-- Script del Motor de Scroll Suave (Lenis) -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    
+    <script>
+        // 1. Inicialización y Configuración de Lenis (Smooth Scroll Premium)
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Curva de aceleración cinematográfica
+            direction: 'vertical', 
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // 2. Controladores del Cursor Magnético Personalizado
+        const cursor = document.getElementById('cursor');
+        
+        // Sigue de manera exacta la posición del mouse en pantalla
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Animación de escala ampliada al interactuar con elementos clickeables
+        const interactiveElements = document.querySelectorAll('a, .project, .menu-link');
+        
+        interactiveElements.forEach((element) => {
+            element.addEventListener('mouseenter', () => {
+                cursor.style.width = '70px';
+                cursor.style.height = '70px';
+                cursor.style.backgroundColor = '#FFFFFF';
+            });
+            element.addEventListener('mouseleave', () => {
+                cursor.style.width = '20px';
+                cursor.style.height = '20px';
+            });
+        });
+    </script>
+</body>
+</html>
