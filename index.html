@@ -3,70 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo M Scarcia — Art Director</title>
-    <link href="https://api.fontshare.com/v2/css?f[]=archivo@400,500,600&display=swap" rel="stylesheet">
+    <title>LEonardo M Scarcia — Art Director</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
-        body { font-family: 'Archivo', sans-serif; background-color: #0F0F0F; color: #F0F0F0; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background-color: #0F0F0F; color: #F0F0F0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-        /* Cursor con Logo */
-        .custom-cursor { position: fixed; width: 30px; height: 30px; border-radius: 50%; background-image: url('logo.png'); background-size: contain; background-position: center; background-color: #FFFFFF; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s; }
+        /* Cursor Personalizado con Logo */
+        .custom-cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            background-image: url('logo.png'); /* Asegúrate que este archivo exista en la raíz */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #FFFFFF;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s;
+        }
 
-        section { padding: 8rem 4rem; }
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 2.5rem 4rem; font-size: 1.1rem; position: fixed; width: 100%; top: 0; z-index: 100; mix-blend-mode: difference; }
+        .logo { font-weight: 500; text-transform: uppercase; }
+        .menu-items { display: flex; gap: 2.5rem; }
+        .menu-link { color: #F0F0F0; text-decoration: none; opacity: 0.6; transition: 0.3s; }
+        .menu-link:hover { opacity: 1; }
+
+        .hero { height: 100vh; display: flex; align-items: center; padding: 0 4rem; }
+        .hero-content h1 { font-size: 8.5vw; font-weight: 400; line-height: 0.95; margin-bottom: 3rem; text-transform: uppercase; }
+        .hero-content p { font-size: 1.6rem; font-weight: 300; max-width: 600px; opacity: 0.7; }
+
+        .work-section { padding: 6rem 4rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 6rem; }
+        .project { display: flex; flex-direction: column; text-decoration: none; color: inherit; }
+        .project:nth-child(even) { margin-top: 12rem; }
+
+        .image-wrapper { overflow: hidden; width: 100%; aspect-ratio: 4/5; background-color: #1A1A1A; border-radius: 2px; }
         
-        /* Contenedores */
-        .image-wrapper { overflow: hidden; aspect-ratio: 4/5; background: #1A1A1A; border-radius: 2px; }
+        /* CLASE ESPECIAL PARA VIDEO 16:9 */
         .image-wrapper.video-wide { aspect-ratio: 16/9; }
-        .image-wrapper img, .image-wrapper video { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
-        .project:hover img, .project:hover video { transform: scale(1.05); }
 
-        h2 { font-size: 3rem; margin-bottom: 2rem; font-weight: 500; text-transform: uppercase; letter-spacing: -0.05em; }
+        .image-wrapper img, .image-wrapper video { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .project:hover .image-wrapper img, .project:hover .image-wrapper video { transform: scale(1.06); }
+
+        .project-info { display: flex; justify-content: space-between; align-items: baseline; margin-top: 1.8rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.15); }
+        .project-info h2 { font-size: 2.2rem; font-weight: 400; }
+        .project-info span { font-size: 1.1rem; font-weight: 300; opacity: 0.5; }
+
+        .footer { padding: 14rem 4rem 8rem 4rem; text-align: center; }
+        .footer h2 { font-size: 7vw; font-weight: 400; margin-bottom: 4rem; text-transform: uppercase; }
+        .email-link { font-size: 3vw; color: #F0F0F0; text-decoration: none; border-bottom: 2px solid rgba(240, 240, 240, 0.3); padding-bottom: 0.8rem; }
+
+        @media (max-width: 968px) {
+            .custom-cursor { display: none; }
+            * { cursor: auto; }
+            .work-section { grid-template-columns: 1fr; }
+            .project:nth-child(even) { margin-top: 0; }
+        }
     </style>
 </head>
 <body>
 
     <div class="custom-cursor" id="cursor"></div>
 
-    <nav style="padding: 2.5rem 4rem; position: fixed; z-index: 100; display: flex; gap: 2rem; mix-blend-mode: difference;">
-        <a href="#work" class="menu-link">Projects</a>
-        <a href="#about" class="menu-link">About</a>
-        <a href="#nft" class="menu-link">NFT</a>
-        <a href="#community" class="menu-link">Community</a>
-        <a href="#contact" class="menu-link">Contact</a>
+    <nav class="navbar">
+        <div class="logo">© Leonardo M Scarcia</div>
+        <div class="menu-items">
+            <a href="#work" class="menu-link">Projects</a>
+            <a href="#contact" class="menu-link">Contact</a>
+        </div>
     </nav>
 
-    <section id="work" class="grid">
-        <a href="#" class="project"><div class="image-wrapper"><img src="image1.jpg"></div></a>
-        <a href="#" class="project"><div class="image-wrapper"><img src="image2.jpg"></div></a>
-        <a href="#" class="project"><div class="image-wrapper"><img src="image3.jpg"></div></a>
-        <a href="#" class="project video-wide"><div class="image-wrapper video-wide"><video autoplay loop muted playsinline><source src="tu-video-1.mp4" type="video/mp4"></video></div></a>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Art Director <br> & Graphic Designer</h1>
+            <p>Portafolio enfocado en la dirección de arte, branding estratégico y diseño de experiencias visuales.</p>
+        </div>
+    </header>
+
+    <section class="work-section" id="work">
+        <a href="#" class="project">
+            <div class="image-wrapper video-wide"> <video autoplay loop muted playsinline>
+                    <source src="tu-video-1.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="project-info">
+                <h2>Exhibition Reel</h2>
+                <span>Motion Graphics</span>
+            </div>
+        </a>
+
+        <a href="#" class="project">
+            <div class="image-wrapper">
+                <img src="imagen1.jpg" alt="Proyecto">
+            </div>
+            <div class="project-info">
+                <h2>Buda Collective</h2>
+                <span>Web3 Art Directory</span>
+            </div>
+        </a>
     </section>
 
-    <section id="about" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
-        <div style="aspect-ratio: 4/5; background: #222;"></div> <div><h2>About Me</h2><p style="font-size: 1.2rem; line-height: 1.6;">Director de arte especializado en branding, motion y ecosistemas web3. Mi enfoque combina la estética minimalista con la innovación técnica.</p></div>
-    </section>
+    <footer class="footer" id="contact">
+        <h2>Have a Project <br> Work together ! .</h2>
+        <a href="mailto:budastudiomkt@gmail.com" class="email-link">budastudiomkt@gmail.com</a>
+    </footer>
 
-    <section id="nft" class="grid">
-        <a href="#" class="project"><div class="image-wrapper"><img src="nft1.jpg"></div></a>
-        <a href="#" class="project"><div class="image-wrapper"><img src="nft2.jpg"></div></a>
-    </section>
-
-    <section id="contact">
-        <h2>Trabajemos juntos</h2>
-        <a href="mailto:budastudiomkt@gmail.com" style="color: #fff; font-size: 2rem;">budastudiomkt@gmail.com</a>
-        <form style="display: flex; flex-direction: column; gap: 1rem; margin-top: 3rem;">
-            <input type="text" placeholder="Nombre" style="background: transparent; border: 0; border-bottom: 1px solid #333; color: white; padding: 1rem;">
-            <textarea placeholder="Tu mensaje" style="background: transparent; border: 0; border-bottom: 1px solid #333; color: white; padding: 1rem;"></textarea>
-        </form>
-    </section>
-
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script>
+        const lenis = new Lenis({ duration: 1.2, smooth: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
         const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', e => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
-        document.querySelectorAll('a, .project').forEach(el => {
-            el.addEventListener('mouseenter', () => { cursor.style.width = '80px'; cursor.style.height = '80px'; cursor.style.backgroundColor = 'transparent'; });
-            el.addEventListener('mouseleave', () => { cursor.style.width = '30px'; cursor.style.height = '30px'; cursor.style.backgroundColor = '#FFFFFF'; });
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        const interactiveElements = document.querySelectorAll('a, .project, .menu-link');
+        interactiveElements.forEach((el) => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.width = '80px';
+                cursor.style.height = '80px';
+                cursor.style.backgroundColor = 'transparent'; // Logo visible al agrandar
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.width = '30px';
+                cursor.style.height = '30px';
+                cursor.style.backgroundColor = '#FFFFFF';
+            });
         });
     </script>
 </body>
