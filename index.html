@@ -10,21 +10,21 @@
         body { font-family: 'Archivo', sans-serif; background-color: #0F0F0F; color: #F0F0F0; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
 
-        /* CURSOR CON LOGO RECUPERADO */
+        /* Cursor con Logo */
         .custom-cursor { 
             position: fixed; 
             width: 30px; 
             height: 30px; 
             border-radius: 50%; 
             background-image: url('logo.png'); 
-            background-size: contain; 
+            background-size: 70%; /* Ajuste para que el logo no toque los bordes */
             background-repeat: no-repeat;
             background-position: center; 
             background-color: #FFFFFF; 
             pointer-events: none; 
             z-index: 9999; 
             transform: translate(-50%, -50%); 
-            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s;
         }
 
         section { padding: 8rem 4rem; }
@@ -59,16 +59,16 @@
     </header>
 
     <section id="work" class="grid">
-        <a href="#" class="project"><div class="image-wrapper"><img src="image1.jpg" alt="Obra"></div><div class="project-info"><h3>Buda Collective</h3></div></a>
-        <a href="#" class="project"><div class="image-wrapper"><img src="image2.jpg" alt="Obra"></div><div class="project-info"><h3>Pleain air Painting</h3></div></a>
-        <a href="#" class="project"><div class="image-wrapper"><img src="image3.jpg" alt="Obra"></div><div class="project-info"><h3>Rebranding</h3></div></a>
+        <a href="#" class="project"><div class="image-wrapper"><img src="image1.jpg" alt="Proyecto"></div><div class="project-info"><h3>Buda Collective</h3></div></a>
+        <a href="#" class="project"><div class="image-wrapper"><img src="image2.jpg" alt="Proyecto"></div><div class="project-info"><h3>Pleain air Painting</h3></div></a>
+        <a href="#" class="project"><div class="image-wrapper"><img src="image3.jpg" alt="Proyecto"></div><div class="project-info"><h3>Rebranding</h3></div></a>
         <a href="#" class="project video-wide"><div class="image-wrapper video-wide"><video autoplay loop muted playsinline><source src="tu-video-1.mp4" type="video/mp4"></video></div><div class="project-info"><h3>Exhibition</h3></div></a>
     </section>
 
-    <script>
-        const cursor = document.getElementById('cursor');
-        
-        // Mover el cursor
-        document.addEventListener('mousemove', e => { 
-            cursor.style.left = e.clientX + 'px'; 
-            cursor.style.top = e.clientY + 'px';
+    <section id="about" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
+        <div style="aspect-ratio: 4/5; background: #222;"></div>
+        <div><h2>About Me</h2><p style="font-size: 1.5rem;">Director de arte especializado en branding, motion y ecosistemas web3.</p></div>
+    </section>
+
+    <section id="nft" class="grid">
+        <a href="#" class="project"><div class="image-
