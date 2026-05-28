@@ -57,7 +57,7 @@
             background-image: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.85)), url('bg-work.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Hace que el fondo se quede quieto al hacer scroll */
+            background-attachment: fixed;
         }
         .project { display: flex; flex-direction: column; text-decoration: none; color: inherit; }
         .project:nth-child(even) { margin-top: 12rem; }
@@ -87,7 +87,7 @@
         .about-content p { font-size: 1.5rem; font-weight: 300; max-width: 650px; opacity: 0.7; line-height: 1.6; margin-bottom: 1.5rem; }
         .about-image-wrapper {
             width: 100%;
-            aspect-ratio: 1/1; /* Formato 4x4 / Cuadrado perfecto */
+            aspect-ratio: 1/1;
             overflow: hidden;
             border-radius: 2px;
             background-color: #1A1A1A;
@@ -172,12 +172,12 @@
     <section class="work-section" id="work">
         
         <a href="#" class="project">
-            <div style="display: block; width: 100%; text-align: center; padding: 20px 0;">
-    <video controls style="max-width: 450px; width: 100%; height: auto; border-radius: 8px;">
-        <source src="tu-video.mp4" type="video/mp4">
-        Tu navegador no soporta este video.
-    </video>
-</div>
+            <div style="display: flex; justify-content: center; align-items: center; width: 100%; padding: 20px 0; aspect-ratio: 4/5; background-color: #1A1A1A; border-radius: 2px;">
+                <video controls style="max-width: 450px; width: 90%; height: auto; border-radius: 8px;">
+                    <source src="tu-video.mp4" type="video/mp4">
+                    Tu navegador no soporta este video.
+                </video>
+            </div>
             <div class="project-info">
                 <h2>Reel</h2>
                 <span>Motion Graphics</span>
@@ -186,7 +186,7 @@
 
         <a href="#" class="project">
             <div class="image-wrapper">
-                <img src="imagen1col.jpg" alt="Collective Art">
+                <img src="./imagen1col.jpg" alt="Collective Art">
             </div>
             <div class="project-info">
                 <h2>Buda Collective Artist 26 </h2>
@@ -196,7 +196,7 @@
 
         <a href="#" class="project">
             <div class="image-wrapper">
-                <img src="imagen2.jpg" alt="Proyecto">
+                <img src="./imagen2.jpg" alt="Proyecto">
             </div>
             <div class="project-info">
                 <h2>Plein Air Painting</h2>
@@ -206,7 +206,7 @@
 
         <a href="#" class="project">
             <div class="image-wrapper">
-                <img src="imagen3reb.jpg" alt="Brand Motion">
+                <img src="./imagen3reb.jpg" alt="Brand Motion">
             </div>
             <div class="project-info">
                 <h2>Visual Identity</h2>
@@ -221,12 +221,11 @@
             <h2>About Me</h2>
             <p>Art Director & Visual Storyteller | Pitch Decks, Brand Experience & Digital Narratives</p>
             <p>Busco conectar marcas con sus audiencias mediante narrativas visuales analógicas y digitales .</p>
-            <a href="CVlscarcia_2026.pdf" download="CVlscarcia_2026.pdf">
-    Descargar PDF
-</a>
+            <a href="CVlscarcia_2026.pdf" download="CVlscarcia_2026.pdf">Descargar PDF</a>
         </div>
         <div class="about-image-wrapper">
-            <img src="perfil.jpg" alt="Leonardo M Scarcia"> </div>
+            <img src="./perfil.jpg" alt="Leonardo M Scarcia">
+        </div>
     </section>
       
     <section class="exhibitions-section" id="exhibitions">
@@ -242,7 +241,7 @@
                 <span class="exhib-title">NFT NYC 24 - 25 </span>
                 <span class="exhib-location">New York, US</span>
             </div>
-<div class="exhibition-item">
+            <div class="exhibition-item">
                 <span class="exhib-year">2025</span>
                 <span class="exhib-title">NFC Lisboa 24 - 25 </span>
                 <span class="exhib-location">Lisboa, PT </span>
@@ -252,13 +251,11 @@
                 <span class="exhib-title">NFT tianguis “Día de los Muertos” </span>
                 <span class="exhib-location">web3, Mexico Quétaro </span>
             </div>
-            
              <div class="exhibition-item">
                 <span class="exhib-year">2023</span>
                 <span class="exhib-title">Buda Collective Artist</span>
                 <span class="exhib-location">Web3, IRL Exibition Garopaba</span>
             </div>
-
         </div>
     </section>
 
@@ -285,13 +282,12 @@
             cursor.style.top = e.clientY + 'px';
         });
 
-        // Incluidas las nuevas clases de exhibiciones en el hover interactivo del cursor
         const interactiveElements = document.querySelectorAll('a, .project, .menu-link, .social-text-link, .exhibition-item');
         interactiveElements.forEach((el) => {
             el.addEventListener('mouseenter', () => {
                 cursor.style.width = '80px';
                 cursor.style.height = '80px';
-                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.2)'; /* Fondo translúcido sutil para que el logo siga viéndose */
+                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
             });
             el.addEventListener('mouseleave', () => {
                 cursor.style.width = '30px';
