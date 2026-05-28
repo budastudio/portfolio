@@ -17,7 +17,7 @@
             top: 0; left: 0;
             width: 30px; height: 30px;
             border-radius: 50%;
-            background-image: url('logo.png'); /* Asegúrate que este archivo exista en la raíz */
+            background-image: url('logo.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -62,7 +62,7 @@
         .project { display: flex; flex-direction: column; text-decoration: none; color: inherit; }
         .project:nth-child(even) { margin-top: 12rem; }
 
-        .image-wrapper { overflow: hidden; width: 100%; aspect-ratio: 4/5; background-color: #1A1A1A; border-radius: 2px; }
+        .image-wrapper { overflow: hidden; width: 100%; aspect-ratio: 4/5; background-color: #1A1A1A; border-radius: 2px; display: flex; justify-content: center; align-items: center; }
         .image-wrapper.video-wide { aspect-ratio: 16/9; }
 
         .image-wrapper img, .image-wrapper video { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -172,9 +172,9 @@
     <section class="work-section" id="work">
         
         <a href="#" class="project">
-            <div style="display: flex; justify-content: center; align-items: center; width: 100%; padding: 20px 0; aspect-ratio: 4/5; background-color: #1A1A1A; border-radius: 2px;">
-                <video controls style="max-width: 450px; width: 90%; height: auto; border-radius: 8px;">
-                    <source src="tu-video.mp4" type="video/mp4">
+            <div class="image-wrapper">
+                <video controls style="max-width: 100%; max-height: 100%; width: auto; height: auto; border-radius: 4px; object-fit: contain;">
+                    <source src="./tu-video.mp4" type="video/mp4">
                     Tu navegador no soporta este video.
                 </video>
             </div>
@@ -273,28 +273,3 @@
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script>
         const lenis = new Lenis({ duration: 1.2, smooth: true });
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
-
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        const interactiveElements = document.querySelectorAll('a, .project, .menu-link, .social-text-link, .exhibition-item');
-        interactiveElements.forEach((el) => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.width = '80px';
-                cursor.style.height = '80px';
-                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.width = '30px';
-                cursor.style.height = '30px';
-                cursor.style.backgroundColor = '#FFFFFF';
-            });
-        });
-    </script>
-</body>
-</html>
