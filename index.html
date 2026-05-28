@@ -8,15 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
         body { font-family: 'Inter', sans-serif; background-color: #0F0F0F; color: #F0F0F0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-        /* Cursor nativo oculto solo en pantallas grandes */
-        @media (min-width: 969px) {
-            html, body, a, .project, button { cursor: none !important; }
-        }
-
-        /* Cursor Personalizado con tu Logo */
+        /* Cursor Personalizado con Logo */
         .custom-cursor {
             position: fixed;
             top: 0; left: 0;
@@ -39,7 +34,7 @@
         .menu-link { color: #F0F0F0; text-decoration: none; opacity: 0.6; transition: 0.3s; }
         .menu-link:hover { opacity: 1; }
 
-        /* HERO */
+        /* FONDO HERO */
         .hero { 
             height: 100vh; 
             display: flex; 
@@ -48,11 +43,12 @@
             background-image: linear-gradient(rgba(15, 15, 15, 0.7), rgba(15, 15, 15, 0.7)), url('bg-hero.jpg');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
         }
         .hero-content h1 { font-size: 8.5vw; font-weight: 400; line-height: 0.95; margin-bottom: 3rem; text-transform: uppercase; }
         .hero-content p { font-size: 1.6rem; font-weight: 300; max-width: 600px; opacity: 0.7; }
 
-        /* SECCIÓN TRABAJOS */
+        /* SECCIÓN TRABAJOS CON FONDO ESTÁTICO (PARALLAX) */
         .work-section { 
             padding: 8rem 4rem; 
             display: grid; 
@@ -66,31 +62,17 @@
         .project { display: flex; flex-direction: column; text-decoration: none; color: inherit; }
         .project:nth-child(even) { margin-top: 12rem; }
 
-        .image-wrapper { 
-            overflow: hidden; 
-            width: 100%; 
-            aspect-ratio: 4/5; 
-            background-color: #1A1A1A; 
-            border-radius: 2px; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-        }
+        .image-wrapper { overflow: hidden; width: 100%; aspect-ratio: 4/5; background-color: #1A1A1A; border-radius: 2px; display: flex; justify-content: center; align-items: center; }
+        .image-wrapper.video-wide { aspect-ratio: 16/9; }
 
-        .image-wrapper video { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            border-radius: 2px;
-            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); 
-        }
-        .project:hover .image-wrapper video { transform: scale(1.04); }
+        .image-wrapper img, .image-wrapper video { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .project:hover .image-wrapper img, .project:hover .image-wrapper video { transform: scale(1.06); }
 
         .project-info { display: flex; justify-content: space-between; align-items: baseline; margin-top: 1.8rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.15); }
         .project-info h2 { font-size: 2.2rem; font-weight: 400; }
         .project-info span { font-size: 1.1rem; font-weight: 300; opacity: 0.5; }
 
-        /* ABOUT ME */
+        /* NUEVA SECCIÓN: ABOUT ME */
         .about-section {
             padding: 12rem 4rem;
             display: grid;
@@ -103,33 +85,58 @@
         }
         .about-content h2 { font-size: 5vw; font-weight: 400; text-transform: uppercase; margin-bottom: 3rem; }
         .about-content p { font-size: 1.5rem; font-weight: 300; max-width: 650px; opacity: 0.7; line-height: 1.6; margin-bottom: 1.5rem; }
-        .about-image-wrapper { width: 100%; aspect-ratio: 1/1; overflow: hidden; border-radius: 2px; background-color: #1A1A1A; }
+        .about-image-wrapper {
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            border-radius: 2px;
+            background-color: #1A1A1A;
+        }
         .about-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* EXHIBITIONS */
-        .exhibitions-section { padding: 12rem 4rem 6rem 4rem; background-image: linear-gradient(rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.9)), url('bg-exhibitions.jpg'); background-size: cover; background-position: center; }
+        /* NUEVA SECCIÓN: EXHIBITIONS */
+        .exhibitions-section {
+            padding: 12rem 4rem 6rem 4rem;
+            background-image: linear-gradient(rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.9)), url('bg-exhibitions.jpg');
+            background-size: cover;
+            background-position: center;
+        }
         .exhibitions-section h2 { font-size: 5vw; font-weight: 400; text-transform: uppercase; margin-bottom: 4rem; }
         .exhibition-list { display: flex; flex-direction: column; }
-        .exhibition-item { display: grid; grid-template-columns: 1fr 2fr 1fr; padding: 2.5rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.15); align-items: baseline; transition: opacity 0.3s; }
+        .exhibition-item {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            padding: 2.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            align-items: baseline;
+            transition: opacity 0.3s;
+        }
         .exhibition-item:hover { opacity: 0.6; }
         .exhib-year { font-size: 1.1rem; opacity: 0.5; font-weight: 300; }
         .exhib-title { font-size: 1.8rem; font-weight: 400; text-transform: uppercase; }
         .exhib-location { font-size: 1.1rem; opacity: 0.5; text-align: right; font-weight: 300; }
 
-        /* FOOTER */
-        .footer { padding: 14rem 4rem 8rem 4rem; text-align: center; background-image: linear-gradient(rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.9)), url('bg-footer.jpg'); background-size: cover; background-position: center; }
+        /* FONDO FOOTER */
+        .footer { 
+            padding: 14rem 4rem 8rem 4rem; 
+            text-align: center; 
+            background-image: linear-gradient(rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.9)), url('bg-footer.jpg');
+            background-size: cover;
+            background-position: center;
+        }
         .footer h2 { font-size: 7vw; font-weight: 400; margin-bottom: 4rem; text-transform: uppercase; }
         .email-link { font-size: 3vw; color: #F0F0F0; text-decoration: none; border-bottom: 2px solid rgba(240, 240, 240, 0.3); padding-bottom: 0.8rem; transition: border-color 0.3s; }
         .email-link:hover { border-color: rgba(240, 240, 240, 1); }
+
         .social-text-links { display: flex; justify-content: center; gap: 3rem; margin-top: 5rem; }
         .social-text-link { color: #F0F0F0; text-decoration: none; font-size: 1rem; font-weight: 400; opacity: 0.5; transition: opacity 0.3s, transform 0.3s; text-transform: uppercase; letter-spacing: 0.08em; }
         .social-text-link:hover { opacity: 1; transform: translateY(-2px); }
 
         @media (max-width: 968px) {
-            .custom-cursor { display: none !important; }
-            html, body, a, .project, button { cursor: auto !important; }
+            .custom-cursor { display: none; }
+            * { cursor: auto; }
             .navbar { padding: 2rem; }
-            .work-section { grid-template-columns: 1fr; background-attachment: scroll; gap: 4rem; } 
+            .work-section { grid-template-columns: 1fr; background-attachment: scroll; } 
             .project:nth-child(even) { margin-top: 0; }
             .about-section { grid-template-columns: 1fr; gap: 4rem; padding: 6rem 2rem; }
             .about-content h2, .exhibitions-section h2 { font-size: 2.5rem; }
@@ -166,8 +173,9 @@
         
         <a href="#" class="project">
             <div class="image-wrapper">
-                <video autoplay muted loop playsinline>
-                    <source src="tu-video.mp4" type="video/mp4">
+                <video controls style="max-width: 100%; max-height: 100%; width: auto; height: auto; border-radius: 4px; object-fit: contain;">
+                    <source src="./tu-video.mp4" type="video/mp4">
+                    Tu navegador no soporta este video.
                 </video>
             </div>
             <div class="project-info">
@@ -178,11 +186,34 @@
 
         <a href="#" class="project">
             <div class="image-wrapper">
-                <video autoplay muted loop playsinline>
-                    <source src="tu-video1.mp4" type="video/mp4">
-                </video>
+                <img src="imagen1.jpg" alt="Collective Art">
             </div>
-            
+            <div class="project-info">
+                <h2>Buda Collective Artist 26 </h2>
+                <span>Collective media art with Web3 Artist in X Twitter comunnity 2021 2026 Directory</span>
+            </div>
+        </a>
+
+        <a href="#" class="project">
+            <div class="image-wrapper">
+                <img src="imagen2.jpg" alt="Proyecto">
+            </div>
+            <div class="project-info">
+                <h2>Plein Air Painting</h2>
+                <span>Water colours class</span>
+            </div>
+        </a>
+
+        <a href="#" class="project">
+            <div class="image-wrapper">
+                <img src="./imagen3reb.jpg" alt="Brand Motion">
+            </div>
+            <div class="project-info">
+                <h2>Visual Identity</h2>
+                <span>Rebranding</span>
+            </div>
+        </a>
+
     </section>
 
     <section class="about-section" id="about">
@@ -190,21 +221,16 @@
             <h2>About Me</h2>
             <p>Art Director & Visual Storyteller | Pitch Decks, Brand Experience & Digital Narratives</p>
             <p>Busco conectar marcas con sus audiencias mediante narrativas visuales analógicas y digitales .</p>
-            <a href="CVlscarcia_2026.pdf" download="CVlscarcia_2026.pdf"> Descargar PDF </a>
+            <a href="CVlscarcia_2026.pdf" download="CVlscarcia_2026.pdf">Descargar PDF</a>
         </div>
         <div class="about-image-wrapper">
-            <img src="perfil.jpg" alt="Leonardo M Scarcia">
+            <img src="./perfil.jpg" alt="Leonardo M Scarcia">
         </div>
     </section>
       
     <section class="exhibitions-section" id="exhibitions">
         <h2>Selected Exhibitions</h2>
         <div class="exhibition-list">
-            <div class="exhibition-item">
-                <span class="exhib-year">2026</span>
-                <span class="exhib-title">Buda Collective Artist</span>
-                <span class="exhib-location">Web3, Collective interactive Artists  Programming and Art direction </span>
-            </div>
             <div class="exhibition-item">
                 <span class="exhib-year">2025</span>
                 <span class="exhib-title">Notable Pepe Cards 8 & 6</span>
@@ -246,36 +272,29 @@
 
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script>
-        // Inicializar Lenis de manera segura
-        let lenis;
-        try {
-            lenis = new Lenis({ duration: 1.2, smooth: true });
-            function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-            requestAnimationFrame(raf);
-        } catch(e) { console.log("Lenis pasivo."); }
+        const lenis = new Lenis({ duration: 1.2, smooth: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
 
-        // Lógica del Cursor
         const cursor = document.getElementById('cursor');
-        if(cursor) {
-            document.addEventListener('mousemove', (e) => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-            });
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
 
-            const interactiveElements = document.querySelectorAll('a, .project, .menu-link, .social-text-link, .exhibition-item');
-            interactiveElements.forEach((el) => {
-                el.addEventListener('mouseenter', () => {
-                    cursor.style.width = '80px';
-                    cursor.style.height = '80px';
-                    cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-                });
-                el.addEventListener('mouseleave', () => {
-                    cursor.style.width = '30px';
-                    cursor.style.height = '30px';
-                    cursor.style.backgroundColor = '#FFFFFF';
-                });
+        const interactiveElements = document.querySelectorAll('a, .project, .menu-link, .social-text-link, .exhibition-item');
+        interactiveElements.forEach((el) => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.width = '80px';
+                cursor.style.height = '80px';
+                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
             });
-        }
+            el.addEventListener('mouseleave', () => {
+                cursor.style.width = '30px';
+                cursor.style.height = '30px';
+                cursor.style.backgroundColor = '#FFFFFF';
+            });
+        });
     </script>
 </body>
 </html>
