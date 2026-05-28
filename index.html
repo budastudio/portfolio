@@ -34,17 +34,35 @@
         .menu-link { color: #F0F0F0; text-decoration: none; opacity: 0.6; transition: 0.3s; }
         .menu-link:hover { opacity: 1; }
 
-        .hero { height: 100vh; display: flex; align-items: center; padding: 0 4rem; }
+        /* FONDO HERO */
+        .hero { 
+            height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 4rem; 
+            background-image: linear-gradient(rgba(15, 15, 15, 0.7), rgba(15, 15, 15, 0.7)), url('bg-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
         .hero-content h1 { font-size: 8.5vw; font-weight: 400; line-height: 0.95; margin-bottom: 3rem; text-transform: uppercase; }
         .hero-content p { font-size: 1.6rem; font-weight: 300; max-width: 600px; opacity: 0.7; }
 
-        .work-section { padding: 6rem 4rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 6rem; }
+        /* SECCIÓN TRABAJOS CON FONDO ESTÁTICO (PARALLAX) */
+        .work-section { 
+            padding: 8rem 4rem; 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 6rem; 
+            background-image: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.85)), url('bg-work.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Hace que el fondo se quede quieto al hacer scroll */
+        }
         .project { display: flex; flex-direction: column; text-decoration: none; color: inherit; }
         .project:nth-child(even) { margin-top: 12rem; }
 
         .image-wrapper { overflow: hidden; width: 100%; aspect-ratio: 4/5; background-color: #1A1A1A; border-radius: 2px; }
-        
-        /* CLASE ESPECIAL PARA VIDEO 16:9 */
         .image-wrapper.video-wide { aspect-ratio: 16/9; }
 
         .image-wrapper img, .image-wrapper video { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -54,15 +72,29 @@
         .project-info h2 { font-size: 2.2rem; font-weight: 400; }
         .project-info span { font-size: 1.1rem; font-weight: 300; opacity: 0.5; }
 
-        .footer { padding: 14rem 4rem 8rem 4rem; text-align: center; }
+        /* FONDO FOOTER */
+        .footer { 
+            padding: 14rem 4rem 8rem 4rem; 
+            text-align: center; 
+            background-image: linear-gradient(rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.9)), url('bg-footer.jpg');
+            background-size: cover;
+            background-position: center;
+        }
         .footer h2 { font-size: 7vw; font-weight: 400; margin-bottom: 4rem; text-transform: uppercase; }
-        .email-link { font-size: 3vw; color: #F0F0F0; text-decoration: none; border-bottom: 2px solid rgba(240, 240, 240, 0.3); padding-bottom: 0.8rem; }
+        .email-link { font-size: 3vw; color: #F0F0F0; text-decoration: none; border-bottom: 2px solid rgba(240, 240, 240, 0.3); padding-bottom: 0.8rem; transition: border-color 0.3s; }
+        .email-link:hover { border-color: rgba(240, 240, 240, 1); }
+
+        .social-text-links { display: flex; justify-content: center; gap: 3rem; margin-top: 5rem; }
+        .social-text-link { color: #F0F0F0; text-decoration: none; font-size: 1rem; font-weight: 400; opacity: 0.5; transition: opacity 0.3s, transform 0.3s; text-transform: uppercase; letter-spacing: 0.08em; }
+        .social-text-link:hover { opacity: 1; transform: translateY(-2px); }
 
         @media (max-width: 968px) {
             .custom-cursor { display: none; }
             * { cursor: auto; }
-            .work-section { grid-template-columns: 1fr; }
+            .work-section { grid-template-columns: 1fr; background-attachment: scroll; } /* Desactiva parallax en celular por optimización */
             .project:nth-child(even) { margin-top: 0; }
+            .email-link { font-size: 1.8rem; }
+            .social-text-links { gap: 1.5rem; flex-wrap: wrap; }
         }
     </style>
 </head>
@@ -81,18 +113,15 @@
     <header class="hero">
         <div class="hero-content">
             <h1>Art Director <br> & Graphic Designer</h1>
-            <p>Leonardo is a creative Director focused on visual storytelling, art direction and digital aesthetics.
-We work at the intersection of art and communication, transforming ideas into visual experiences that connect emotionally and elevate perception.
-Our approach blends concept, atmosphere and narrative — creating work that is not only seen, but felt.
-The work on the top is generative project
-interactive collective gallery
-soon be ready!</p>
+            <p>Portafolio enfocado en la dirección de arte, branding estratégico y diseño de experiencias visuales.</p>
         </div>
     </header>
 
     <section class="work-section" id="work">
+        
         <a href="#" class="project">
-            <div class="image-wrapper video-wide"> <video autoplay loop muted playsinline>
+            <div class="image-wrapper video-wide"> 
+                <video autoplay loop muted playsinline>
                     <source src="tu-video-1.mp4" type="video/mp4">
                 </video>
             </div>
@@ -104,18 +133,45 @@ soon be ready!</p>
 
         <a href="#" class="project">
             <div class="image-wrapper">
-                <img src="imagen1.pn" alt="Proyecto">
+                <img src="imagen1.jpg" alt="Proyecto">
             </div>
             <div class="project-info">
                 <h2>Buda Collective</h2>
                 <span>Web3 Art Directory</span>
             </div>
         </a>
+
+        <a href="#" class="project">
+            <div class="image-wrapper">
+                <img src="imagen2.jpg" alt="Proyecto">
+            </div>
+            <div class="project-info">
+                <h2>Plein Air Painting</h2>
+                <span>Fine Arts</span>
+            </div>
+        </a>
+
+        <a href="#" class="project">
+            <div class="image-wrapper">
+                <img src="imagen3.jpg" alt="Proyecto">
+            </div>
+            <div class="project-info">
+                <h2>Visual Identity</h2>
+                <span>Rebranding</span>
+            </div>
+        </a>
+
     </section>
 
     <footer class="footer" id="contact">
         <h2>Have a Project <br> Work together ! .</h2>
         <a href="mailto:budastudiomkt@gmail.com" class="email-link">budastudiomkt@gmail.com</a>
+        
+        <div class="social-text-links">
+            <a href="https://instagram.com/budastudio_art" target="_blank" class="social-text-link">Instagram</a>
+            <a href="https://linktr.ee/budastudio" target="_blank" class="social-text-link">Linktree</a>
+            <a href="https://linkedin.com/in/lscarcia" target="_blank" class="social-text-link">LinkedIn</a>
+        </div>
     </footer>
 
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
@@ -130,12 +186,12 @@ soon be ready!</p>
             cursor.style.top = e.clientY + 'px';
         });
 
-        const interactiveElements = document.querySelectorAll('a, .project, .menu-link');
+        const interactiveElements = document.querySelectorAll('a, .project, .menu-link, .social-text-link');
         interactiveElements.forEach((el) => {
             el.addEventListener('mouseenter', () => {
                 cursor.style.width = '80px';
                 cursor.style.height = '80px';
-                // CORRECCIÓN AQUÍ: Se eliminó la línea que ponía el fondo transparente
+                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.2)'; /* Fondo translúcido sutil para que el logo siga viéndose */
             });
             el.addEventListener('mouseleave', () => {
                 cursor.style.width = '30px';
