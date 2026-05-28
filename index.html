@@ -72,6 +72,50 @@
         .project-info h2 { font-size: 2.2rem; font-weight: 400; }
         .project-info span { font-size: 1.1rem; font-weight: 300; opacity: 0.5; }
 
+        /* NUEVA SECCIÓN: ABOUT ME */
+        .about-section {
+            padding: 12rem 4rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 6rem;
+            align-items: center;
+            background-image: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.85)), url('bg-about.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .about-content h2 { font-size: 5vw; font-weight: 400; text-transform: uppercase; margin-bottom: 3rem; }
+        .about-content p { font-size: 1.5rem; font-weight: 300; max-width: 650px; opacity: 0.7; line-height: 1.6; margin-bottom: 1.5rem; }
+        .about-image-wrapper {
+            width: 100%;
+            aspect-ratio: 1/1; /* Formato 4x4 / Cuadrado perfecto */
+            overflow: hidden;
+            border-radius: 2px;
+            background-color: #1A1A1A;
+        }
+        .about-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* NUEVA SECCIÓN: EXHIBITIONS */
+        .exhibitions-section {
+            padding: 12rem 4rem 6rem 4rem;
+            background-image: linear-gradient(rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.9)), url('bg-exhibitions.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .exhibitions-section h2 { font-size: 5vw; font-weight: 400; text-transform: uppercase; margin-bottom: 4rem; }
+        .exhibition-list { display: flex; flex-direction: column; }
+        .exhibition-item {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            padding: 2.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            align-items: baseline;
+            transition: opacity 0.3s;
+        }
+        .exhibition-item:hover { opacity: 0.6; }
+        .exhib-year { font-size: 1.1rem; opacity: 0.5; font-weight: 300; }
+        .exhib-title { font-size: 1.8rem; font-weight: 400; text-transform: uppercase; }
+        .exhib-location { font-size: 1.1rem; opacity: 0.5; text-align: right; font-weight: 300; }
+
         /* FONDO FOOTER */
         .footer { 
             padding: 14rem 4rem 8rem 4rem; 
@@ -91,8 +135,14 @@
         @media (max-width: 968px) {
             .custom-cursor { display: none; }
             * { cursor: auto; }
-            .work-section { grid-template-columns: 1fr; background-attachment: scroll; } /* Desactiva parallax en celular por optimización */
+            .navbar { padding: 2rem; }
+            .work-section { grid-template-columns: 1fr; background-attachment: scroll; } 
             .project:nth-child(even) { margin-top: 0; }
+            .about-section { grid-template-columns: 1fr; gap: 4rem; padding: 6rem 2rem; }
+            .about-content h2, .exhibitions-section h2 { font-size: 2.5rem; }
+            .exhibitions-section { padding: 6rem 2rem; }
+            .exhibition-item { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.5rem 0; }
+            .exhib-location { text-align: left; }
             .email-link { font-size: 1.8rem; }
             .social-text-links { gap: 1.5rem; flex-wrap: wrap; }
         }
@@ -106,6 +156,8 @@
         <div class="logo">© Leonardo M Scarcia</div>
         <div class="menu-items">
             <a href="#work" class="menu-link">Projects</a>
+            <a href="#about" class="menu-link">About</a>
+            <a href="#exhibitions" class="menu-link">Exhibitions</a>
             <a href="#contact" class="menu-link">Contact</a>
         </div>
     </nav>
@@ -163,6 +215,41 @@
 
     </section>
 
+    <section class="about-section" id="about">
+        <div class="about-content">
+            <h2>About Me</h2>
+            <p>Director de Arte enfocado en el desarrollo de identidades visuales contundentes y soluciones de diseño conceptuales.</p>
+            <p>A través de un enfoque minimalista y estratégico, busco conectar marcas con sus audiencias mediante narrativas visuales refinadas y ejecuciones de alta precisión.</p>
+        </div>
+        <div class="about-image-wrapper">
+            <img src="perfil.jpg" alt="Leonardo M Scarcia"> </div>
+    </section>
+
+    <section class="exhibitions-section" id="exhibitions">
+        <h2>Selected Exhibitions</h2>
+        <div class="exhibition-list">
+            
+            <div class="exhibition-item">
+                <span class="exhib-year">2026</span>
+                <span class="exhib-title">Digital Horizons Show</span>
+                <span class="exhib-location">New York, US</span>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhib-year">2025</span>
+                <span class="exhib-title">Buda Collective Collective</span>
+                <span class="exhib-location">Madrid, ES</span>
+            </div>
+
+            <div class="exhibition-item">
+                <span class="exhib-year">2024</span>
+                <span class="exhib-title">Fine Arts Annual Exhibition</span>
+                <span class="exhib-location">Buenos Aires, AR</span>
+            </div>
+
+        </div>
+    </section>
+
     <footer class="footer" id="contact">
         <h2>Have a Project <br> Work together ! .</h2>
         <a href="mailto:budastudiomkt@gmail.com" class="email-link">budastudiomkt@gmail.com</a>
@@ -186,7 +273,8 @@
             cursor.style.top = e.clientY + 'px';
         });
 
-        const interactiveElements = document.querySelectorAll('a, .project, .menu-link, .social-text-link');
+        // Incluidas las nuevas clases de exhibiciones en el hover interactivo del cursor
+        const interactiveElements = document.querySelectorAll('a, .project, .menu-link, .social-text-link, .exhibition-item');
         interactiveElements.forEach((el) => {
             el.addEventListener('mouseenter', () => {
                 cursor.style.width = '80px';
