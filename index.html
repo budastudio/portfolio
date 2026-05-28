@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LEonardo M Scarcia — Art Director</title>
+    <title>Leonardo M Scarcia — Art Director</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
-        
-        body { font-family: 'Inter', sans-serif; color: #F0F0F0; -webkit-font-smoothing: antialiased; overflow-x: hidden; background-color: #0F0F0F; }
+        body { font-family: 'Inter', sans-serif; background-color: #0F0F0F; color: #F0F0F0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
         /* Cursor Personalizado con Logo */
         .custom-cursor {
@@ -18,8 +17,8 @@
             top: 0; left: 0;
             width: 30px; height: 30px;
             border-radius: 50%;
-            background-image: url('logo.png'); 
-            background-size: 70%; 
+            background-image: url('logo.png'); /* Asegúrate que este archivo exista en la raíz */
+            background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
             background-color: #FFFFFF;
@@ -35,34 +34,19 @@
         .menu-link { color: #F0F0F0; text-decoration: none; opacity: 0.6; transition: 0.3s; }
         .menu-link:hover { opacity: 1; }
 
-        .hero { 
-            height: 100vh; 
-            display: flex; 
-            align-items: center; 
-            padding: 0 4rem; 
-            background-image: linear-gradient(rgba(15, 15, 15, 0.7), rgba(15, 15, 15, 0.7)), url('bg-hero.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
+        .hero { height: 100vh; display: flex; align-items: center; padding: 0 4rem; }
         .hero-content h1 { font-size: 8.5vw; font-weight: 400; line-height: 0.95; margin-bottom: 3rem; text-transform: uppercase; }
         .hero-content p { font-size: 1.6rem; font-weight: 300; max-width: 600px; opacity: 0.7; }
 
-        .work-section { 
-            padding: 6rem 4rem; 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 6rem; 
-            background-image: linear-gradient(rgba(15, 15, 15, 0.8), rgba(15, 15, 15, 0.8)), url('bg-work.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; 
-        }
+        .work-section { padding: 6rem 4rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 6rem; }
         .project { display: flex; flex-direction: column; text-decoration: none; color: inherit; }
         .project:nth-child(even) { margin-top: 12rem; }
 
         .image-wrapper { overflow: hidden; width: 100%; aspect-ratio: 4/5; background-color: #1A1A1A; border-radius: 2px; }
+        
+        /* CLASE ESPECIAL PARA VIDEO 16:9 */
         .image-wrapper.video-wide { aspect-ratio: 16/9; }
+
         .image-wrapper img, .image-wrapper video { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
         .project:hover .image-wrapper img, .project:hover .image-wrapper video { transform: scale(1.06); }
 
@@ -70,50 +54,15 @@
         .project-info h2 { font-size: 2.2rem; font-weight: 400; }
         .project-info span { font-size: 1.1rem; font-weight: 300; opacity: 0.5; }
 
-        .footer { 
-            padding: 14rem 4rem 8rem 4rem; 
-            text-align: center; 
-            background-image: linear-gradient(rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.9)), url('bg-footer.jpg');
-            background-size: cover;
-            background-position: center;
-        }
+        .footer { padding: 14rem 4rem 8rem 4rem; text-align: center; }
         .footer h2 { font-size: 7vw; font-weight: 400; margin-bottom: 4rem; text-transform: uppercase; }
-        .email-link { font-size: 3vw; color: #F0F0F0; text-decoration: none; border-bottom: 2px solid rgba(240, 240, 240, 0.3); padding-bottom: 0.8rem; transition: border-color 0.3s; }
-        .email-link:hover { border-color: rgba(240, 240, 240, 1); }
-
-        /* =========================================
-           ESTILOS NUEVOS PARA ICONOS REDES SOCIALES
-           ========================================= */
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            margin-top: 4rem;
-        }
-        .social-link {
-            color: #F0F0F0;
-            opacity: 0.5;
-            transition: opacity 0.3s, transform 0.3s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .social-link:hover {
-            opacity: 1;
-            transform: translateY(-2px); /* Pequeño salto elegante */
-        }
-        .social-link svg {
-            width: 24px;  /* Tamaño pequeño sutil */
-            height: 24px;
-            fill: currentColor;
-        }
+        .email-link { font-size: 3vw; color: #F0F0F0; text-decoration: none; border-bottom: 2px solid rgba(240, 240, 240, 0.3); padding-bottom: 0.8rem; }
 
         @media (max-width: 968px) {
             .custom-cursor { display: none; }
             * { cursor: auto; }
-            .work-section { grid-template-columns: 1fr; background-attachment: scroll; } 
+            .work-section { grid-template-columns: 1fr; }
             .project:nth-child(even) { margin-top: 0; }
-            .email-link { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -132,14 +81,18 @@
     <header class="hero">
         <div class="hero-content">
             <h1>Art Director <br> & Graphic Designer</h1>
-            <p>Portafolio enfocado en la dirección de arte, branding estratégico y diseño de experiencias visuales.</p>
+            <p>Leonardo is a creative Director focused on visual storytelling, art direction and digital aesthetics.
+We work at the intersection of art and communication, transforming ideas into visual experiences that connect emotionally and elevate perception.
+Our approach blends concept, atmosphere and narrative — creating work that is not only seen, but felt.
+The work on the top is generative project
+interactive collective gallery
+soon be ready!</p>
         </div>
     </header>
 
     <section class="work-section" id="work">
         <a href="#" class="project">
-            <div class="image-wrapper video-wide"> 
-                <video autoplay loop muted playsinline>
+            <div class="image-wrapper video-wide"> <video autoplay loop muted playsinline>
                     <source src="tu-video-1.mp4" type="video/mp4">
                 </video>
             </div>
@@ -151,7 +104,7 @@
 
         <a href="#" class="project">
             <div class="image-wrapper">
-                <img src="imagen1.jpg" alt="Proyecto">
+                <img src="imagen1.pn" alt="Proyecto">
             </div>
             <div class="project-info">
                 <h2>Buda Collective</h2>
@@ -163,10 +116,33 @@
     <footer class="footer" id="contact">
         <h2>Have a Project <br> Work together ! .</h2>
         <a href="mailto:budastudiomkt@gmail.com" class="email-link">budastudiomkt@gmail.com</a>
-        
-        <div class="social-links">
-            <a href="https://instagram.com/budastudio_art" target="_blank" class="social-link" title="Instagram">
-                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </a>
-            <a href="https://linktr.ee/budastudio" target="_blank" class="social-link" title="Linktree">
-                <svg viewBox="0 0 24 24"><path d="m13.736 5.893 4.005-4.117 2.325 2.324-4.117 4.005h5.051v3.284h-5.051l4.117 4.005-2.325 2.324
+    </footer>
+
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script>
+        const lenis = new Lenis({ duration: 1.2, smooth: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        const interactiveElements = document.querySelectorAll('a, .project, .menu-link');
+        interactiveElements.forEach((el) => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.width = '80px';
+                cursor.style.height = '80px';
+                // CORRECCIÓN AQUÍ: Se eliminó la línea que ponía el fondo transparente
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.width = '30px';
+                cursor.style.height = '30px';
+                cursor.style.backgroundColor = '#FFFFFF';
+            });
+        });
+    </script>
+</body>
+</html>
