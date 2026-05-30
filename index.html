@@ -160,6 +160,62 @@
             .email-link { font-size: 1.8rem; }
             .social-text-links { gap: 1.5rem; flex-wrap: wrap; }
         }
+        /* BIOGRAPHY EXPANDABLE */
+
+.bio-expand {
+    margin-top: 3rem;
+    max-width: 900px;
+}
+
+.bio-trigger {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: none;
+    margin-bottom: 0;
+}
+
+.bio-plus {
+    color: #FFFFFF;
+    font-size: 28px;
+    font-weight: 200;
+    transition: transform 0.5s ease;
+}
+
+.bio-title {
+    color: #FFFFFF;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+.bio-text {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+        max-height 0.9s ease,
+        opacity 0.6s ease,
+        margin-top 0.6s ease;
+}
+
+.bio-expand:hover .bio-text {
+    max-height: 2000px;
+    opacity: 1;
+    margin-top: 30px;
+}
+
+.bio-expand:hover .bio-plus {
+    transform: rotate(135deg);
+}
+
+.bio-text p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    opacity: 0.75;
+    margin-bottom: 1.5rem;
+}
     </style>
 </head>
 <body>
@@ -232,11 +288,48 @@
             <h2>About Me</h2>
             <p>Art Director & Visual Storyteller | Pitch Decks, Brand Experience & Digital Narratives</p>
             <p>Busco conectar marcas con sus audiencias mediante narrativas visuales analógicas y digitales .</p>
+            <div class="bio-expand">
+
+    <div class="bio-trigger">
+        <span class="bio-plus">+</span>
+        <span class="bio-title">Artistic Biography</span>
+    </div>
+
+    <div class="bio-text">
+
+        <p>
+            Leonardo M. Scarcia began exhibiting his work in 1994, participating in the Bienal de Arte Joven in Buenos Aires — one of the three decentralized biennials held at that time.
+        </p>
+
+        <p>
+            Throughout the 1990s and 2000s, he exhibited across key cultural spaces in Buenos Aires, including Lady of Bollini, the Ministry of Economy of the Nation, Casa de Corrientes, the French Alliance of Buenos Aires, Galería Pacífico, and the Recoleta Museum of Modern Art.
+        </p>
+
+        <p>
+            While institutional opportunities later became more limited, Scarcia never stopped creating. His practice continued to evolve organically — expanding beyond physical spaces into new media, digital languages, and experimental forms.
+        </p>
+
+        <p>
+            In 2021, he entered the NFT ecosystem, opening a new chapter in his career. Within the Web3 space, he reconnected with a global artistic community, presenting over 25 years of exploration at the intersection of art and technology.
+        </p>
+
+        <p>
+            Today, his practice exists between disciplines — where art direction, visual storytelling and digital experimentation converge. His multidisciplinary approach spans painting, animation, digital illustration, 3D art, VR, AR and AI-assisted creation.
+        </p>
+
+        <p>
+            He does not approach design as decoration, but as perception — a way of revealing what already exists beneath the surface.
+        </p>
+
+    </div>
+
+</div>
             <a href="CVlscarcia_2026.pdf" download="CVlscarcia_2026.pdf" class="pdf-link">Descargar PDF</a>
         </div>
         <div class="about-image-wrapper">
             <img src="./perfil.jpg" alt="Leonardo M Scarcia">
         </div>
+        
     </section>
       
     <section class="exhibitions-section" id="exhibitions">
