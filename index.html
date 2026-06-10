@@ -1,461 +1,96 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo M Scarcia — Visual Art Director</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
-        body { font-family: 'Inter', sans-serif; background-color: #0F0F0F; color: #F0F0F0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-
-        /* Cursor Personalizado con Logo */
-        .custom-cursor {
-            position: fixed;
-            top: 0; left: 0;
-            width: 30px; height: 30px;
-            border-radius: 50%;
-            background-image: url('logo.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-color: #FFFFFF;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s;
-        }
-
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 2.5rem 4rem; font-size: 1.1rem; position: fixed; width: 100%; top: 0; z-index: 100; mix-blend-mode: difference; }
-        .logo { font-weight: 500; text-transform: uppercase; }
-        .menu-items { display: flex; gap: 2.5rem; }
-        .menu-link { color: #F0F0F0; text-decoration: none; opacity: 0.6; transition: 0.3s; }
-        .menu-link:hover { opacity: 1; }
-
-        /* FONDO HERO */
-        .hero { 
-            height: 100vh; 
-            display: flex; 
-            align-items: center; 
-            padding: 0 4rem; 
-            background-image: linear-gradient(rgba(15, 15, 15, 0.7), rgba(15, 15, 15, 0.7)), url('bg-hero.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        .hero-content h1 { font-size: 8.5vw; font-weight: 400; line-height: 0.95; margin-bottom: 3rem; text-transform: uppercase; }
-        .hero-content p { font-size: 1.6rem; font-weight: 300; max-width: 600px; opacity: 0.7; }
-
-        /* SECCIÓN TRABAJOS CON FONDO ESTÁTICO (PARALLAX) */
-        .work-section { 
-            padding: 8rem 4rem; 
-            display: grid; 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 6rem; 
-            background-image: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.85)), url('bg-work.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        .project { display: flex; flex-direction: column; text-decoration: none; color: inherit; }
-        .project:nth-child(even) { margin-top: 12rem; }
-
-        .image-wrapper img,
-.image-wrapper video {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.image-wrapper img {
-    min-height: 100%;
-}
-        .project-info { display: flex; justify-content: space-between; align-items: baseline; margin-top: 1.8rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.15); }
-        .project-info h2 { font-size: 2.2rem; font-weight: 400; }
-        .project-info span { font-size: 1.1rem; font-weight: 300; opacity: 0.5; }
-
-        /* NUEVA SECCIÓN: ABOUT ME */
-        .about-section {
+<!DOCTYPE html><html lang="es"><head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Leonardo M Scarcia — Visual Art Director</title>        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }        body { font-family: 'Inter', sans-serif; background-color: #0F0F0F; color: #F0F0F0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+        /* Cursor Personalizado con Logo */        .custom-cursor {            position: fixed;            top: 0; left: 0;            width: 30px; height: 30px;            border-radius: 50%;            background-image: url('logo.png');            background-size: contain;            background-repeat: no-repeat;            background-position: center;            background-color: #FFFFFF;            pointer-events: none;            z-index: 9999;            transform: translate(-50%, -50%);            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s;        }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 2.5rem 4rem; font-size: 1.1rem; position: fixed; width: 100%; top: 0; z-index: 100; mix-blend-mode: difference; }        .logo { font-weight: 500; text-transform: uppercase; }        .menu-items { display: flex; gap: 2.5rem; }        .menu-link { color: #F0F0F0; text-decoration: none; opacity: 0.6; transition: 0.3s; }        .menu-link:hover { opacity: 1; }
+        /* FONDO HERO */        .hero {             height: 100vh;             display: flex;             align-items: center;             padding: 0 4rem;             background-image: linear-gradient(rgba(15, 15, 15, 0.7), rgba(15, 15, 15, 0.7)), url('bg-hero.jpg');            background-size: cover;            background-position: center;            background-repeat: no-repeat;        }        .hero-content h1 { font-size: 8.5vw; font-weight: 400; line-height: 0.95; margin-bottom: 3rem; text-transform: uppercase; }        .hero-content p { font-size: 1.6rem; font-weight: 300; max-width: 600px; opacity: 0.7; }
+        /* SECCIÓN TRABAJOS CON FONDO ESTÁTICO (PARALLAX) */        .work-section {             padding: 8rem 4rem;             display: grid;             grid-template-columns: repeat(2, 1fr);             gap: 6rem;             background-image: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.85)), url('bg-work.jpg');            background-size: cover;            background-position: center;            background-attachment: fixed;        }        .project { display: flex; flex-direction: column; text-decoration: none; color: inherit; }        .project:nth-child(even) { margin-top: 12rem; }
+        .image-wrapper img,.image-wrapper video {    width: 100%;    height: 100%;    display: block;    object-fit: cover;    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);}
+.image-wrapper img {    min-height: 100%;}        .project-info { display: flex; justify-content: space-between; align-items: baseline; margin-top: 1.8rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.15); }        .project-info h2 { font-size: 2.2rem; font-weight: 400; }        .project-info span { font-size: 1.1rem; font-weight: 300; opacity: 0.5; }
+        /* NUEVA SECCIÓN: ABOUT ME */        .about-section {            padding: 12rem 4rem;            display: grid;            grid-template-columns: 1.2fr 0.8fr;            gap: 6rem;            align-items: center;            background-image: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.85)), url('bg-about.jpg');            background-size: cover;            background-position: center;        }        .about-content h2 { font-size: 5vw; font-weight: 400; text-transform: uppercase; margin-bottom: 3rem; }        .about-content p { font-size: 1.5rem; font-weight: 300; max-width: 650px; opacity: 0.7; line-height: 1.6; margin-bottom: 1.5rem; }        .about-image-wrapper {            width: 100%;            aspect-ratio: 1/1;            overflow: hidden;            border-radius: 2px;            background-color: #1A1A1A;        }        .about-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        /* NUEVA SECCIÓN: EXHIBITIONS */ 
+        /* CORRECCIÓN: Estilos agregados para posicionar correctamente los videos de las exibiciones */
+        .exhibitions {
+            position: relative;
             padding: 12rem 4rem;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 6rem;
-            align-items: center;
-            background-image: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.85)), url('bg-about.jpg');
+            background-image: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.85)), url('bg-exhibitions.jpg');
             background-size: cover;
             background-position: center;
         }
-        .about-content h2 { font-size: 5vw; font-weight: 400; text-transform: uppercase; margin-bottom: 3rem; }
-        .about-content p { font-size: 1.5rem; font-weight: 300; max-width: 650px; opacity: 0.7; line-height: 1.6; margin-bottom: 1.5rem; }
-        .about-image-wrapper {
-            width: 100%;
-            aspect-ratio: 1/1;
-            overflow: hidden;
-            border-radius: 2px;
-            background-color: #1A1A1A;
-        }
-        .about-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* NUEVA SECCIÓN: EXHIBITIONS */
- 
-        /* FONDO FOOTER */
-        .footer { 
-            padding: 14rem 4rem 8rem 4rem; 
-            text-align: center; 
-            background-image: linear-gradient(rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.9)), url('bg-footer.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-        .footer h2 { font-size: 7vw; font-weight: 400; margin-bottom: 4rem; text-transform: uppercase; }
-        .email-link { font-size: 3vw; color: #F0F0F0; text-decoration: none; border-bottom: 2px solid rgba(240, 240, 240, 0.3); padding-bottom: 0.8rem; transition: border-color 0.3s; }
-        .email-link:hover { border-color: rgba(240, 240, 240, 1); }
-        .pdf-link{
-    color: #FFFFFF;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    display: inline-block;
-    margin-top: 50px;
-}
-
-.pdf-link:hover{
-    color: #888888;
-}
-        .social-text-links { display: flex; justify-content: center; gap: 3rem; margin-top: 5rem; }
-        .social-text-link { color: #F0F0F0; text-decoration: none; font-size: 1rem; font-weight: 400; opacity: 0.5; transition: opacity 0.3s, transform 0.3s; text-transform: uppercase; letter-spacing: 0.08em; }
-        .social-text-link:hover { opacity: 1; transform: translateY(-2px); }
-
-        @media (max-width: 968px) {
-            .custom-cursor { display: none; }
-            * { cursor: auto; }
-            .navbar { padding: 2rem; }
-            .work-section { grid-template-columns: 1fr; background-attachment: scroll; } 
-            .project:nth-child(even) { margin-top: 0; }
-            .about-section { grid-template-columns: 1fr; gap: 4rem; padding: 6rem 2rem; }
-            .about-content h2, .exhibitions-section h2 { font-size: 2.5rem; }
-            .exhibitions-section { padding: 6rem 2rem; }
-            .exhibition-item { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.5rem 0; }
-            .exhib-location { text-align: left; }
-            .email-link { font-size: 1.8rem; }
-            .social-text-links { gap: 1.5rem; flex-wrap: wrap; }
-        }
-        /* BIOGRAPHY EXPANDABLE */
-
-.bio-expand {
-    margin-top: 3rem;
-    max-width: 900px;
-}
-
-.bio-trigger {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    cursor: none;
-    margin-bottom: 0;
-}
-
-.bio-plus {
-    color: #FFFFFF;
-    font-size: 28px;
-    font-weight: 200;
-    transition: transform 0.5s ease;
-}
-
-.bio-title {
-    color: #FFFFFF;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    opacity: 0.8;
-}
-
-.bio-text {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition:
-        max-height 0.9s ease,
-        opacity 0.6s ease,
-        margin-top 0.6s ease;
-}
-
-.bio-expand:hover .bio-text {
-    max-height: 2000px;
-    opacity: 1;
-    margin-top: 30px;
-}
-
-.bio-expand:hover .bio-plus {
-    transform: rotate(135deg);
-}
-
-.bio-text p {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    opacity: 0.75;
-    margin-bottom: 1.5rem;
-}
-    .video-container{ position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0; } .bg-video{ position:absolute; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .45s ease; } .bg-overlay{ position:absolute; inset:0; background:rgba(0,0,0,.55); opacity:0; transition:.45s; } .section-title, .ex-item{ position:relative; z-index:2; } .ex-item{ display:grid; grid-template-columns:120px 1fr 220px; padding:32px 0; border-bottom:1px solid rgba(255,255,255,.15); cursor:pointer; transition:.35s; } .ex-item:hover{ transform:translateX(12px); } .ex-year{ opacity:.35; font-size:30px; } .ex-title{ font-size:36px; } .ex-location{ text-align:right; opacity:.7; } @media(max-width:900px){ .ex-item{ grid-template-columns:1fr; gap:10px; } .ex-location{ text-align:left; } }
-    </style>
-</head>
-<body>
-
+        /* FONDO FOOTER */        .footer {             padding: 14rem 4rem 8rem 4rem;             text-align: center;             background-image: linear-gradient(rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.9)), url('bg-footer.jpg');            background-size: cover;            background-position: center;        }        .footer h2 { font-size: 7vw; font-weight: 400; margin-bottom: 4rem; text-transform: uppercase; }        .email-link { font-size: 3vw; color: #F0F0F0; text-decoration: none; border-bottom: 2px solid rgba(240, 240, 240, 0.3); padding-bottom: 0.8rem; transition: border-color 0.3s; }        .email-link:hover { border-color: rgba(240, 240, 240, 1); }        .pdf-link{    color: #FFFFFF;    text-decoration: none;    transition: color 0.3s ease;    display: inline-block;    margin-top: 50px;}
+.pdf-link:hover{    color: #888888;}        .social-text-links { display: flex; justify-content: center; gap: 3rem; margin-top: 5rem; }        .social-text-link { color: #F0F0F0; text-decoration: none; font-size: 1rem; font-weight: 400; opacity: 0.5; transition: opacity 0.3s, transform 0.3s; text-transform: uppercase; letter-spacing: 0.08em; }        .social-text-link:hover { opacity: 1; transform: translateY(-2px); }
+        @media (max-width: 968px) {            .custom-cursor { display: none; }            * { cursor: auto; }            .navbar { padding: 2rem; }            .work-section { grid-template-columns: 1fr; background-attachment: scroll; }             .project:nth-child(even) { margin-top: 0; }            .about-section { grid-template-columns: 1fr; gap: 4rem; padding: 6rem 2rem; }            .about-content h2, .exhibitions-section h2 { font-size: 2.5rem; }            .exhibitions-section { padding: 6rem 2rem; }            .exhibition-item { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.5rem 0; }            .exhib-location { text-align: left; }            .email-link { font-size: 1.8rem; }            .social-text-links { gap: 1.5rem; flex-wrap: wrap; }        }        /* BIOGRAPHY EXPANDABLE */
+.bio-expand {    margin-top: 3rem;    max-width: 900px;}
+.bio-trigger {    display: flex;    align-items: center;    gap: 15px;    cursor: none;    margin-bottom: 0;}
+.bio-plus {    color: #FFFFFF;    font-size: 28px;    font-weight: 200;    transition: transform 0.5s ease;}
+.bio-trigger:hover { opacity: 0.8; }
+.bio-title {    color: #FFFFFF;    font-size: 0.95rem;    text-transform: uppercase;    letter-spacing: 2px;    opacity: 0.8;}
+.bio-text {    max-height: 0;    overflow: hidden;    opacity: 0;    transition:        max-height 0.9s ease,        opacity 0.6s ease,        margin-top 0.6s ease;}
+.bio-expand:hover .bio-text {    max-height: 2000px;    opacity: 1;    margin-top: 30px;}
+.bio-expand:hover .bio-plus {    transform: rotate(135deg);}
+.bio-text p {    font-size: 1.05rem;    line-height: 1.8;    opacity: 0.75;    margin-bottom: 1.5rem;}    .video-container{ position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0; } .bg-video{ position:absolute; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .45s ease; } .bg-overlay{ position:absolute; inset:0; background:rgba(0,0,0,.55); opacity:0; transition:.45s; } .section-title, .ex-item{ position:relative; z-index:2; } .ex-item{ display:grid; grid-template-columns:120px 1fr 220px; padding:32px 0; border-bottom:1px solid rgba(255,255,255,.15); cursor:pointer; transition:.35s; } .ex-item:hover{ transform:translateX(12px); } .ex-year{ opacity:.35; font-size:30px; } .ex-title{ font-size:36px; } .ex-location{ text-align:right; opacity:.7; } @media(max-width:900px){ .ex-item{ grid-template-columns:1fr; gap:10px; } .ex-location{ text-align:left; } }    </style></head><body>
     <div class="custom-cursor" id="cursor"></div>
-
-    <nav class="navbar">
-        <div class="logo">© Leonardo M Scarcia</div>
-        <div class="menu-items">
-            <a href="#work" class="menu-link">Projects</a>
-            <a href="#about" class="menu-link">About</a>
-            <a href="#exhibitions" class="menu-link">Exhibitions</a>
-            <a href="#contact" class="menu-link">Contact</a>
-        </div>
-    </nav>
-
-    <header class="hero">
-        <div class="hero-content">
-            <h1>Visual Artist <br> & Art Director</h1>
-            <p>Art Director & Visual Storyteller | Pitch Decks, Brand Experience & Digital Narratives</p>
-        </div>
-    </header>
-
-    <section class="work-section" id="work">
-        
-    <a href="#" class="project">
-        <div class="image-wrapper video-wide">
-            <video autoplay muted loop playsinline>
-                <source src="tu-video-2.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="project-info">
-            <h2>Reel</h2>
-            <span>Stop motion and 2d animation</span>
-        </div>
-    </a>
-
-    <a href="#" class="project">
-        <div class="image-wrapper video-wide">
-            <video autoplay muted loop playsinline>
-                <source src="tu-video-1.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="project-info">
-            <h2>Buda Collective Artist 26</h2>
-            <span>Collective media art programming a gallery for Web3 Artist in X Twitter community 2021–2026 Directory</span>
-            
-        </div>
-        <a href="https://budastudio.github.io/buda-collective-artist/" target="_blank">
-Open Live Experience →
-</a>
-    </a>
-
-    <a href="#" class="project">
-        <div class="image-wrapper video-wide">
-            <video autoplay muted loop playsinline>
-                <source src="tu-video-4.mp4" type="video/mp4">
-            </video>
-        </div>
-    </a>
-
-    <a href="#" class="project">
-       
-        <div class="project-info">
-            <h2>Bitcoin Sculpture 2025 </h2>
-            <span>pre selection project and modelating in 3d blender </span>
-        </div>
-    </a>
-
+    <nav class="navbar">        <div class="logo">© Leonardo M Scarcia</div>        <div class="menu-items">            <a href="#work" class="menu-link">Projects</a>            <a href="#about" class="menu-link">About</a>            <a href="#exhibitions" class="menu-link">Exhibitions</a>            <a href="#contact" class="menu-link">Contact</a>        </div>    </nav>
+    <header class="hero">        <div class="hero-content">            <h1>Visual Artist <br> & Art Director</h1>            <p>Art Director & Visual Storyteller | Pitch Decks, Brand Experience & Digital Narratives</p>        </div>    </header>
+    <section class="work-section" id="work">            <a href="#" class="project">        <div class="image-wrapper video-wide">            <video autoplay muted loop playsinline>                <source src="tu-video-2.mp4" type="video/mp4">            </video>        </div>        <div class="project-info">            <h2>Reel</h2>            <span>Stop motion and 2d animation</span>        </div>    </a>
+    <a href="#" class="project">        <div class="image-wrapper video-wide">            <video autoplay muted loop playsinline>                <source src="tu-video-1.mp4" type="video/mp4">            </video>        </div>        <div class="project-info">            <h2>Buda Collective Artist 26</h2>            <span>Collective media art programming a gallery for Web3 Artist in X Twitter community 2021–2026 Directory</span>                    </div>        <a href="https://budastudio.github.io/buda-collective-artist/" target="_blank">Open Live Experience →</a>    </a>
+    <a href="#" class="project">        <div class="image-wrapper video-wide">            <video autoplay muted loop playsinline>                <source src="tu-video-4.mp4" type="video/mp4">            </video>        </div>    </a>
+    <a href="#" class="project">               <div class="project-info">            <h2>Bitcoin Sculpture 2025 </h2>            <span>pre selection project and modelating in 3d blender </span>        </div>    </a>
 </section>
-
-    <section class="about-section" id="about">
-       <div class="about-content">
-
+    <section class="about-section" id="about">       <div class="about-content">
     <h2>About Me</h2>
-
-    <p>
-        Working at the intersection of art, design, motion and emerging technologies,
-        creating visual narratives that connect ideas, brands and communities.
-    </p>
-
+    <p>        Working at the intersection of art, design, motion and emerging technologies,        creating visual narratives that connect ideas, brands and communities.    </p>
     <div class="bio-expand">
-
-        <div class="bio-trigger">
-            <span class="bio-plus">+</span>
-            <span class="bio-title">Professional Journey</span>
-        </div>
-
+        <div class="bio-trigger">            <span class="bio-plus">+</span>            <span class="bio-title">Professional Journey</span>        </div>
         <div class="bio-text">
-
             <p>Over the past two decades, I have worked across graphic design, art direction, motion graphics, video editing and visual storytelling, collaborating with agencies, brands, cultural institutions and independent projects.</p>
-
             <p>My career began in traditional visual communication, where I developed a strong foundation in graphic design, illustration and artistic practice. As digital media evolved, I expanded my expertise into motion design, audiovisual production and interactive experiences.</p>
-
             <p>Throughout my professional journey, I have created animated content, advertising campaigns, social media assets, brand identities, pitch decks and audiovisual narratives for clients across different industries.</p>
-
             <p>Working remotely with multidisciplinary teams has allowed me to adapt quickly to fast-paced production environments while maintaining a strong focus on quality, efficiency and creative problem-solving.</p>
-
             <p>My approach integrates design, animation, sound and storytelling into cohesive visual experiences. Whether developing motion graphics for digital campaigns, editing promotional videos or directing creative projects, I seek to build meaningful connections between brands, ideas and audiences.</p>
-
             <p>Alongside my commercial work, I have maintained an active artistic practice that includes painting, animation, digital art, 3D experimentation, virtual environments and Web3 projects.</p>
-
             <p>Currently, I work as an Art Director, Motion Designer and Visual Artist, developing projects that exist at the intersection of communication, technology and contemporary visual culture.</p>
-
         </div>
-
     </div>
-
     <div class="bio-expand">
-
-        <div class="bio-trigger">
-            <span class="bio-plus">+</span>
-            <span class="bio-title">Artistic Biography</span>
-        </div>
-
+        <div class="bio-trigger">            <span class="bio-plus">+</span>            <span class="bio-title">Artistic Biography</span>        </div>
         <div class="bio-text">
-
             <p>Leonardo M. Scarcia began exhibiting his work in 1994, participating in the Bienal de Arte Joven in Buenos Aires — one of the three decentralized biennials held at that time.</p>
-
             <p>Throughout the 1990s and 2000s, he exhibited across key cultural spaces in Buenos Aires, including Lady of Bollini, the Ministry of Economy of the Nation, Casa de Corrientes, the French Alliance of Buenos Aires, Galería Pacífico, and the Recoleta Museum of Modern Art.</p>
-
             <p>While institutional opportunities later became more limited, Scarcia never stopped creating. His practice continued to evolve organically through new media, digital languages and experimental forms.</p>
-
             <p>In 2021, he entered the NFT ecosystem, opening a new chapter in his career. Through Web3, he reconnected with a global artistic community and expanded his work internationally.</p>
-
             <p>Today, his multidisciplinary practice spans painting, animation, art direction, digital illustration, 3D art, virtual reality, augmented reality and AI-assisted creation.</p>
-
             <p>His work exists between what is constructed and what is felt, where images are not only seen, but experienced.</p>
-
         </div>
-
     </div>
-
-    <a href="CVlscarcia_2026.pdf" download="CVlscarcia_2026.pdf" class="pdf-link">
-        Download CV 2026
-    </a>
-
-</div>        <div class="about-image-wrapper">
-            <img src="./perfil.jpg" alt="Leonardo M Scarcia">
-        </div>
-        
-   <section class="exhibitions" id="exhibitions"> <div class="video-container"> <video id="bgVideo" class="bg-video" muted loop playsinline></video>
- <div id="bgOverlay" class="bg-overlay"></div> </div> 
-       <h2 class="section-title">SELECTED EXHIBITIONS</h2> 
-       <div class="ex-item" data-video="notable-pepe.mp4">
-       <div class="ex-year">2025</div> <div class="ex-title">NOTABLE PEPE CARDS 8 & 6</div>
-       <div class="ex-location">Pepe WTF · US</div> </div> 
-       <div class="ex-item" data-video="nftnyc.mp4"> <div class="ex-year">2025</div> <div class="ex-title">NFT NYC 24–25</div> 
-           <div class="ex-location">New York · US</div> </div>
-       <div class="ex-item" data-video="nfc-lisboa.mp4"> <div class="ex-year">2025</div> <div class="ex-title">NFC LISBOA 24–25</div> 
-       <div class="ex-location">Lisboa · Portugal</div> </div> <div class="ex-item" data-video="pepefest.mp4"> <div class="ex-year">2024</div>
-       <div class="ex-title">PEPE FEST / BEEPLE PEPE FEST</div> <div class="ex-location">South Carolina · US</div> </div>
-       <div class="ex-item" data-video="solana.mp4"> <div class="ex-year">2024</div> 
-           <div class="ex-title">SOLANA FILM FESTIVAL</div> 
-           <div class="ex-location">Web3</div> </div> <div class="ex-item" data-video="tianguis.mp4">
-               <div class="ex-year">2024</div> <div class="ex-title">NFT TIANGUIS</div>
-               <div class="ex-location">Querétaro · México</div> </div> 
-       <div class="ex-item" data-video="buda.mp4">
-           <div class="ex-year">2023</div> <div class="ex-title">BUDA COLLECTIVE ARTIST</div> 
-           <div class="ex-location">Garopaba · Brazil</div> </div> <div class="ex-item" data-video="japan.mp4"> 
-               <div class="ex-year">2023</div> <div class="ex-title">JAPAN METAVERSE EXHIBITION</div> 
-               <div class="ex-location">Spatial Gallery VR</div> </div> 
-               <div class="ex-item" data-video="cryptovoxels.mp4">
-             <div class="ex-year">2023</div> <div class="ex-title">COLLECTIVE EXHIBITION IN CRYPTOVOXELS</div> <div class="ex-location">Cryptovoxels</div> </div> </section>
-    <footer class="footer" id="contact">
-        <h2>Have a Project ? <br> Let's Work together </h2>
-        <div class="social-text-links">
-    <a href="https://x.com/budastudio_nft" target="_blank" class="social-text-link">X </a>
-    <a href="https://be.net/lscarcia" target="_blank" class="social-text-link">Behance</a>
-    <a href="https://linkedin.com/in/lscarcia" target="_blank" class="social-text-link">LinkedIn</a>
-    <a href="https://linktr.ee/budastudio" target="_blank" class="social-text-link">Linktree</a>
-    <a href="https://instagram.com/budastudio_art" target="_blank" class="social-text-link">Instagram</a>
-    
-    
-</div>
-
+    <a href="CVlscarcia_2026.pdf" download="CVlscarcia_2026.pdf" class="pdf-link">        Download CV 2026    </a>
+</div>        <div class="about-image-wrapper">            <img src="./perfil.jpg" alt="Leonardo M Scarcia">        </div>   </section>        <section class="exhibitions" id="exhibitions"> <div class="video-container"> <video id="bgVideo" class="bg-video" muted loop playsinline></video> <div id="bgOverlay" class="bg-overlay"></div> </div>        <h2 class="section-title">SELECTED EXHIBITIONS</h2>        <div class="ex-item" data-video="notable-pepe.mp4">       <div class="ex-year">2025</div> <div class="ex-title">NOTABLE PEPE CARDS 8 & 6</div>       <div class="ex-location">Pepe WTF · US</div> </div>        <div class="ex-item" data-video="nftnyc.mp4"> <div class="ex-year">2025</div> <div class="ex-title">NFT NYC 24–25</div>            <div class="ex-location">New York · US</div> </div>       <div class="ex-item" data-video="nfc-lisboa.mp4"> <div class="ex-year">2025</div> <div class="ex-title">NFC LISBOA 24–25</div>        <div class="ex-location">Lisboa · Portugal</div> </div> <div class="ex-item" data-video="pepefest.mp4"> <div class="ex-year">2024</div>       <div class="ex-title">PEPE FEST / BEEPLE PEPE FEST</div> <div class="ex-location">South Carolina · US</div> </div>       <div class="ex-item" data-video="solana.mp4"> <div class="ex-year">2024</div>            <div class="ex-title">SOLANA FILM FESTIVAL</div>            <div class="ex-location">Web3</div> </div> <div class="ex-item" data-video="tianguis.mp4">               <div class="ex-year">2024</div> <div class="ex-title">NFT TIANGUIS</div>               <div class="ex-location">Querétaro · México</div> </div>        <div class="ex-item" data-video="buda.mp4">           <div class="ex-year">2023</div> <div class="ex-title">BUDA COLLECTIVE ARTIST</div>            <div class="ex-location">Garopaba · Brazil</div> </div> <div class="ex-item" data-video="japan.mp4">                <div class="ex-year">2023</div> <div class="ex-title">JAPAN METAVERSE EXHIBITION</div>                <div class="ex-location">Spatial Gallery VR</div> </div>                <div class="ex-item" data-video="cryptovoxels.mp4">             <div class="ex-year">2023</div> <div class="ex-title">COLLECTIVE EXHIBITION IN CRYPTOVOXELS</div> <div class="ex-location">Cryptovoxels</div> </div> </section>    <footer class="footer" id="contact">        <h2>Have a Project ? <br> Let's Work together </h2>        <div class="social-text-links">    <a href="https://x.com/budastudio_nft" target="_blank" class="social-text-link">X </a>    <a href="https://be.net/lscarcia" target="_blank" class="social-text-link">Behance</a>    <a href="https://linkedin.com/in/lscarcia" target="_blank" class="social-text-link">LinkedIn</a>    <a href="https://linktr.ee/budastudio" target="_blank" class="social-text-link">Linktree</a>    <a href="https://instagram.com/budastudio_art" target="_blank" class="social-text-link">Instagram</a>        </div>
     </footer>
-
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    <script>
-        const lenis = new Lenis({ duration: 1.2, smooth: true });
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
-
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        const interactiveElements = document.querySelectorAll('a, .project, .menu-link, .social-text-link, .exhibition-item');
-        interactiveElements.forEach((el) => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.width = '80px';
-                cursor.style.height = '80px';
-                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.width = '30px';
-                cursor.style.height = '30px';
-                cursor.style.backgroundColor = '#FFFFFF';
-            });
-        });
-    </script>
-    <script>
-
-const bgVideo=document.getElementById("bgVideo");
-const bgOverlay=document.getElementById("bgOverlay");
-
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>    <script>        const lenis = new Lenis({ duration: 1.2, smooth: true });        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }        requestAnimationFrame(raf);
+        const cursor = document.getElementById('cursor');        document.addEventListener('mousemove', (e) => {            cursor.style.left = e.clientX + 'px';            cursor.style.top = e.clientY + 'px';        });
+        const interactiveElements = document.querySelectorAll('a, .project, .menu-link, .social-text-link, .exhibition-item');        interactiveElements.forEach((el) => {            el.addEventListener('mouseenter', () => {                cursor.style.width = '80px';                cursor.style.height = '80px';                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';            });            el.addEventListener('mouseleave', () => {                cursor.style.width = '30px';                cursor.style.height = '30px';                cursor.style.backgroundColor = '#FFFFFF';            });        });    </script>    <script>
+const bgVideo=document.getElementById("bgVideo");const bgOverlay=document.getElementById("bgOverlay");
 let active="";
-
 document.querySelectorAll(".ex-item").forEach(item=>{
-
 item.addEventListener("mouseenter",()=>{
-
 const file=item.dataset.video;
-
 if(active!==file){
-
 active=file;
-
 bgVideo.style.opacity=0;
-
 setTimeout(()=>{
-
 bgVideo.src=file;
-
 bgVideo.load();
-
 bgVideo.play().catch(()=>{});
-
 bgVideo.style.opacity=1;
-
 },150);
-
 }
-
 bgOverlay.style.opacity=1;
-
 });
-
 });
-
 document.getElementById("exhibitions").addEventListener("mouseleave",()=>{
-
 bgVideo.style.opacity=0;
-
 bgOverlay.style.opacity=0;
-
 setTimeout(()=>{
-
 bgVideo.pause();
-
 },450);
-
 });
-
-</script>
-</body>
-</html>
+</script></body></html>
