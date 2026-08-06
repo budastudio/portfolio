@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo M Scarcia — Visual Art Director</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        body { font-family: 'Inter', sans-serif; background-color: #0F0F0F; color: #F0F0F0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+        /* Cursor Personalizado */
+        .custom-cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            background-image: url('logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #FFFFFF;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s;
+        }
+
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 2.5rem 4rem; font-size: 1.1rem; position: fixed; width: 100%; top: 0; z-index: 100; mix-blend-mode: difference; }
+        .logo { font-weight: 500; text-transform: uppercase; }
+        .menu-items { display: flex; gap: 2.5rem; }
+        .menu-link { color: #F0F0F0; text-decoration: none; opacity: 0.6; transition: 0.3s; }
+        .menu-link:hover { opacity: 1; }
+
+        /* HERO */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 4rem;
+            background-image: linear-gradient(rgba(15, 15, 15, 0.7), rgba(15, 15, 15, 0.7)), url('bg-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .hero-content h1 { font-size: 8.5vw; font-weight: 400; line-height: 0.95; margin-bottom: 3rem; text-transform: uppercase; }
+        .hero-content p { font-size: 1.6rem; font-weight: 300; max-width: 600px; opacity: 0.7; }
+
+        /* WORK SECTION & FLOATING CARDS */
+        .work-section {
+            padding: 8rem 4rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6rem;
+            background-image: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.85)), url('bg-work.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Floating Card Design */
+        .card-floating {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            overflow: hidden;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card-floating:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .card-floating:nth-child(even) { margin-top: 6rem; }
+
+        .card-header {
+            padding: 1.2rem 1.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 15, 15, 0.6);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 2;
+        }
+
+        .card-header .tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0.8;
+        }
+
+        .card-header .network-badge {
+            font-size: 0.75rem;
+            font-weight: 500;
+            opacity: 0.5;
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+        }
+
+        .image-wrapper img, .image-wrapper video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card-floating:hover .image-wrapper video,
+        .card-floating:hover .image-wrapper img {
+            transform: scale(1.04);
+        }
+
+        .project-info {
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .project-info h2 { font-size: 1.8rem; font-weight: 400; }
+        .project-info span { font-size: 1rem; font-weight: 300; opacity: 0.6; line-height: 1.4; }
+        
+        .live-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #FFFFFF;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        .live-link:hover { opacity: 1; text-decoration: underline; }
+
+        /* CARROUSEL 3D NFT SECTION */
+        .nft-carousel-section {
+            padding: 10rem 4rem;
+            background: #0B0B0B;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nft-carousel-section h2 {
+            font-size: 3.5vw;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-bottom: 4rem;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .carousel-3d-container {
+            width: 100%;
+            height: 480px;
+            perspective: 1200px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-3d-wheel {
+            width: 300px;
+            height: 400px;
+            position: absolute;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nft-card-3d {
+            position: absolute;
+            width: 300px;
+            height: 400px;
+            left: 0;
+            top: 0;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+            backface-visibility: hidden;
+        }
+
+        .nft-card-3d .chain-tag {
+            align-self: flex-start;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chain-tezos { background: rgba(44, 125, 248, 0.2); color: #2C7DF8; border: 1px solid rgba(44, 125, 248, 0.4); }
+        .chain-base { background: rgba(0, 82, 255, 0.2); color: #387aff; border: 1px solid rgba(0, 82, 255, 0.4); }
+        .chain-eth { background: rgba(140, 124, 240, 0.2); color: #A797FF; border: 1px solid rgba(140, 124, 240, 0.4); }
+
+        .nft-card-3d img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .nft-card-details h3 { font-size: 1.2rem; font-weight: 500; margin-bottom: 0.3rem; }
+        .nft-card-details p { font-size: 0.85rem; opacity: 0.6; }
+
+        .nft-btn {
+            display: block;
+            text-align: center;
+            padding: 0.7rem;
+            background: #FFFFFF;
+            color: #000000;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nft-btn:hover { opacity: 0.85; }
+
+        .carousel-controls {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+            z-index: 10;
+        }
+
+        .carousel-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background: #FFFFFF;
+            color: #000000;
+        }
+
+        /* ABOUT ME */
+        .about-section {
+            padding: 12rem 4rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 6rem;
+            align-items: center;
+            background-image: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.85)), url('bg-about.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .about-content h2 { font-size: 5vw; font-weight: 400; text-transform: uppercase; margin-bottom: 3rem; }
+        .about-content p { font-size: 1.5rem; font-weight: 300; max-width: 650px; opacity: 0.7; line-height: 1.6; margin-bottom: 1.5rem; }
+        .about-image-wrapper {
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            border-radius: 2px;
+            background-color: #1A1A1A;
+        }
+        .about-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* BIOGRAPHY EXPANDABLE */
+        .bio-expand { margin-top: 3rem; max-width: 900px; }
+        .bio-trigger { display: flex; align-items: center; gap: 15px; margin-bottom: 0; }
+        .bio-plus { color: #FFFFFF; font-size: 28px; font-weight: 200; transition: transform 0.5s ease; }
+        .bio-trigger:hover { opacity: 0.8; }
+        .bio-title { color: #FFFFFF; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.8; }
+        .bio-text { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.9s ease, opacity 0.6s ease, margin-top 0.6s ease; }
+        .bio-expand:hover .bio-text { max-height: 2000px; opacity: 1; margin-top: 30px; }
+        .bio-expand:hover .bio-plus { transform: rotate(135deg); }
+        .bio-text p { font-size: 1.05rem; line-height: 1.8; opacity: 0.75; margin-bottom: 1.5rem; }
+
+        /* EXHIBITIONS */
+        .exhibitions {
+            position: relative;
+            padding: 12rem 4rem;
+            background-image: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.85)), url('bg-exhibitions.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .video-container { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+        .bg-video { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .45s ease; }
+        .bg-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.55); opacity: 0; transition: .45s; }
+        .section-title, .ex-item { position: relative; z-index: 2; }
+        .ex-item { display: grid; grid-template-columns: 120px 1fr 220px; padding: 32px 0; border-bottom: 1px solid rgba(255,255,255,.15); transition: .35s; }
+        .ex-item:hover { transform: translateX(12px); }
+        .ex-year { opacity: .35; font-size: 30px; }
+        .ex-title { font-size: 36px; }
+        .ex-location { text-align: right; opacity: .7; }
+
+        /* FOOTER */
+        .footer {
+            padding: 14rem 4rem 8rem 4rem;
+            text-align: center;
+            background-image: linear-gradient(rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.9)), url('bg-footer.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .footer h2 { font-size: 7vw; font-weight: 400; margin-bottom: 4rem; text-transform: uppercase; }
+        .email-link { font-size: 3vw; color: #F0F0F0; text-decoration: none; border-bottom: 2px solid rgba(240, 240, 240, 0.3); padding-bottom: 0.8rem; transition: border-color 0.3s; }
+        .email-link:hover { border-color: rgba(240, 240, 240, 1); }
+        .pdf-link { color: #FFFFFF; text-decoration: none; transition: color 0.3s ease; display: inline-block; margin-top: 50px; }
+        .pdf-link:hover { color: #888888; }
+        .social-text-links { display: flex; justify-content: center; gap: 3rem; margin-top: 5rem; }
+        .social-text-link { color: #F0F0F0; text-decoration: none; font-size: 1rem; font-weight: 400; opacity: 0.5; transition: opacity 0.3s, transform 0.3s; text-transform: uppercase; letter-spacing: 0.08em; }
+        .social-text-link:hover { opacity: 1; transform: translateY(-2px); }
+
+        @media (max-width: 968px) {
+            .custom-cursor { display: none; }
+            * { cursor: auto; }
+            .navbar { padding: 2rem; }
+            .work-section { grid-template-columns: 1fr; background-attachment: scroll; }
+            .card-floating:nth-child(even) { margin-top: 0; }
+            .nft-carousel-section h2 { font-size: 2.5rem; }
+            .about-section { grid-template-columns: 1fr; gap: 4rem; padding: 6rem 2rem; }
+            .about-content h2, .section-title { font-size: 2.5rem; }
+            .exhibitions { padding: 6rem 2rem; }
+            .ex-item { grid-template-columns: 1fr; gap: 10px; }
+            .ex-location { text-align: left; }
+            .email-link { font-size: 1.8rem; }
+            .social-text-links { gap: 1.5rem; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="custom-cursor" id="cursor"></div>
+
+    <nav class="navbar">
+        <div class="logo">© Leonardo M Scarcia</div>
+        <div class="menu-items">
+            <a href="#work" class="menu-link">Projects</a>
+            <a href="#nft-vault" class="menu-link">NFT Vault</a>
+            <a href="#about" class="menu-link">About</a>
+            <a href="#exhibitions" class="menu-link">Exhibitions</a>
+            <a href="#contact" class="menu-link">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Visual Artist <br> & Art Director</h1>
+            <p>Art Director & Visual Storyteller | Pitch Decks, Brand Experience & Digital Narratives</p>
+        </div>
+    </header>
+
+    <!-- WORK SECTION WITH FLOATING VIDEO CARDS -->
+    <section class="work-section" id="work">
+        
+        <div class="card-floating">
+            <div class="card-header">
+                <span class="tag">Showreel</span>
+                <span class="network-badge">2D / Motion</span>
+            </div>
+            <div class="image-wrapper">
+                <video autoplay muted loop playsinline>
+                    <source src="tu-video-2.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="project-info">
+                <h2>Reel</h2>
+                <span>Stop motion and 2d animation showcasing narrative visual work.</span>
+            </div>
+        </div>
+
+        <div class="card-floating">
+            <div class="card-header">
+                <span class="tag">Collective Art</span>
+                <span class="network-badge">Web3 Directory</span>
+            </div>
+            <div class="image-wrapper">
+                <video autoplay muted loop playsinline>
+                    <source src="tu-video-1.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="project-info">
+                <h2>Buda Collective Artist 26</h2>
+                <span>Collective media art programming a gallery for Web3 Artists in X Twitter community 2021–2026.</span>
+                <a href="https://budastudio.github.io/buda-collective-artist/" target="_blank" class="live-link">Open Live Experience →</a>
+            </div>
+        </div>
+
+        <div class="card-floating">
+            <div class="card-header">
+                <span class="tag">Visual Art</span>
+                <span class="network-badge">Experimental</span>
+            </div>
+            <div class="image-wrapper">
+                <video autoplay muted loop playsinline>
+                    <source src="tu-video-4.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="project-info">
+                <h2>Audiovisual Motion</h2>
+                <span>Explorations in digital spaces, light composition, and kinetic rhythms.</span>
+            </div>
+        </div>
+
+        <div class="card-floating">
+            <div class="card-header">
+                <span class="tag">3D Sculpture</span>
+                <span class="network-badge">Blender 2025</span>
+            </div>
+            <div class="image-wrapper" style="background:#151515; display:flex; align-items:center; justify-center;">
+                <img src="bg-hero.jpg" alt="Bitcoin Sculpture">
+            </div>
+            <div class="project-info">
+                <h2>Bitcoin Sculpture 2025</h2>
+                <span>Pre-selection project and modeling in 3D Blender with physical-digital integration.</span>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- NEW 3D ROTATING NFT CAROUSEL SECTION -->
+    <section class="nft-carousel-section" id="nft-vault">
+        <h2>NFT Marketplaces Vault</h2>
+        <div class="carousel-3d-container">
+            <div class="carousel-3d-wheel" id="nftWheel">
+                
+                <!-- TEZOS ITEM -->
+                <div class="nft-card-3d">
+                    <span class="chain-tag chain-tezos">Tezos</span>
+                    <img src="bg-work.jpg" alt="Tezos Artwork">
+                    <div class="nft-card-details">
+                        <h3>Objkt Collection</h3>
+                        <p>Generative & Eco-friendly NFTs</p>
+                    </div>
+                    <a href="https://objkt.com" target="_blank" class="nft-btn">View on Objkt</a>
+                </div>
+
+                <!-- BASE ITEM -->
+                <div class="nft-card-3d">
+                    <span class="chain-tag chain-base">Base</span>
+                    <img src="bg-about.jpg" alt="Base Artwork">
+                    <div class="nft-card-details">
+                        <h3>Base Works</h3>
+                        <p>SuperRare & OpenSea Drops</p>
+                    </div>
+                    <a href="https://opensea.io" target="_blank" class="nft-btn">View on Base</a>
+                </div>
+
+                <!-- ETHEREUM ITEM 1 -->
+                <div class="nft-card-3d">
+                    <span class="chain-tag chain-eth">Ethereum</span>
+                    <img src="bg-exhibitions.jpg" alt="Ethereum Artwork">
+                    <div class="nft-card-details">
+                        <h3>Foundation Collection</h3>
+                        <p>1/1 Curated Digital Fine Art</p>
+                    </div>
+                    <a href="https://foundation.app" target="_blank" class="nft-btn">View on Foundation</a>
+                </div>
+
+                <!-- ETHEREUM ITEM 2 -->
+                <div class="nft-card-3d">
+                    <span class="chain-tag chain-eth">Ethereum</span>
+                    <img src="bg-footer.jpg" alt="Notable Pepe">
+                    <div class="nft-card-details">
+                        <h3>Notable Pepe Cards</h3>
+                        <p>Historic Web3 Pepe Vault Cards</p>
+                    </div>
+                    <a href="https://pepe.wtf" target="_blank" class="nft-btn">View Rare Vault</a>
+                </div>
+
+                <!-- TEZOS ITEM 2 -->
+                <div class="nft-card-3d">
+                    <span class="chain-tag chain-tezos">Tezos</span>
+                    <img src="perfil.jpg" alt="Tezos Editions">
+                    <div class="nft-card-details">
+                        <h3>Tezos Editions</h3>
+                        <p>Experimental Motion Art</p>
+                    </div>
+                    <a href="https://objkt.com" target="_blank" class="nft-btn">View Collection</a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="carousel-controls">
+            <button class="carousel-btn" id="prevNft">← Prev</button>
+            <button class="carousel-btn" id="nextNft">Next →</button>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about-section" id="about">
+        <div class="about-content">
+            <h2>About Me</h2>
+            <p>Working at the intersection of art, design, motion and emerging technologies, creating visual narratives that connect ideas, brands and communities.</p>
+            
+            <div class="bio-expand">
+                <div class="bio-trigger">
+                    <span class="bio-plus">+</span>
+                    <span class="bio-title">Professional Journey</span>
+                </div>
+                <div class="bio-text">
+                    <p>Over the past two decades, I have worked across graphic design, art direction, motion graphics, video editing and visual storytelling, collaborating with agencies, brands, cultural institutions and independent projects.</p>
+                    <p>My career began in traditional visual communication, where I developed a strong foundation in graphic design, illustration and artistic practice. As digital media evolved, I expanded my expertise into motion design, audiovisual production and interactive experiences.</p>
+                    <p>Throughout my professional journey, I have created animated content, advertising campaigns, social media assets, brand identities, pitch decks and audiovisual narratives for clients across different industries.</p>
+                    <p>Working remotely with multidisciplinary teams has allowed me to adapt quickly to fast-paced production environments while maintaining a strong focus on quality, efficiency and creative problem-solving.</p>
+                    <p>My approach integrates design, animation, sound and storytelling into cohesive visual experiences. Whether developing motion graphics for digital campaigns, editing promotional videos or directing creative projects, I seek to build meaningful connections between brands, ideas and audiences.</p>
+                    <p>Alongside my commercial work, I have maintained an active artistic practice that includes painting, animation, digital art, 3D experimentation, virtual environments and Web3 projects.</p>
+                    <p>Currently, I work as an Art Director, Motion Designer and Visual Artist, developing projects that exist at the intersection of communication, technology and contemporary visual culture.</p>
+                </div>
+            </div>
+
+            <div class="bio-expand">
+                <div class="bio-trigger">
+                    <span class="bio-plus">+</span>
+                    <span class="bio-title">Artistic Biography</span>
+                </div>
+                <div class="bio-text">
+                    <p>Leonardo M. Scarcia began exhibiting his work in 1994, participating in the Bienal de Arte Joven in Buenos Aires — one of the three decentralized biennials held at that time.</p>
+                    <p>Throughout the 1990s and 2000s, he exhibited across key cultural spaces in Buenos Aires, including Lady of Bollini, the Ministry of Economy of the Nation, Casa de Corrientes, the French Alliance of Buenos Aires, Galería Pacífico, and the Recoleta Museum of Modern Art.</p>
+                    <p>While institutional opportunities later became more limited, Scarcia never stopped creating. His practice continued to evolve organically through new media, digital languages and experimental forms.</p>
+                    <p>In 2021, he entered the NFT ecosystem, opening a new chapter in his career. Through Web3, he reconnected with a global artistic community and expanded his work internationally.</p>
+                    <p>Today, his multidisciplinary practice spans painting, animation, art direction, digital illustration, 3D art, virtual reality, augmented reality and AI-assisted creation.</p>
+                    <p>His work exists between what is constructed and what is felt, where images are not only seen, but experienced.</p>
+                </div>
+            </div>
+
+            <a href="CVlscarcia_2026.pdf" download="CVlscarcia_2026.pdf" class="pdf-link">Download CV 2026</a>
+        </div>
+
+        <div class="about-image-wrapper">
+            <img src="./perfil.jpg" alt="Leonardo M Scarcia">
+        </div>
+    </section>
+
+    <!-- EXHIBITIONS SECTION -->
+    <section class="exhibitions" id="exhibitions">
+        <div class="video-container">
+            <video id="bgVideo" class="bg-video" muted loop playsinline></video>
+            <div id="bgOverlay" class="bg-overlay"></div>
+        </div>
+
+        <h2 class="section-title">SELECTED EXHIBITIONS</h2>
+
+        <div class="ex-item" data-video="notable-vault.mp4">
+            <div class="ex-year">2026</div>
+            <div class="ex-title">NFC LISBOA PEPE VAULT</div>
+            <div class="ex-location">NFC Lisboa · PR</div>
+        </div>
+
+        <div class="ex-item" data-video="notable-pepe.mp4">
+            <div class="ex-year">2025</div>
+            <div class="ex-title">NOTABLE PEPE CARDS 8 & 6</div>
+            <div class="ex-location">Pepe WTF · US</div>
+        </div>
+
+        <div class="ex-item" data-video="nftnyc.mp4">
+            <div class="ex-year">2025</div>
+            <div class="ex-title">NFT NYC 24–25</div>
+            <div class="ex-location">New York · US</div>
+        </div>
+
+        <div class="ex-item" data-video="nfc-lisboa.mp4">
+            <div class="ex-year">2025</div>
+            <div class="ex-title">NFC LISBOA 24–25</div>
+            <div class="ex-location">Lisboa · Portugal</div>
+        </div>
+
+        <div class="ex-item" data-video="pepefest.mp4">
+            <div class="ex-year">2024</div>
+            <div class="ex-title">PEPE FEST / BEEPLE PEPE FEST</div>
+            <div class="ex-location">South Carolina · US</div>
+        </div>
+
+        <div class="ex-item" data-video="solana.mp4">
+            <div class="ex-year">2024</div>
+            <div class="ex-title">SOLANA FILM FESTIVAL</div>
+            <div class="ex-location">Web3</div>
+        </div>
+
+        <div class="ex-item" data-video="tianguis.mp4">
+            <div class="ex-year">2024</div>
+            <div class="ex-title">NFT TIANGUIS</div>
+            <div class="ex-location">Querétaro · México</div>
+        </div>
+
+        <div class="ex-item" data-video="buda.mp4">
+            <div class="ex-year">2023</div>
+            <div class="ex-title">BUDA COLLECTIVE ARTIST</div>
+            <div class="ex-location">Garopaba · Brazil</div>
+        </div>
+
+        <div class="ex-item" data-video="japan.mp4">
+            <div class="ex-year">2023</div>
+            <div class="ex-title">JAPAN METAVERSE EXHIBITION</div>
+            <div class="ex-location">Spatial Gallery VR</div>
+        </div>
+
+        <div class="ex-item" data-video="cryptovoxels.mp4">
+            <div class="ex-year">2023</div>
+            <div class="ex-title">COLLECTIVE EXHIBITION IN CRYPTOVOXELS</div>
+            <div class="ex-location">Cryptovoxels</div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="contact">
+        <h2>Have a Project ? <br> Let's Work together</h2>
+        <div class="social-text-links">
+            <a href="https://x.com/budastudio_nft" target="_blank" class="social-text-link">X</a>
+            <a href="https://be.net/lscarcia" target="_blank" class="social-text-link">Behance</a>
+            <a href="https://linkedin.com/in/lscarcia" target="_blank" class="social-text-link">LinkedIn</a>
+            <a href="https://linktr.ee/budastudio" target="_blank" class="social-text-link">Linktree</a>
+            <a href="https://instagram.com/budastudio_art" target="_blank" class="social-text-link">Instagram</a>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script>
+        // Smooth Scroll initialization
+        const lenis = new Lenis({ duration: 1.2, smooth: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        // Custom Cursor Movement & Scaling
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        const interactiveElements = document.querySelectorAll('a, .card-floating, .menu-link, .social-text-link, .ex-item, .carousel-btn, .nft-card-3d');
+        interactiveElements.forEach((el) => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.width = '80px';
+                cursor.style.height = '80px';
+                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.width = '30px';
+                cursor.style.height = '30px';
+                cursor.style.backgroundColor = '#FFFFFF';
+            });
+        });
+
+        // Background Video switching for Exhibitions
+        const bgVideo = document.getElementById("bgVideo");
+        const bgOverlay = document.getElementById("bgOverlay");
+        let active = "";
+
+        document.querySelectorAll(".ex-item").forEach(item => {
+            item.addEventListener("mouseenter", () => {
+                const file = item.dataset.video;
+                if (active !== file) {
+                    active = file;
+                    bgVideo.style.opacity = 0;
+                    setTimeout(() => {
+                        bgVideo.src = file;
+                        bgVideo.load();
+                        bgVideo.play().catch(() => {});
+                        bgVideo.style.opacity = 1;
+                    }, 150);
+                }
+                bgOverlay.style.opacity = 1;
+            });
+        });
+
+        document.getElementById("exhibitions").addEventListener("mouseleave", () => {
+            bgVideo.style.opacity = 0;
+            bgOverlay.style.opacity = 0;
+            setTimeout(() => { bgVideo.pause(); }, 450);
+        });
+
+        // 3D Carousel Engine Logic
+        const wheel = document.getElementById('nftWheel');
+        const cards = document.querySelectorAll('.nft-card-3d');
+        const totalCards = cards.length;
+        const angleStep = 360 / totalCards;
+        const radius = 380; // Radius distance in PX
+        let currentAngle = 0;
+
+        function updateCarousel() {
+            cards.forEach((card, index) => {
+                const cardAngle = angleStep * index;
+                card.style.transform = `rotateY(${cardAngle}deg) translateZ(${radius}px)`;
+            });
+        }
+
+        function rotateCarousel(direction) {
+            currentAngle += direction * angleStep;
+            wheel.style.transform = `rotateY(${currentAngle}deg)`;
+        }
+
+        document.getElementById('nextNft').addEventListener('click', () => rotateCarousel(-1));
+        document.getElementById('prevNft').addEventListener('click', () => rotateCarousel(1));
+
+        // Auto Rotation
+        let autoRotate = setInterval(() => rotateCarousel(-1), 4000);
+        document.querySelector('.nft-carousel-section').addEventListener('mouseenter', () => clearInterval(autoRotate));
+        document.querySelector('.nft-carousel-section').addEventListener('mouseleave', () => {
+            autoRotate = setInterval(() => rotateCarousel(-1), 4000);
+        });
+
+        updateCarousel();
+    </script>
+</body>
+</html>
