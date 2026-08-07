@@ -34,7 +34,7 @@
 
         /* HERO */
         .hero {
-            height: 100vh;
+            height: 80vh;
             display: flex;
             align-items: center;
             padding: 0 4rem;
@@ -43,46 +43,78 @@
             background-position: center;
             background-repeat: no-repeat;
         }
-        .hero-content h1 { font-size: 8.5vw; font-weight: 400; line-height: 0.95; margin-bottom: 3rem; text-transform: uppercase; }
+        .hero-content h1 { font-size: 8.5vw; font-weight: 400; line-height: 0.95; margin-bottom: 2rem; text-transform: uppercase; }
         .hero-content p { font-size: 1.6rem; font-weight: 300; max-width: 600px; opacity: 0.7; }
 
-        /* WORK SECTION & FLOATING CARDS */
-        .work-section {
-            padding: 8rem 4rem;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 6rem;
-            background-image: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.85)), url('bg-work.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+        /* CARROUSEL 3D ESTILO SQUARESPACE / COVERFLOW */
+        .hero-carousel-section {
+            padding: 6rem 4rem 10rem 4rem;
+            background: #0B0B0B;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* Floating Card Design */
-        .card-floating {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        .hero-carousel-section h2 {
+            font-size: 3vw;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .carousel-scene {
+            width: 100%;
+            max-width: 1200px;
+            height: 520px;
+            perspective: 1200px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-track {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* CARD FLOATING DENTRO DEL CARRUSEL 3D */
+        .card-floating-3d {
+            position: absolute;
+            width: 360px;
+            height: 480px;
+            left: 50%;
+            top: 50%;
+            margin-left: -180px;
+            margin-top: -240px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 16px;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             overflow: hidden;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
             display: flex;
             flex-direction: column;
-            text-decoration: none;
-            color: inherit;
+            justify-content: space-between;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+            user-select: none;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .card-floating:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        .card-floating-3d.active {
+            border-color: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 0 35px rgba(255, 255, 255, 0.15);
         }
-
-        .card-floating:nth-child(even) { margin-top: 6rem; }
 
         .card-header {
-            padding: 1.2rem 1.8rem;
+            padding: 1rem 1.4rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -92,7 +124,7 @@
         }
 
         .card-header .tag {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             padding: 4px 10px;
@@ -102,7 +134,7 @@
         }
 
         .card-header .network-badge {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 500;
             opacity: 0.5;
         }
@@ -110,8 +142,9 @@
         .image-wrapper {
             position: relative;
             width: 100%;
-            aspect-ratio: 16/9;
+            height: 220px;
             overflow: hidden;
+            background: #151515;
         }
 
         .image-wrapper img, .image-wrapper video {
@@ -122,133 +155,34 @@
             transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .card-floating:hover .image-wrapper video,
-        .card-floating:hover .image-wrapper img {
-            transform: scale(1.04);
-        }
-
         .project-info {
-            padding: 1.8rem;
+            padding: 1.2rem 1.4rem;
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
+            gap: 0.5rem;
+            flex-grow: 1;
+            justify-content: space-between;
         }
 
-        .project-info h2 { font-size: 1.8rem; font-weight: 400; }
-        .project-info span { font-size: 1rem; font-weight: 300; opacity: 0.6; line-height: 1.4; }
-        
+        .project-info h3 { font-size: 1.4rem; font-weight: 400; }
+        .project-info p { font-size: 0.85rem; font-weight: 300; opacity: 0.6; line-height: 1.3; }
+
         .live-link {
             display: inline-block;
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
+            margin-top: 0.4rem;
+            font-size: 0.85rem;
             color: #FFFFFF;
             text-decoration: none;
             opacity: 0.8;
             transition: opacity 0.3s;
+            font-weight: 500;
         }
         .live-link:hover { opacity: 1; text-decoration: underline; }
-
-        /* CARROUSEL 3D NFT SECTION */
-        .nft-carousel-section {
-            padding: 10rem 4rem;
-            background: #0B0B0B;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .nft-carousel-section h2 {
-            font-size: 3.5vw;
-            font-weight: 400;
-            text-transform: uppercase;
-            margin-bottom: 4rem;
-            text-align: center;
-            letter-spacing: 2px;
-        }
-
-        .carousel-3d-container {
-            width: 100%;
-            height: 480px;
-            perspective: 1200px;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .carousel-3d-wheel {
-            width: 300px;
-            height: 400px;
-            position: absolute;
-            transform-style: preserve-3d;
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .nft-card-3d {
-            position: absolute;
-            width: 300px;
-            height: 400px;
-            left: 0;
-            top: 0;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 16px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
-            backface-visibility: hidden;
-        }
-
-        .nft-card-3d .chain-tag {
-            align-self: flex-start;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .chain-tezos { background: rgba(44, 125, 248, 0.2); color: #2C7DF8; border: 1px solid rgba(44, 125, 248, 0.4); }
-        .chain-base { background: rgba(0, 82, 255, 0.2); color: #387aff; border: 1px solid rgba(0, 82, 255, 0.4); }
-        .chain-eth { background: rgba(140, 124, 240, 0.2); color: #A797FF; border: 1px solid rgba(140, 124, 240, 0.4); }
-
-        .nft-card-3d img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin: 1rem 0;
-        }
-
-        .nft-card-details h3 { font-size: 1.2rem; font-weight: 500; margin-bottom: 0.3rem; }
-        .nft-card-details p { font-size: 0.85rem; opacity: 0.6; }
-
-        .nft-btn {
-            display: block;
-            text-align: center;
-            padding: 0.7rem;
-            background: #FFFFFF;
-            color: #000000;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: opacity 0.3s;
-        }
-
-        .nft-btn:hover { opacity: 0.85; }
 
         .carousel-controls {
             display: flex;
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
             z-index: 10;
         }
 
@@ -256,7 +190,7 @@
             background: transparent;
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: #FFFFFF;
-            padding: 0.8rem 1.5rem;
+            padding: 0.8rem 1.8rem;
             border-radius: 30px;
             font-size: 1rem;
             transition: 0.3s;
@@ -327,8 +261,6 @@
             background-position: center;
         }
         .footer h2 { font-size: 7vw; font-weight: 400; margin-bottom: 4rem; text-transform: uppercase; }
-        .email-link { font-size: 3vw; color: #F0F0F0; text-decoration: none; border-bottom: 2px solid rgba(240, 240, 240, 0.3); padding-bottom: 0.8rem; transition: border-color 0.3s; }
-        .email-link:hover { border-color: rgba(240, 240, 240, 1); }
         .pdf-link { color: #FFFFFF; text-decoration: none; transition: color 0.3s ease; display: inline-block; margin-top: 50px; }
         .pdf-link:hover { color: #888888; }
         .social-text-links { display: flex; justify-content: center; gap: 3rem; margin-top: 5rem; }
@@ -339,15 +271,13 @@
             .custom-cursor { display: none; }
             * { cursor: auto; }
             .navbar { padding: 2rem; }
-            .work-section { grid-template-columns: 1fr; background-attachment: scroll; }
-            .card-floating:nth-child(even) { margin-top: 0; }
-            .nft-carousel-section h2 { font-size: 2.5rem; }
+            .hero-carousel-section h2 { font-size: 2.2rem; }
+            .card-floating-3d { width: 290px; height: 420px; margin-left: -145px; margin-top: -210px; }
             .about-section { grid-template-columns: 1fr; gap: 4rem; padding: 6rem 2rem; }
             .about-content h2, .section-title { font-size: 2.5rem; }
             .exhibitions { padding: 6rem 2rem; }
             .ex-item { grid-template-columns: 1fr; gap: 10px; }
             .ex-location { text-align: left; }
-            .email-link { font-size: 1.8rem; }
             .social-text-links { gap: 1.5rem; flex-wrap: wrap; }
         }
     </style>
@@ -359,8 +289,7 @@
     <nav class="navbar">
         <div class="logo">© Leonardo M Scarcia</div>
         <div class="menu-items">
-            <a href="#work" class="menu-link">Projects</a>
-            <a href="#nft-vault" class="menu-link">NFT Vault</a>
+            <a href="#projects-carousel" class="menu-link">Projects</a>
             <a href="#about" class="menu-link">About</a>
             <a href="#exhibitions" class="menu-link">Exhibitions</a>
             <a href="#contact" class="menu-link">Contact</a>
@@ -374,141 +303,89 @@
         </div>
     </header>
 
-    <!-- WORK SECTION WITH FLOATING VIDEO CARDS -->
-    <section class="work-section" id="work">
+    <!-- GALERÍA CARRUSEL 3D INSPIRADO EN SQUARESPACE -->
+    <section class="hero-carousel-section" id="projects-carousel">
+        <h2>Featured Works & Visual Vault</h2>
         
-        <div class="card-floating">
-            <div class="card-header">
-                <span class="tag">Showreel</span>
-                <span class="network-badge">2D / Motion</span>
-            </div>
-            <div class="image-wrapper">
-                <video autoplay muted loop playsinline>
-                    <source src="tu-video-2.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="project-info">
-                <h2>Reel</h2>
-                <span>Stop motion and 2d animation showcasing narrative visual work.</span>
-            </div>
-        </div>
-
-        <div class="card-floating">
-            <div class="card-header">
-                <span class="tag">Collective Art</span>
-                <span class="network-badge">Web3 Directory</span>
-            </div>
-            <div class="image-wrapper">
-                <video autoplay muted loop playsinline>
-                    <source src="tu-video-1.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="project-info">
-                <h2>Buda Collective Artist 26</h2>
-                <span>Collective media art programming a gallery for Web3 Artists in X Twitter community 2021–2026.</span>
-                <a href="https://budastudio.github.io/buda-collective-artist/" target="_blank" class="live-link">Open Live Experience →</a>
-            </div>
-        </div>
-
-        <div class="card-floating">
-            <div class="card-header">
-                <span class="tag">Visual Art</span>
-                <span class="network-badge">Experimental</span>
-            </div>
-            <div class="image-wrapper">
-                <video autoplay muted loop playsinline>
-                    <source src="tu-video-4.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="project-info">
-                <h2>Audiovisual Motion</h2>
-                <span>Explorations in digital spaces, light composition, and kinetic rhythms.</span>
-            </div>
-        </div>
-
-        <div class="card-floating">
-            <div class="card-header">
-                <span class="tag">3D Sculpture</span>
-                <span class="network-badge">Blender 2025</span>
-            </div>
-            <div class="image-wrapper" style="background:#151515; display:flex; align-items:center; justify-center;">
-                <img src="bg-hero.jpg" alt="Bitcoin Sculpture">
-            </div>
-            <div class="project-info">
-                <h2>Bitcoin Sculpture 2025</h2>
-                <span>Pre-selection project and modeling in 3D Blender with physical-digital integration.</span>
-            </div>
-        </div>
-
-    </section>
-
-    <!-- NEW 3D ROTATING NFT CAROUSEL SECTION -->
-    <section class="nft-carousel-section" id="nft-vault">
-        <h2>NFT Marketplaces Vault</h2>
-        <div class="carousel-3d-container">
-            <div class="carousel-3d-wheel" id="nftWheel">
+        <div class="carousel-scene">
+            <div class="carousel-track" id="carouselTrack">
                 
-                <!-- TEZOS ITEM -->
-                <div class="nft-card-3d">
-                    <span class="chain-tag chain-tezos">Tezos</span>
-                    <img src="bg-work.jpg" alt="Tezos Artwork">
-                    <div class="nft-card-details">
-                        <h3>Objkt Collection</h3>
-                        <p>Generative & Eco-friendly NFTs</p>
+                <!-- OBRAR 1: SHOWREEL -->
+                <div class="card-floating-3d">
+                    <div class="card-header">
+                        <span class="tag">Showreel</span>
+                        <span class="network-badge">2D / Motion</span>
                     </div>
-                    <a href="https://objkt.com" target="_blank" class="nft-btn">View on Objkt</a>
+                    <div class="image-wrapper">
+                        <video autoplay muted loop playsinline>
+                            <source src="tu-video-2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="project-info">
+                        <h3>Reel</h3>
+                        <p>Stop motion and 2d animation showcasing narrative visual work.</p>
+                        <a href="https://youtube.com" target="_blank" class="live-link">Watch Reel Video →</a>
+                    </div>
                 </div>
 
-                <!-- BASE ITEM -->
-                <div class="nft-card-3d">
-                    <span class="chain-tag chain-base">Base</span>
-                    <img src="bg-about.jpg" alt="Base Artwork">
-                    <div class="nft-card-details">
-                        <h3>Base Works</h3>
-                        <p>SuperRare & OpenSea Drops</p>
+                <!-- OBRA 2: COLLECTIVE ART -->
+                <div class="card-floating-3d">
+                    <div class="card-header">
+                        <span class="tag">Collective Art</span>
+                        <span class="network-badge">Web3 Directory</span>
                     </div>
-                    <a href="https://opensea.io" target="_blank" class="nft-btn">View on Base</a>
+                    <div class="image-wrapper">
+                        <video autoplay muted loop playsinline>
+                            <source src="tu-video-1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="project-info">
+                        <h3>Buda Collective Artist 26</h3>
+                        <p>Collective media art programming a gallery for Web3 Artists in X Twitter community 2021–2026.</p>
+                        <a href="https://budastudio.github.io/buda-collective-artist/" target="_blank" class="live-link">Open Live Experience →</a>
+                    </div>
                 </div>
 
-                <!-- ETHEREUM ITEM 1 -->
-                <div class="nft-card-3d">
-                    <span class="chain-tag chain-eth">Ethereum</span>
-                    <img src="bg-exhibitions.jpg" alt="Ethereum Artwork">
-                    <div class="nft-card-details">
-                        <h3>Foundation Collection</h3>
-                        <p>1/1 Curated Digital Fine Art</p>
+                <!-- OBRA 3: AUDIOVISUAL MOTION -->
+                <div class="card-floating-3d">
+                    <div class="card-header">
+                        <span class="tag">Visual Art</span>
+                        <span class="network-badge">Experimental</span>
                     </div>
-                    <a href="https://foundation.app" target="_blank" class="nft-btn">View on Foundation</a>
+                    <div class="image-wrapper">
+                        <video autoplay muted loop playsinline>
+                            <source src="tu-video-4.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="project-info">
+                        <h3>Audiovisual Motion</h3>
+                        <p>Explorations in digital spaces, light composition, and kinetic rhythms.</p>
+                        <a href="https://opensea.io" target="_blank" class="live-link">Explore Artwork →</a>
+                    </div>
                 </div>
 
-                <!-- ETHEREUM ITEM 2 -->
-                <div class="nft-card-3d">
-                    <span class="chain-tag chain-eth">Ethereum</span>
-                    <img src="bg-footer.jpg" alt="Notable Pepe">
-                    <div class="nft-card-details">
-                        <h3>Notable Pepe Cards</h3>
-                        <p>Historic Web3 Pepe Vault Cards</p>
+                <!-- OBRA 4: BITCOIN SCULPTURE -->
+                <div class="card-floating-3d">
+                    <div class="card-header">
+                        <span class="tag">3D Sculpture</span>
+                        <span class="network-badge">Blender 2025</span>
                     </div>
-                    <a href="https://pepe.wtf" target="_blank" class="nft-btn">View Rare Vault</a>
-                </div>
-
-                <!-- TEZOS ITEM 2 -->
-                <div class="nft-card-3d">
-                    <span class="chain-tag chain-tezos">Tezos</span>
-                    <img src="perfil.jpg" alt="Tezos Editions">
-                    <div class="nft-card-details">
-                        <h3>Tezos Editions</h3>
-                        <p>Experimental Motion Art</p>
+                    <div class="image-wrapper">
+                        <img src="bg-hero.jpg" alt="Bitcoin Sculpture">
                     </div>
-                    <a href="https://objkt.com" target="_blank" class="nft-btn">View Collection</a>
+                    <div class="project-info">
+                        <h3>Bitcoin Sculpture 2025</h3>
+                        <p>Pre-selection project and modeling in 3D Blender with physical-digital integration.</p>
+                        <a href="https://objkt.com" target="_blank" class="live-link">View Marketplace →</a>
+                    </div>
                 </div>
 
             </div>
         </div>
 
         <div class="carousel-controls">
-            <button class="carousel-btn" id="prevNft">← Prev</button>
-            <button class="carousel-btn" id="nextNft">Next →</button>
+            <button class="carousel-btn" id="prevBtn">← Prev</button>
+            <button class="carousel-btn" id="nextBtn">Next →</button>
         </div>
     </section>
 
@@ -654,7 +531,7 @@
             cursor.style.top = e.clientY + 'px';
         });
 
-        const interactiveElements = document.querySelectorAll('a, .card-floating, .menu-link, .social-text-link, .ex-item, .carousel-btn, .nft-card-3d');
+        const interactiveElements = document.querySelectorAll('a, .card-floating-3d, .menu-link, .social-text-link, .ex-item, .carousel-btn');
         interactiveElements.forEach((el) => {
             el.addEventListener('mouseenter', () => {
                 cursor.style.width = '80px';
@@ -696,37 +573,61 @@
             setTimeout(() => { bgVideo.pause(); }, 450);
         });
 
-        // 3D Carousel Engine Logic
-        const wheel = document.getElementById('nftWheel');
-        const cards = document.querySelectorAll('.nft-card-3d');
+        // Carrusel 3D Coverflow (Estilo Squarespace)
+        const cards = document.querySelectorAll('.card-floating-3d');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        let currIndex = 0;
         const totalCards = cards.length;
-        const angleStep = 360 / totalCards;
-        const radius = 380; // Radius distance in PX
-        let currentAngle = 0;
+        const cardSpread = 280; // Separación horizontal
+        const rotateAngle = 28;  // Ángulo de inclinación 3D
 
-        function updateCarousel() {
-            cards.forEach((card, index) => {
-                const cardAngle = angleStep * index;
-                card.style.transform = `rotateY(${cardAngle}deg) translateZ(${radius}px)`;
+        function update3DCarousel() {
+            cards.forEach((card, i) => {
+                let offset = i - currIndex;
+
+                if (offset === 0) {
+                    // CARD CENTRAL
+                    card.style.transform = `translateX(0px) translateZ(120px) rotateY(0deg)`;
+                    card.style.opacity = '1';
+                    card.style.zIndex = '10';
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                    const direction = offset > 0 ? 1 : -1;
+                    const absOffset = Math.abs(offset);
+                    
+                    const translateX = offset * cardSpread;
+                    const translateZ = -180 * absOffset;
+                    const rotateY = -direction * rotateAngle;
+                    const opacity = Math.max(0.2, 1 - absOffset * 0.35);
+
+                    card.style.transform = `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg)`;
+                    card.style.opacity = opacity;
+                    card.style.zIndex = 10 - absOffset;
+                }
             });
         }
 
-        function rotateCarousel(direction) {
-            currentAngle += direction * angleStep;
-            wheel.style.transform = `rotateY(${currentAngle}deg)`;
-        }
-
-        document.getElementById('nextNft').addEventListener('click', () => rotateCarousel(-1));
-        document.getElementById('prevNft').addEventListener('click', () => rotateCarousel(1));
-
-        // Auto Rotation
-        let autoRotate = setInterval(() => rotateCarousel(-1), 4000);
-        document.querySelector('.nft-carousel-section').addEventListener('mouseenter', () => clearInterval(autoRotate));
-        document.querySelector('.nft-carousel-section').addEventListener('mouseleave', () => {
-            autoRotate = setInterval(() => rotateCarousel(-1), 4000);
+        nextBtn.addEventListener('click', () => {
+            currIndex = (currIndex + 1) % totalCards;
+            update3DCarousel();
         });
 
-        updateCarousel();
+        prevBtn.addEventListener('click', () => {
+            currIndex = (currIndex - 1 + totalCards) % totalCards;
+            update3DCarousel();
+        });
+
+        cards.forEach((card, index) => {
+            card.addEventListener('click', () => {
+                currIndex = index;
+                update3DCarousel();
+            });
+        });
+
+        update3DCarousel();
     </script>
 </body>
 </html>
