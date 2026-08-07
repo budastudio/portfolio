@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NFT 3D Carousel</title>
+  <style>
+    /* RESET & BASE */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #0b0e14;
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    /* SECCIÓN HERO / CARRUSEL 3D */
+    .hero-carousel-section {
+      width: 100%;
+      padding: 60px 20px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .carousel-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      background: linear-gradient(90deg, #a855f7, #6366f1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+    }
+
+    /* ESCENA 3D */
+    .carousel-scene {
+      width: 100%;
+      max-width: 1000px;
+      height: 420px;
+      perspective: 1200px; /* Sensación de profundidad 3D */
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .carousel-track {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* CARDS NFT EN 3D */
+    .nft-card {
+      position: absolute;
+      width: 260px;
+      height: 380px;
+      left: 50%;
+      top: 50%;
+      margin-left: -130px;
+      margin-top: -190px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      user-select: none;
+      transition: opacity 0.4s ease, border 0.3s ease;
+    }
+
+    .nft-card.active {
+      border: 1px solid rgba(168, 85, 247, 0.8);
+      box-shadow: 0 0 25px rgba(168, 85, 247, 0.3);
+    }
+
+    .nft-image {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+
+    .nft-info {
+      margin-top: 12px;
+    }
+
+    .nft-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .nft-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .nft-price-label {
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+
+    .nft-price-val {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    /* CONTROLES Y NAVEGACIÓN */
+    .controls {
+      display: flex;
+      gap: 20px;
+      margin-top: 25px;
+    }
+
+    .btn-nav {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-nav:hover {
+      background: #a855f7;
+      border-color: #a855f7;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SECCIÓN SUPERIOR: CARRUSEL 3D NFT -->
+  <section class="hero-carousel-section">
+    <h1 class="carousel-title">Colección Exclusiva NFT</h1>
+
+    <div class="carousel-scene">
+      <div class="carousel-track" id="carouselTrack">
+        
+        <!-- CARD 1 -->
+        <div class="nft-card">
+          <img src="https://picsum.photos/300/400?random=1" alt="NFT 1" class="nft-image"/>
+          <div class="nft-info">
+            <div class="nft-title">CyberApe #01</div>
+            <div class="nft-details">
+              <div>
+                <div class="nft-price-label">Precio Actual</div>
+                <div class="nft-price-val">1.45 ETH</div>
+              </div>
+              <button style="padding:6px 12px; background:#a855f7; border:none; border-radius:8px; color:white; cursor:pointer;">Ver</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="nft-card">
+          <img src="https://picsum.photos/300/400?random=2" alt="NFT 2" class="nft-image"/>
+          <div class="nft-info">
+            <div class="nft-title">Neon Valkyrie</div>
+            <div class="nft-details">
+              <div>
+                <div class="nft-price-label">Precio Actual</div>
+                <div class="nft-price-val">2.80 ETH</div>
+              </div>
+              <button style="padding:6px 12px; background:#a855f7; border:none; border-radius:8px; color:white; cursor:pointer;">Ver</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="nft-card">
+          <img src="https://picsum.photos/300/400?random=3" alt="NFT 3" class="nft-image"/>
+          <div class="nft-info">
+            <div class="nft-title">Abstract Dimension</div>
+            <div class="nft-details">
+              <div>
+                <div class="nft-price-label">Precio Actual</div>
+                <div class="nft-price-val">0.95 ETH</div>
+              </div>
+              <button style="padding:6px 12px; background:#a855f7; border:none; border-radius:8px; color:white; cursor:pointer;">Ver</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="nft-card">
+          <img src="https://picsum.photos/300/400?random=4" alt="NFT 4" class="nft-image"/>
+          <div class="nft-info">
+            <div class="nft-title">Cosmic Genesis</div>
+            <div class="nft-details">
+              <div>
+                <div class="nft-price-label">Precio Actual</div>
+                <div class="nft-price-val">3.10 ETH</div>
+              </div>
+              <button style="padding:6px 12px; background:#a855f7; border:none; border-radius:8px; color:white; cursor:pointer;">Ver</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 5 -->
+        <div class="nft-card">
+          <img src="https://picsum.photos/300/400?random=5" alt="NFT 5" class="nft-image"/>
+          <div class="nft-info">
+            <div class="nft-title">Ether Realm</div>
+            <div class="nft-details">
+              <div>
+                <div class="nft-price-label">Precio Actual</div>
+                <div class="nft-price-val">1.20 ETH</div>
+              </div>
+              <button style="padding:6px 12px; background:#a855f7; border:none; border-radius:8px; color:white; cursor:pointer;">Ver</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BOTONES DE NAVEGACIÓN -->
+    <div class="controls">
+      <button class="btn-nav" id="prevBtn">&#10094;</button>
+      <button class="btn-nav" id="nextBtn">&#10095;</button>
+    </div>
+  </section>
+
+  <script>
+    const cards = document.querySelectorAll('.nft-card');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    let currIndex = 0;
+    const totalCards = cards.length;
+    
+    // Distancia lateral entre cada tarjeta (offset en perspectiva)
+    const cardSpread = 220; 
+    const rotateAngle = 25; // Ángulo de rotación 3D estilo Squarespace
+
+    function updateCarousel() {
+      cards.forEach((card, i) => {
+        // Distancia relativa respecto a la card activa
+        let offset = i - currIndex;
+
+        if (offset === 0) {
+          // CARD CENTRAL (FRENTE)
+          card.style.transform = `translateX(0px) translateZ(100px) rotateY(0deg)`;
+          card.style.opacity = '1';
+          card.style.zIndex = '10';
+          card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+          
+          // LÓGICA DE POSICIONAMIENTO LATERAL
+          const direction = offset > 0 ? 1 : -1;
+          const absOffset = Math.abs(offset);
+          
+          // Reducción de escala y opacidad según la distancia
+          const translateX = offset * cardSpread;
+          const translateZ = -150 * absOffset;
+          const rotateY = -direction * rotateAngle;
+          const opacity = Math.max(0.2, 1 - absOffset * 0.3);
+
+          card.style.transform = `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg)`;
+          card.style.opacity = opacity;
+          card.style.zIndex = 10 - absOffset;
+        }
+      });
+    }
+
+    nextBtn.addEventListener('click', () => {
+      currIndex = (currIndex + 1) % totalCards;
+      updateCarousel();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currIndex = (currIndex - 1 + totalCards) % totalCards;
+      updateCarousel();
+    });
+
+    // Permitir hacer click directo en las tarjetas laterales para centrarlas
+    cards.forEach((card, index) => {
+      card.addEventListener('click', () => {
+        currIndex = index;
+        updateCarousel();
+      });
+    });
+
+    // Render inicial
+    updateCarousel();
+  </script>
+</body>
+</html>
