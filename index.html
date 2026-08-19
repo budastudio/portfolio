@@ -4,13 +4,11 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Leonardo M. Scarcia — Contemporary Visual Artist</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 
 <style>
 
@@ -57,7 +55,7 @@ body{
 
     pointer-events:none;
 
-    z-index:9999;
+    z-index:99999;
 
     transform:translate(-50%,-50%);
 
@@ -79,35 +77,40 @@ body{
     justify-content:space-between;
     align-items:center;
 
-    padding:2.5rem 4rem;
+    padding:1.25rem 2.5rem;
 
     font-size:1.1rem;
 
     position:fixed;
 
     width:100%;
-
     top:0;
+    left:0;
 
-    z-index:100;
+    z-index:10000;
 
-    mix-blend-mode:difference;
+    background:#050505;
+
+    border-bottom:1px solid rgba(212,175,55,.14);
+
+    box-shadow:0 8px 30px rgba(0,0,0,.5);
+
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
 }
 
 .logo{
-
     font-weight:500;
-
     text-transform:uppercase;
+    color:#FFFFFF;
+    white-space:nowrap;
 }
 
 .menu-items{
 
     display:flex;
-
     align-items:center;
-
-    gap:2.5rem;
+    gap:2.2rem;
 }
 
 .menu-link{
@@ -119,11 +122,13 @@ body{
     opacity:.6;
 
     transition:.3s;
+
+    white-space:nowrap;
 }
 
 .menu-link:hover{
-
     opacity:1;
+    color:#D4AF37;
 }
 
 
@@ -139,11 +144,11 @@ body{
 
     gap:6px;
 
-    margin-left:5px;
+    margin-left:2px;
 
-    padding-left:8px;
+    padding-left:10px;
 
-    border-left:1px solid rgba(255,255,255,.25);
+    border-left:1px solid rgba(255,255,255,.20);
 }
 
 .language-button{
@@ -170,14 +175,11 @@ body{
 }
 
 .language-button:hover{
-
     opacity:1;
 }
 
 .language-button.active{
-
     opacity:1;
-
     color:#D4AF37;
 }
 
@@ -245,7 +247,7 @@ body{
 
     font-weight:400;
 
-    line-height:.95;
+    line-height:1.08;
 
     margin-bottom:2rem;
 
@@ -1240,20 +1242,15 @@ body{
 @media(max-width:968px){
 
     .custom-cursor{
-
         display:none;
     }
 
     *{
-
         cursor:auto;
     }
 
     .navbar{
-
-        padding:
-            1.2rem
-            1.5rem;
+        padding:1.2rem 1.5rem;
     }
 
     .menu-items{
@@ -1268,7 +1265,6 @@ body{
     }
 
     .menu-items::-webkit-scrollbar{
-
         display:none;
     }
 
@@ -1295,8 +1291,7 @@ body{
 
         height:75vh;
 
-        padding:
-            0 2rem;
+        padding:0 2rem;
     }
 
     .hero-content h1{
@@ -1307,6 +1302,8 @@ body{
                 12vw,
                 90px
             );
+
+        line-height:1.02;
     }
 
     .hero-content p{
@@ -1440,9 +1437,7 @@ body{
 
 <nav class="navbar">
 
-<div
-    class="logo"
-    id="navLogo">
+<div class="logo">
     © Leonardo M Scarcia
 </div>
 
@@ -1531,7 +1526,8 @@ body{
 
 <div class="hero-content">
 
-<h1 data-i18n="heroTitle">
+<h1
+    data-i18n="heroTitle">
 
 Visual Artist<br>
 Painter
@@ -1539,7 +1535,8 @@ Painter
 </h1>
 
 
-<p data-i18n="heroDescription">
+<p
+    data-i18n="heroDescription">
 
 Leonardo M. Scarcia is a multidisciplinary visual artist
 working across painting, digital art, animation and moving image.
@@ -1570,9 +1567,7 @@ Contemporary Visual Art · Buda Studio · Brazil
 >
 
 <h2 data-i18n="worksTitle">
-
 Selected Works
-
 </h2>
 
 
@@ -1595,9 +1590,7 @@ projects developed through Buda Studio.
 >
 
 
-<!-- =====================================================
-     WORK 1
-===================================================== -->
+<!-- WORK 1 -->
 
 <div class="card-floating-3d">
 
@@ -1609,8 +1602,7 @@ projects developed through Buda Studio.
     Moving Image
 </span>
 
-<span
-    class="network-badge">
+<span class="network-badge">
     2D / Motion
 </span>
 
@@ -1665,9 +1657,7 @@ Watch on Youtube →
 </div>
 
 
-<!-- =====================================================
-     WORK 2
-===================================================== -->
+<!-- WORK 2 -->
 
 <div class="card-floating-3d">
 
@@ -1734,9 +1724,7 @@ Open gallery →
 </div>
 
 
-<!-- =====================================================
-     WORK 3
-===================================================== -->
+<!-- WORK 3 -->
 
 <div class="card-floating-3d">
 
@@ -1803,9 +1791,7 @@ Last Drops →
 </div>
 
 
-<!-- =====================================================
-     WORK 4
-===================================================== -->
+<!-- WORK 4 -->
 
 <div class="card-floating-3d">
 
@@ -1912,9 +1898,7 @@ Practice
 <div class="practice-copy">
 
 <h3 data-i18n="practiceHeading">
-
 Painting, Digital Art & Moving Image
-
 </h3>
 
 
@@ -2000,37 +1984,28 @@ and digital pieces.
     id="about"
 >
 
-
 <div class="about-content">
 
-
 <h2 data-i18n="aboutTitle">
-
 About Leonardo
-
 </h2>
 
 
 <p data-i18n="aboutP1">
-
 Leonardo M. Scarcia is an Argentine visual artist
 based in Santa Catarina, Brazil.
-
 </p>
 
 
 <p data-i18n="aboutP2">
-
 His professional background includes visual art,
 graphic design, illustration, art direction,
 animation, motion graphics, 3D and digital image
 production.
-
 </p>
 
 
 <div class="bio-expand">
-
 
 <div class="bio-trigger">
 
@@ -2049,63 +2024,50 @@ production.
 
 <div class="bio-text">
 
-
 <p data-i18n="bioP1">
-
 Leonardo M. Scarcia began exhibiting his work
 publicly in 1994, participating in the Bienal de
 Arte Joven in Buenos Aires.
-
 </p>
 
 
 <p data-i18n="bioP2">
-
 Throughout the 1990s and 2000s, he continued exhibiting
 and developing his artistic practice while also building
 a professional career in graphic design, advertising,
 illustration, animation and art direction.
-
 </p>
 
 
 <p data-i18n="bioP3">
-
 His professional work expanded into motion graphics,
 audiovisual production, 3D, digital illustration,
 interactive experiences and visual storytelling.
-
 </p>
 
 
 <p data-i18n="bioP4">
-
 Since 2021, Scarcia has also developed an active
 practice within digital art and the NFT ecosystem,
 using Web3 as another channel for exhibiting and
 distributing his work internationally.
-
 </p>
 
 
 <p data-i18n="bioP5">
-
 His work has been presented through international
 digital art events and platforms, including NFT NYC,
 NFC Lisboa, Solana Film Festival, NFT Tianguis,
 Japan Metaverse Exhibition and other digital
 art initiatives.
-
 </p>
 
 
 <p data-i18n="bioP6">
-
 Today, his practice combines physical and digital
 artworks, painting, animation, moving image,
 3D experimentation and independent artistic projects
 developed through Buda Studio.
-
 </p>
 
 </div>
@@ -2114,7 +2076,6 @@ developed through Buda Studio.
 
 
 <div class="bio-expand">
-
 
 <div class="bio-trigger">
 
@@ -2133,33 +2094,26 @@ developed through Buda Studio.
 
 <div class="bio-text">
 
-
 <p data-i18n="professionalP1">
-
 Over more than two decades, Leonardo has worked across
 graphic design, art direction, motion graphics,
 video editing, visual storytelling and digital
 production.
-
 </p>
 
 
 <p data-i18n="professionalP2">
-
 His professional experience includes work for brands,
 agencies, independent projects and multidisciplinary
 teams, combining concept development, design,
 animation and visual communication.
-
 </p>
 
 
 <p data-i18n="professionalP3">
-
 This background continues to inform his artistic practice,
 particularly in the areas of image construction,
 animation, composition, movement and digital media.
-
 </p>
 
 </div>
@@ -2177,7 +2131,6 @@ Download CV 2026
 
 </a>
 
-
 </div>
 
 
@@ -2189,7 +2142,6 @@ Download CV 2026
 >
 
 </div>
-
 
 </section>
 
@@ -2203,7 +2155,6 @@ Download CV 2026
     id="exhibitions"
 >
 
-
 <div class="video-container">
 
 <video
@@ -2211,13 +2162,13 @@ Download CV 2026
     class="bg-video"
     muted
     loop
-    playsinline
-></video>
+    playsinline>
+</video>
 
 <div
     id="bgOverlay"
-    class="bg-overlay"
-></div>
+    class="bg-overlay">
+</div>
 
 </div>
 
@@ -2225,20 +2176,15 @@ Download CV 2026
 <h2
     class="section-title"
     data-i18n="exhibitionsTitle">
-
 SELECTED EXHIBITIONS
-
 </h2>
 
 
 <div
     class="ex-item"
-    data-video="notable-vault.mp4"
->
+    data-video="notable-vault.mp4">
 
-<div class="ex-year">
-2026
-</div>
+<div class="ex-year">2026</div>
 
 <div
     class="ex-title"
@@ -2257,12 +2203,9 @@ NFC Lisboa · Portugal
 
 <div
     class="ex-item"
-    data-video="notable-pepe.mp4"
->
+    data-video="notable-pepe.mp4">
 
-<div class="ex-year">
-2025
-</div>
+<div class="ex-year">2025</div>
 
 <div
     class="ex-title"
@@ -2281,12 +2224,9 @@ Pepe WTF · US
 
 <div
     class="ex-item"
-    data-video="nftnyc.mp4"
->
+    data-video="nftnyc.mp4">
 
-<div class="ex-year">
-2025
-</div>
+<div class="ex-year">2025</div>
 
 <div
     class="ex-title"
@@ -2294,8 +2234,7 @@ Pepe WTF · US
 NFT NYC 24–25
 </div>
 
-<div
-    class="ex-location">
+<div class="ex-location">
 New York · US
 </div>
 
@@ -2304,12 +2243,9 @@ New York · US
 
 <div
     class="ex-item"
-    data-video="nfc-lisboa.mp4"
->
+    data-video="nfc-lisboa.mp4">
 
-<div class="ex-year">
-2025
-</div>
+<div class="ex-year">2025</div>
 
 <div
     class="ex-title"
@@ -2328,12 +2264,9 @@ Lisboa · Portugal
 
 <div
     class="ex-item"
-    data-video="pepefest.mp4"
->
+    data-video="pepefest.mp4">
 
-<div class="ex-year">
-2024
-</div>
+<div class="ex-year">2024</div>
 
 <div
     class="ex-title"
@@ -2352,12 +2285,9 @@ South Carolina · US
 
 <div
     class="ex-item"
-    data-video="solana.mp4"
->
+    data-video="solana.mp4">
 
-<div class="ex-year">
-2024
-</div>
+<div class="ex-year">2024</div>
 
 <div
     class="ex-title"
@@ -2376,12 +2306,9 @@ Web3
 
 <div
     class="ex-item"
-    data-video="tianguis.mp4"
->
+    data-video="tianguis.mp4">
 
-<div class="ex-year">
-2024
-</div>
+<div class="ex-year">2024</div>
 
 <div
     class="ex-title"
@@ -2400,12 +2327,9 @@ Querétaro · México
 
 <div
     class="ex-item"
-    data-video="buda.mp4"
->
+    data-video="buda.mp4">
 
-<div class="ex-year">
-2023
-</div>
+<div class="ex-year">2023</div>
 
 <div
     class="ex-title"
@@ -2424,12 +2348,9 @@ Garopaba · Brazil
 
 <div
     class="ex-item"
-    data-video="japan.mp4"
->
+    data-video="japan.mp4">
 
-<div class="ex-year">
-2023
-</div>
+<div class="ex-year">2023</div>
 
 <div
     class="ex-title"
@@ -2448,12 +2369,9 @@ Spatial Gallery VR
 
 <div
     class="ex-item"
-    data-video="cryptovoxels.mp4"
->
+    data-video="cryptovoxels.mp4">
 
-<div class="ex-year">
-2023
-</div>
+<div class="ex-year">2023</div>
 
 <div
     class="ex-title"
@@ -2469,7 +2387,6 @@ Cryptovoxels
 
 </div>
 
-
 </section>
 
 
@@ -2479,20 +2396,15 @@ Cryptovoxels
 
 <footer
     class="footer"
-    id="contact"
->
-
+    id="contact">
 
 <h2 data-i18n="footerTitle">
-
 Exhibitions<br>
 Collaborations
-
 </h2>
 
 
 <div class="social-text-links">
-
 
 <a
     href="https://x.com/budastudio_nft"
@@ -2501,14 +2413,12 @@ Collaborations
 X
 </a>
 
-
 <a
     href="https://be.net/lscarcia"
     target="_blank"
     class="social-text-link">
 Behance
 </a>
-
 
 <a
     href="https://linkedin.com/in/lscarcia"
@@ -2517,7 +2427,6 @@ Behance
 LinkedIn
 </a>
 
-
 <a
     href="https://linktr.ee/budastudio"
     target="_blank"
@@ -2525,14 +2434,12 @@ LinkedIn
 Linktree
 </a>
 
-
 <a
     href="https://instagram.com/budastudio_art"
     target="_blank"
     class="social-text-link">
 Instagram
 </a>
-
 
 </div>
 
@@ -2545,7 +2452,6 @@ Instagram
 
 <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 
-
 <script>
 
 /* =========================================================
@@ -2556,23 +2462,13 @@ const translations = {
 
 en: {
 
-navWorks:
-"Works",
+navWorks:"Works",
+navPractice:"Practice",
+navAbout:"About",
+navExhibitions:"Exhibitions",
+navContact:"Contact",
 
-navPractice:
-"Practice",
-
-navAbout:
-"About",
-
-navExhibitions:
-"Exhibitions",
-
-navContact:
-"Contact",
-
-heroTitle:
-"Visual Artist<br>Painter",
+heroTitle:"Visual Artist<br>Painter",
 
 heroDescription:
 "Leonardo M. Scarcia is a multidisciplinary visual artist working across painting, digital art, animation and moving image.",
@@ -2586,8 +2482,7 @@ worksTitle:
 worksIntro:
 "A selection from Leonardo M. Scarcia's visual practice, including animation, digital art, 3D work and independent projects developed through Buda Studio.",
 
-work1Tag:
-"Moving Image",
+work1Tag:"Moving Image",
 
 work1Title:
 "Visual Narratives",
@@ -2646,23 +2541,12 @@ practiceP2:
 practiceP3:
 "Buda Studio's current Store presents selected original artworks, limited editions, physical objects, wearables and digital pieces.",
 
-tagPainting:
-"Painting",
-
-tagDigital:
-"Digital Art",
-
-tagAnimation:
-"Animation",
-
-tagMoving:
-"Moving Image",
-
-tag3D:
-"3D",
-
-tagEditions:
-"Limited Editions",
+tagPainting:"Painting",
+tagDigital:"Digital Art",
+tagAnimation:"Animation",
+tagMoving:"Moving Image",
+tag3D:"3D",
+tagEditions:"Limited Editions",
 
 aboutTitle:
 "About Leonardo",
@@ -2773,20 +2657,11 @@ footerTitle:
 
 pt: {
 
-navWorks:
-"Trabalhos",
-
-navPractice:
-"Prática",
-
-navAbout:
-"Sobre",
-
-navExhibitions:
-"Exposições",
-
-navContact:
-"Contato",
+navWorks:"Trabalhos",
+navPractice:"Prática",
+navAbout:"Sobre",
+navExhibitions:"Exposições",
+navContact:"Contato",
 
 heroTitle:
 "Artista Visual<br>Pintor",
@@ -2863,23 +2738,12 @@ practiceP2:
 practiceP3:
 "A Store atual do Buda Studio apresenta obras originais selecionadas, edições limitadas, objetos físicos, wearables e peças digitais.",
 
-tagPainting:
-"Pintura",
-
-tagDigital:
-"Arte Digital",
-
-tagAnimation:
-"Animação",
-
-tagMoving:
-"Imagem em Movimento",
-
-tag3D:
-"3D",
-
-tagEditions:
-"Edições Limitadas",
+tagPainting:"Pintura",
+tagDigital:"Arte Digital",
+tagAnimation:"Animação",
+tagMoving:"Imagem em Movimento",
+tag3D:"3D",
+tagEditions:"Edições Limitadas",
 
 aboutTitle:
 "Sobre Leonardo",
@@ -3420,7 +3284,6 @@ cards.forEach(
 update3DCarousel();
 
 </script>
-
 
 </body>
 
