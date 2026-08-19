@@ -1,642 +1,2448 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buda Studio — Visual Artist Animator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
-        body { font-family: 'Inter', sans-serif; background-color: #0F0F0F; color: #F0F0F0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-        /* Cursor Personalizado */
-        .custom-cursor {
-            position: fixed;
-            top: 0; left: 0;
-            width: 30px; height: 30px;
-            border-radius: 50%;
-            background-image: url('logo.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-color: #FFFFFF;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s;
-        }
+<meta charset="UTF-8">
 
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 2.5rem 4rem; font-size: 1.1rem; position: fixed; width: 100%; top: 0; z-index: 100; mix-blend-mode: difference; }
-        .logo { font-weight: 500; text-transform: uppercase; }
-        .menu-items { display: flex; gap: 2.5rem; }
-        .menu-link { color: #F0F0F0; text-decoration: none; opacity: 0.6; transition: 0.3s; }
-        .menu-link:hover { opacity: 1; }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* HERO */
-        .hero {
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            padding: 0 4rem;
-            background-image: linear-gradient(rgba(15, 15, 15, 0.7), rgba(15, 15, 15, 0.7)), url('bg-hero.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        .hero-content h1 { font-size: 8.5vw; font-weight: 400; line-height: 0.95; margin-bottom: 2rem; text-transform: uppercase; }
-        .hero-content p { font-size: 1.6rem; font-weight: 300; max-width: 600px; opacity: 0.7; }
+<title>Leonardo M. Scarcia — Contemporary Visual Artist</title>
 
-        /* CARROUSEL 3D ESTILO SQUARESPACE / COVERFLOW */
-        .hero-carousel-section {
-            padding: 6rem 4rem 10rem 4rem;
-            background: #0B0B0B;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-        .hero-carousel-section h2 {
-            font-size: 3vw;
-            font-weight: 400;
-            text-transform: uppercase;
-            margin-bottom: 3rem;
-            text-align: center;
-            letter-spacing: 2px;
-        }
 
-        .carousel-scene {
-            width: 100%;
-            max-width: 1200px;
-            height: 520px;
-            perspective: 1200px;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+<style>
 
-        .carousel-track {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            transform-style: preserve-3d;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    cursor:none;
+}
 
-        /* CARD FLOATING DENTRO DEL CARRUSEL 3D */
-        .card-floating-3d {
-            position: absolute;
-            width: 360px;
-            height: 480px;
-            left: 50%;
-            top: 50%;
-            margin-left: -180px;
-            margin-top: -240px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 16px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
-            user-select: none;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
+body{
+    font-family:'Inter',sans-serif;
+    background:#0F0F0F;
+    color:#F0F0F0;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+}
 
-        .card-floating-3d.active {
-            border-color: rgba(255, 255, 255, 0.35);
-            box-shadow: 0 0 35px rgba(255, 255, 255, 0.15);
-        }
 
-        .card-header {
-            padding: 1rem 1.4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(15, 15, 15, 0.6);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            z-index: 2;
-        }
+/* =========================================================
+   CUSTOM CURSOR
+========================================================= */
 
-        .card-header .tag {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            padding: 4px 10px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            opacity: 0.8;
-        }
+.custom-cursor{
+    position:fixed;
+    top:0;
+    left:0;
 
-        .card-header .network-badge {
-            font-size: 0.7rem;
-            font-weight: 500;
-            opacity: 0.5;
-        }
+    width:30px;
+    height:30px;
 
-        .image-wrapper {
-            position: relative;
-            width: 100%;
-            height: 220px;
-            overflow: hidden;
-            background: #151515;
-        }
+    border-radius:50%;
 
-        .image-wrapper img, .image-wrapper video {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+    background-image:url('logo.png');
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
 
-        .project-info {
-            padding: 1.2rem 1.4rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            flex-grow: 1;
-            justify-content: space-between;
-        }
+    background-color:#FFFFFF;
 
-        .project-info h3 { font-size: 1.4rem; font-weight: 400; }
-        .project-info p { font-size: 0.85rem; font-weight: 300; opacity: 0.6; line-height: 1.3; }
+    pointer-events:none;
 
-        .live-link {
-            display: inline-block;
-            margin-top: 0.4rem;
-            font-size: 0.85rem;
-            color: #FFFFFF;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-            font-weight: 500;
-        }
-        .live-link:hover { opacity: 1; text-decoration: underline; }
+    z-index:9999;
 
-        .carousel-controls {
-            display: flex;
-            gap: 2rem;
-            margin-top: 2rem;
-            z-index: 10;
-        }
+    transform:translate(-50%,-50%);
 
-        .carousel-btn {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #FFFFFF;
-            padding: 0.8rem 1.8rem;
-            border-radius: 30px;
-            font-size: 1rem;
-            transition: 0.3s;
-        }
+    transition:
+        width .3s cubic-bezier(.16,1,.3,1),
+        height .3s cubic-bezier(.16,1,.3,1),
+        background-color .3s;
+}
 
-        .carousel-btn:hover {
-            background: #FFFFFF;
-            color: #000000;
-        }
 
-        /* ABOUT ME */
-        .about-section {
-            padding: 12rem 4rem;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 6rem;
-            align-items: center;
-            background-image: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.85)), url('bg-about.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-        .about-content h2 { font-size: 5vw; font-weight: 400; text-transform: uppercase; margin-bottom: 3rem; }
-        .about-content p { font-size: 1.5rem; font-weight: 300; max-width: 650px; opacity: 0.7; line-height: 1.6; margin-bottom: 1.5rem; }
-        .about-image-wrapper {
-            width: 100%;
-            aspect-ratio: 1/1;
-            overflow: hidden;
-            border-radius: 2px;
-            background-color: #1A1A1A;
-        }
-        .about-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-        /* BIOGRAPHY EXPANDABLE */
-        .bio-expand { margin-top: 3rem; max-width: 900px; }
-        .bio-trigger { display: flex; align-items: center; gap: 15px; margin-bottom: 0; }
-        .bio-plus { color: #FFFFFF; font-size: 28px; font-weight: 200; transition: transform 0.5s ease; }
-        .bio-trigger:hover { opacity: 0.8; }
-        .bio-title { color: #FFFFFF; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.8; }
-        .bio-text { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.9s ease, opacity 0.6s ease, margin-top 0.6s ease; }
-        .bio-expand:hover .bio-text { max-height: 2000px; opacity: 1; margin-top: 30px; }
-        .bio-expand:hover .bio-plus { transform: rotate(135deg); }
-        .bio-text p { font-size: 1.05rem; line-height: 1.8; opacity: 0.75; margin-bottom: 1.5rem; }
+.navbar{
 
-        /* EXHIBITIONS */
-        .exhibitions {
-            position: relative;
-            padding: 12rem 4rem;
-            background-image: linear-gradient(rgba(15, 15, 15, 0.85), rgba(15, 15, 15, 0.85)), url('bg-exhibitions.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-        .video-container { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
-        .bg-video { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .45s ease; }
-        .bg-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.55); opacity: 0; transition: .45s; }
-        .section-title, .ex-item { position: relative; z-index: 2; }
-        .ex-item { display: grid; grid-template-columns: 120px 1fr 220px; padding: 32px 0; border-bottom: 1px solid rgba(255,255,255,.15); transition: .35s; }
-        .ex-item:hover { transform: translateX(12px); }
-        .ex-year { opacity: .35; font-size: 30px; }
-        .ex-title { font-size: 36px; }
-        .ex-location { text-align: right; opacity: .7; }
+    display:flex;
 
-        /* FOOTER */
-        .footer {
-            padding: 14rem 4rem 8rem 4rem;
-            text-align: center;
-            background-image: linear-gradient(rgba(15, 15, 15, 0.9), rgba(15, 15, 15, 0.9)), url('bg-footer.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-        .footer h2 { font-size: 7vw; font-weight: 400; margin-bottom: 4rem; text-transform: uppercase; }
-        .pdf-link { color: #FFFFFF; text-decoration: none; transition: color 0.3s ease; display: inline-block; margin-top: 50px; }
-        .pdf-link:hover { color: #888888; }
-        .social-text-links { display: flex; justify-content: center; gap: 3rem; margin-top: 5rem; }
-        .social-text-link { color: #F0F0F0; text-decoration: none; font-size: 1rem; font-weight: 400; opacity: 0.5; transition: opacity 0.3s, transform 0.3s; text-transform: uppercase; letter-spacing: 0.08em; }
-        .social-text-link:hover { opacity: 1; transform: translateY(-2px); }
+    justify-content:space-between;
+    align-items:center;
 
-        @media (max-width: 968px) {
-            .custom-cursor { display: none; }
-            * { cursor: auto; }
-            .navbar { padding: 2rem; }
-            .hero-carousel-section h2 { font-size: 2.2rem; }
-            .card-floating-3d { width: 290px; height: 420px; margin-left: -145px; margin-top: -210px; }
-            .about-section { grid-template-columns: 1fr; gap: 4rem; padding: 6rem 2rem; }
-            .about-content h2, .section-title { font-size: 2.5rem; }
-            .exhibitions { padding: 6rem 2rem; }
-            .ex-item { grid-template-columns: 1fr; gap: 10px; }
-            .ex-location { text-align: left; }
-            .social-text-links { gap: 1.5rem; flex-wrap: wrap; }
-        }
-    </style>
+    padding:2.5rem 4rem;
+
+    font-size:1.1rem;
+
+    position:fixed;
+
+    width:100%;
+
+    top:0;
+
+    z-index:100;
+
+    mix-blend-mode:difference;
+}
+
+.logo{
+
+    font-weight:500;
+
+    text-transform:uppercase;
+}
+
+.menu-items{
+
+    display:flex;
+
+    gap:2.5rem;
+}
+
+.menu-link{
+
+    color:#F0F0F0;
+
+    text-decoration:none;
+
+    opacity:.6;
+
+    transition:.3s;
+}
+
+.menu-link:hover{
+
+    opacity:1;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+
+    height:80vh;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:0 4rem;
+
+    background-image:
+        linear-gradient(
+            rgba(15,15,15,.7),
+            rgba(15,15,15,.7)
+        ),
+        url('bg-hero.jpg');
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+}
+
+.hero-content h1{
+
+    font-size:8.5vw;
+
+    font-weight:400;
+
+    line-height:.95;
+
+    margin-bottom:2rem;
+
+    text-transform:uppercase;
+}
+
+.hero-content p{
+
+    font-size:1.6rem;
+
+    font-weight:300;
+
+    max-width:720px;
+
+    opacity:.7;
+
+    line-height:1.45;
+}
+
+.hero-meta{
+
+    margin-top:1.4rem;
+
+    font-size:.8rem;
+
+    letter-spacing:.18em;
+
+    text-transform:uppercase;
+
+    opacity:.45;
+}
+
+
+/* =========================================================
+   SELECTED WORKS
+========================================================= */
+
+.hero-carousel-section{
+
+    padding:6rem 4rem 10rem;
+
+    background:#0B0B0B;
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+}
+
+.hero-carousel-section h2{
+
+    font-size:3vw;
+
+    font-weight:400;
+
+    text-transform:uppercase;
+
+    margin-bottom:1.5rem;
+
+    text-align:center;
+
+    letter-spacing:2px;
+}
+
+.carousel-intro{
+
+    max-width:760px;
+
+    text-align:center;
+
+    font-size:1rem;
+
+    line-height:1.7;
+
+    opacity:.55;
+
+    margin-bottom:3rem;
+}
+
+
+/* =========================================================
+   CAROUSEL
+========================================================= */
+
+.carousel-scene{
+
+    width:100%;
+
+    max-width:1200px;
+
+    height:520px;
+
+    perspective:1200px;
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+}
+
+.carousel-track{
+
+    width:100%;
+    height:100%;
+
+    position:absolute;
+
+    transform-style:preserve-3d;
+
+    transition:
+        transform .6s
+        cubic-bezier(.16,1,.3,1);
+}
+
+.card-floating-3d{
+
+    position:absolute;
+
+    width:360px;
+    height:480px;
+
+    left:50%;
+    top:50%;
+
+    margin-left:-180px;
+    margin-top:-240px;
+
+    background:rgba(255,255,255,.04);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    border-radius:16px;
+
+    backdrop-filter:blur(12px);
+
+    -webkit-backdrop-filter:blur(12px);
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.7);
+
+    user-select:none;
+
+    transition:
+        transform .6s
+        cubic-bezier(.16,1,.3,1),
+        opacity .4s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.card-floating-3d.active{
+
+    border-color:
+        rgba(255,255,255,.35);
+
+    box-shadow:
+        0 0 35px
+        rgba(255,255,255,.15);
+}
+
+.card-header{
+
+    padding:1rem 1.4rem;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:
+        rgba(15,15,15,.6);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
+
+    z-index:2;
+}
+
+.card-header .tag{
+
+    font-size:.7rem;
+
+    text-transform:uppercase;
+
+    letter-spacing:1.5px;
+
+    padding:4px 10px;
+
+    border-radius:20px;
+
+    background:
+        rgba(255,255,255,.1);
+
+    opacity:.8;
+}
+
+.card-header .network-badge{
+
+    font-size:.7rem;
+
+    font-weight:500;
+
+    opacity:.5;
+}
+
+.image-wrapper{
+
+    position:relative;
+
+    width:100%;
+
+    height:220px;
+
+    overflow:hidden;
+
+    background:#151515;
+}
+
+.image-wrapper img,
+.image-wrapper video{
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    transition:
+        transform
+        1.2s
+        cubic-bezier(.16,1,.3,1);
+}
+
+.project-info{
+
+    padding:1.2rem 1.4rem;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:.5rem;
+
+    flex-grow:1;
+
+    justify-content:space-between;
+}
+
+.project-info h3{
+
+    font-size:1.4rem;
+
+    font-weight:400;
+}
+
+.project-info p{
+
+    font-size:.85rem;
+
+    font-weight:300;
+
+    opacity:.6;
+
+    line-height:1.4;
+}
+
+.live-link{
+
+    display:inline-block;
+
+    margin-top:.4rem;
+
+    font-size:.85rem;
+
+    color:#FFFFFF;
+
+    text-decoration:none;
+
+    opacity:.8;
+
+    transition:opacity .3s;
+
+    font-weight:500;
+}
+
+.live-link:hover{
+
+    opacity:1;
+
+    text-decoration:underline;
+}
+
+.carousel-controls{
+
+    display:flex;
+
+    gap:2rem;
+
+    margin-top:2rem;
+
+    z-index:10;
+}
+
+.carousel-btn{
+
+    background:transparent;
+
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
+    color:#FFFFFF;
+
+    padding:.8rem 1.8rem;
+
+    border-radius:30px;
+
+    font-size:1rem;
+
+    transition:.3s;
+}
+
+.carousel-btn:hover{
+
+    background:#FFFFFF;
+
+    color:#000000;
+}
+
+
+/* =========================================================
+   ART PRACTICE
+========================================================= */
+
+.practice-section{
+
+    padding:10rem 4rem;
+
+    background:#101010;
+
+    display:grid;
+
+    grid-template-columns:.8fr 1.2fr;
+
+    gap:6rem;
+
+    align-items:start;
+}
+
+.practice-title{
+
+    font-size:4.5vw;
+
+    font-weight:400;
+
+    line-height:1;
+
+    text-transform:uppercase;
+}
+
+.practice-copy{
+
+    max-width:760px;
+}
+
+.practice-copy h3{
+
+    font-size:2rem;
+
+    font-weight:400;
+
+    margin-bottom:1.5rem;
+}
+
+.practice-copy p{
+
+    font-size:1.2rem;
+
+    font-weight:300;
+
+    line-height:1.75;
+
+    opacity:.68;
+
+    margin-bottom:1.4rem;
+}
+
+.practice-list{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    margin-top:2rem;
+}
+
+.practice-item{
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    border-radius:999px;
+
+    padding:8px 14px;
+
+    font-size:.7rem;
+
+    letter-spacing:.12em;
+
+    text-transform:uppercase;
+
+    opacity:.7;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-section{
+
+    padding:12rem 4rem;
+
+    display:grid;
+
+    grid-template-columns:1.2fr .8fr;
+
+    gap:6rem;
+
+    align-items:center;
+
+    background-image:
+        linear-gradient(
+            rgba(15,15,15,.85),
+            rgba(15,15,15,.85)
+        ),
+        url('bg-about.jpg');
+
+    background-size:cover;
+
+    background-position:center;
+}
+
+.about-content h2{
+
+    font-size:5vw;
+
+    font-weight:400;
+
+    text-transform:uppercase;
+
+    margin-bottom:3rem;
+}
+
+.about-content > p{
+
+    font-size:1.35rem;
+
+    font-weight:300;
+
+    max-width:720px;
+
+    opacity:.7;
+
+    line-height:1.65;
+
+    margin-bottom:1.5rem;
+}
+
+.about-image-wrapper{
+
+    width:100%;
+
+    aspect-ratio:1/1;
+
+    overflow:hidden;
+
+    border-radius:2px;
+
+    background-color:#1A1A1A;
+}
+
+.about-image-wrapper img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+}
+
+
+/* =========================================================
+   BIOGRAPHY
+========================================================= */
+
+.bio-expand{
+
+    margin-top:3rem;
+
+    max-width:900px;
+}
+
+.bio-trigger{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+.bio-plus{
+
+    color:#FFFFFF;
+
+    font-size:28px;
+
+    font-weight:200;
+
+    transition:
+        transform .5s ease;
+}
+
+.bio-trigger:hover{
+
+    opacity:.8;
+}
+
+.bio-title{
+
+    color:#FFFFFF;
+
+    font-size:.95rem;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+    opacity:.8;
+}
+
+.bio-text{
+
+    max-height:0;
+
+    overflow:hidden;
+
+    opacity:0;
+
+    transition:
+        max-height .9s ease,
+        opacity .6s ease,
+        margin-top .6s ease;
+}
+
+.bio-expand:hover .bio-text{
+
+    max-height:2200px;
+
+    opacity:1;
+
+    margin-top:30px;
+}
+
+.bio-expand:hover .bio-plus{
+
+    transform:rotate(135deg);
+}
+
+.bio-text p{
+
+    font-size:1.05rem;
+
+    line-height:1.8;
+
+    opacity:.75;
+
+    margin-bottom:1.5rem;
+}
+
+
+/* =========================================================
+   EXHIBITIONS
+========================================================= */
+
+.exhibitions{
+
+    position:relative;
+
+    padding:12rem 4rem;
+
+    background-image:
+        linear-gradient(
+            rgba(15,15,15,.85),
+            rgba(15,15,15,.85)
+        ),
+        url('bg-exhibitions.jpg');
+
+    background-size:cover;
+
+    background-position:center;
+}
+
+.video-container{
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:0;
+}
+
+.bg-video{
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    opacity:0;
+
+    transition:opacity .45s ease;
+}
+
+.bg-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    opacity:0;
+
+    transition:.45s;
+}
+
+.section-title,
+.ex-item{
+
+    position:relative;
+
+    z-index:2;
+}
+
+.ex-item{
+
+    display:grid;
+
+    grid-template-columns:
+        120px 1fr 220px;
+
+    padding:32px 0;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.15);
+
+    transition:.35s;
+}
+
+.ex-item:hover{
+
+    transform:translateX(12px);
+}
+
+.ex-year{
+
+    opacity:.35;
+
+    font-size:30px;
+}
+
+.ex-title{
+
+    font-size:36px;
+}
+
+.ex-location{
+
+    text-align:right;
+
+    opacity:.7;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+
+    padding:
+        14rem
+        4rem
+        8rem;
+
+    text-align:center;
+
+    background-image:
+        linear-gradient(
+            rgba(15,15,15,.9),
+            rgba(15,15,15,.9)
+        ),
+        url('bg-footer.jpg');
+
+    background-size:cover;
+
+    background-position:center;
+}
+
+.footer h2{
+
+    font-size:7vw;
+
+    font-weight:400;
+
+    margin-bottom:4rem;
+
+    text-transform:uppercase;
+}
+
+.pdf-link{
+
+    color:#FFFFFF;
+
+    text-decoration:none;
+
+    transition:
+        color .3s ease;
+
+    display:inline-block;
+
+    margin-top:50px;
+}
+
+.pdf-link:hover{
+
+    color:#888888;
+}
+
+.social-text-links{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:3rem;
+
+    margin-top:5rem;
+}
+
+.social-text-link{
+
+    color:#F0F0F0;
+
+    text-decoration:none;
+
+    font-size:1rem;
+
+    font-weight:400;
+
+    opacity:.5;
+
+    transition:
+        opacity .3s,
+        transform .3s;
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+}
+
+.social-text-link:hover{
+
+    opacity:1;
+
+    transform:translateY(-2px);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:968px){
+
+    .custom-cursor{
+
+        display:none;
+    }
+
+    *{
+
+        cursor:auto;
+    }
+
+    .navbar{
+
+        padding:2rem;
+    }
+
+    .hero-carousel-section h2{
+
+        font-size:2.2rem;
+    }
+
+    .card-floating-3d{
+
+        width:290px;
+
+        height:420px;
+
+        margin-left:-145px;
+
+        margin-top:-210px;
+    }
+
+    .about-section{
+
+        grid-template-columns:1fr;
+
+        gap:4rem;
+
+        padding:6rem 2rem;
+    }
+
+    .practice-section{
+
+        grid-template-columns:1fr;
+
+        gap:3rem;
+
+        padding:6rem 2rem;
+    }
+
+    .about-content h2,
+    .section-title{
+
+        font-size:2.5rem;
+    }
+
+    .exhibitions{
+
+        padding:6rem 2rem;
+    }
+
+    .ex-item{
+
+        grid-template-columns:1fr;
+
+        gap:10px;
+    }
+
+    .ex-location{
+
+        text-align:left;
+    }
+
+    .social-text-links{
+
+        gap:1.5rem;
+
+        flex-wrap:wrap;
+    }
+
+}
+
+</style>
+
 </head>
+
+
 <body>
 
-    <div class="custom-cursor" id="cursor"></div>
 
-    <nav class="navbar">
-    <div class="logo">© Leonardo M Scarcia</div>
+<div
+    class="custom-cursor"
+    id="cursor">
+</div>
 
-    <div class="menu-items">
-        <a href="#projects-carousel" class="menu-link">Projects</a>
 
-        <a
-            href="https://budastudio.github.io/portfolio/carrouselnft.html"
-            class="menu-link"
-        >
-            Last Drop
-        </a>
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
 
-        <a href="#about" class="menu-link">About</a>
-        <a href="#exhibitions" class="menu-link">Exhibitions</a>
-        <a href="#contact" class="menu-link">Contact</a>
-    </div>
+<nav class="navbar">
+
+<div class="logo">
+    © Leonardo M Scarcia
+</div>
+
+
+<div class="menu-items">
+
+<a
+    href="#projects-carousel"
+    class="menu-link">
+    Works
+</a>
+
+
+<a
+    href="https://budastudio.github.io/portfolio/carrouselnft.html"
+    class="menu-link">
+    Last Drop
+</a>
+
+
+<a
+    href="#practice"
+    class="menu-link">
+    Practice
+</a>
+
+
+<a
+    href="#about"
+    class="menu-link">
+    About
+</a>
+
+
+<a
+    href="#exhibitions"
+    class="menu-link">
+    Exhibitions
+</a>
+
+
+<a
+    href="#contact"
+    class="menu-link">
+    Contact
+</a>
+
+</div>
+
 </nav>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1>Visual Artist <br> Animator</h1>
-            <p>Art Director & Visual Storyteller | Pitch Decks, Brand Experience & Digital Narratives</p>
-        </div>
-    </header>
 
-    <!-- GALERÍA CARRUSEL 3D INSPIRADO EN SQUARESPACE -->
-    <section class="hero-carousel-section" id="projects-carousel">
-        <h2>Featured Works & Visual Vault</h2>
-        
-        <div class="carousel-scene">
-            <div class="carousel-track" id="carouselTrack">
-                
-                <!-- OBRAR 1: SHOWREEL -->
-                <div class="card-floating-3d">
-                    <div class="card-header">
-                        <span class="tag">Showreel</span>
-                        <span class="network-badge">2D / Motion</span>
-                    </div>
-                    <div class="image-wrapper">
-                        <video autoplay muted loop playsinline>
-                            <source src="tu-video-2.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="project-info">
-                        <h3>Reel</h3>
-                        <p>Stop motion and 2d animation showcasing narrative visual work.</p>
-                        <a href="hhttps://www.youtube.com/@budastudioNFT" target="_blank" class="live-link">Watch on Youtube →</a>
-                    </div>
-                </div>
+<!-- =========================================================
+     HERO
+========================================================= -->
 
-                <!-- OBRA 2: COLLECTIVE ART -->
-                <div class="card-floating-3d">
-                    <div class="card-header">
-                        <span class="tag">Collective Art</span>
-                        <span class="network-badge">Web3 Collective Art</span>
-                    </div>
-                    <div class="image-wrapper">
-                        <video autoplay muted loop playsinline>
-                            <source src="tu-video-1.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="project-info">
-                        <h3>Buda Collective Artist </h3>
-                        <p>Collective media art programming a gallery for Web3 Artists in X Twitter community 2021–2026.</p>
-                        <a href="https://budastudio.github.io/buda-collective-artist/" target="_blank" class="live-link">Open gallery →</a>
-                    </div>
-                </div>
+<header class="hero">
 
-                <!-- OBRA 3: AUDIOVISUAL MOTION -->
-                <div class="card-floating-3d">
-                    <div class="card-header">
-                        <span class="tag">3D Sculpture</span>
-                        <span class="network-badge">Opensea Marketplace</span>
-                    </div>
-                    <div class="image-wrapper">
-                        <video autoplay muted loop playsinline>
-                            <source src="tu-video-4.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="project-info">
-                        <h3>LAST DROPS</h3>
-                        <p>Digital Art and phygital certificated NFT art.</p>
-                        <a href="https://budastudio.github.io/portfolio/carrouselnft.html" target="_blank" class="live-link">Last Drops →</a>
-                    </div>
-                </div>
+<div class="hero-content">
 
-                <!-- OBRA 4: BITCOIN SCULPTURE -->
-                <div class="card-floating-3d">
-                    <div class="card-header">
-                        <span class="tag">LAST DROPS</span>
-                        <span class="network-badge">NFT digital art</span>
-                    </div>
-                    <div class="image-wrapper">
-                        <img src="objk.jpg" alt="Digital Art">
-                    </div>
-                    <div class="project-info">
-                        <h3>NFT Animations</h3>
-                        <p>Explorations in digital animations, light composition, and kinetic rhythms.</p>
-                        <a href="https://objkt.com/@budastudio" target="_blank" class="live-link">View Objkt.com →</a>
-                    </div>
-                </div>
+<h1>
 
-            </div>
-        </div>
+Visual Artist<br>
+Painter
 
-        <div class="carousel-controls">
-            <button class="carousel-btn" id="prevBtn">← Prev</button>
-            <button class="carousel-btn" id="nextBtn">Next →</button>
-        </div>
-    </section>
+</h1>
 
-    <!-- ABOUT SECTION -->
-    <section class="about-section" id="about">
-        <div class="about-content">
-            <h2>About Me</h2>
-            <p>Working at the intersection of art, design, motion and emerging technologies, creating visual narratives that connect ideas, brands and communities.</p>
-            
-            <div class="bio-expand">
-                <div class="bio-trigger">
-                    <span class="bio-plus">+</span>
-                    <span class="bio-title">Professional Journey</span>
-                </div>
-                <div class="bio-text">
-                    <p>Over the past two decades, I have worked across graphic design, art direction, motion graphics, video editing and visual storytelling, collaborating with agencies, brands, cultural institutions and independent projects.</p>
-                    <p>My career began in traditional visual communication, where I developed a strong foundation in graphic design, illustration and artistic practice. As digital media evolved, I expanded my expertise into motion design, audiovisual production and interactive experiences.</p>
-                    <p>Throughout my professional journey, I have created animated content, advertising campaigns, social media assets, brand identities, pitch decks and audiovisual narratives for clients across different industries.</p>
-                    <p>Working remotely with multidisciplinary teams has allowed me to adapt quickly to fast-paced production environments while maintaining a strong focus on quality, efficiency and creative problem-solving.</p>
-                    <p>My approach integrates design, animation, sound and storytelling into cohesive visual experiences. Whether developing motion graphics for digital campaigns, editing promotional videos or directing creative projects, I seek to build meaningful connections between brands, ideas and audiences.</p>
-                    <p>Alongside my commercial work, I have maintained an active artistic practice that includes painting, animation, digital art, 3D experimentation, virtual environments and Web3 projects.</p>
-                    <p>Currently, I work as an Art Director, Motion Designer and Visual Artist, developing projects that exist at the intersection of communication, technology and contemporary visual culture.</p>
-                </div>
-            </div>
 
-            <div class="bio-expand">
-                <div class="bio-trigger">
-                    <span class="bio-plus">+</span>
-                    <span class="bio-title">Artistic Biography</span>
-                </div>
-                <div class="bio-text">
-                    <p>Leonardo M. Scarcia began exhibiting his work in 1994, participating in the Bienal de Arte Joven in Buenos Aires — one of the three decentralized biennials held at that time.</p>
-                    <p>Throughout the 1990s and 2000s, he exhibited across key cultural spaces in Buenos Aires, including Lady of Bollini, the Ministry of Economy of the Nation, Casa de Corrientes, the French Alliance of Buenos Aires, Galería Pacífico, and the Recoleta Museum of Modern Art.</p>
-                    <p>While institutional opportunities later became more limited, Scarcia never stopped creating. His practice continued to evolve organically through new media, digital languages and experimental forms.</p>
-                    <p>In 2021, he entered the NFT ecosystem, opening a new chapter in his career. Through Web3, he reconnected with a global artistic community and expanded his work internationally.</p>
-                    <p>Today, his multidisciplinary practice spans painting, animation, art direction, digital illustration, 3D art, virtual reality, augmented reality and AI-assisted creation.</p>
-                    <p>His work exists between what is constructed and what is felt, where images are not only seen, but experienced.</p>
-                </div>
-            </div>
+<p>
 
-            <a href="CVlscarcia_2026.pdf" download="CVlscarcia_2026.pdf" class="pdf-link">Download CV 2026</a>
-        </div>
+Leonardo M. Scarcia is a multidisciplinary visual artist
+working across painting, digital art, animation and moving image.
 
-        <div class="about-image-wrapper">
-            <img src="./perfil.jpg" alt="Leonardo M Scarcia">
-        </div>
-    </section>
+</p>
 
-    <!-- EXHIBITIONS SECTION -->
-    <section class="exhibitions" id="exhibitions">
-        <div class="video-container">
-            <video id="bgVideo" class="bg-video" muted loop playsinline></video>
-            <div id="bgOverlay" class="bg-overlay"></div>
-        </div>
 
-        <h2 class="section-title">SELECTED EXHIBITIONS</h2>
+<div class="hero-meta">
 
-        <div class="ex-item" data-video="notable-vault.mp4">
-            <div class="ex-year">2026</div>
-            <div class="ex-title">NFC LISBOA PEPE VAULT</div>
-            <div class="ex-location">NFC Lisboa · PR</div>
-        </div>
+Contemporary Visual Art · Buda Studio · Brazil
 
-        <div class="ex-item" data-video="notable-pepe.mp4">
-            <div class="ex-year">2025</div>
-            <div class="ex-title">NOTABLE PEPE CARDS 8 & 6</div>
-            <div class="ex-location">Pepe WTF · US</div>
-        </div>
+</div>
 
-        <div class="ex-item" data-video="nftnyc.mp4">
-            <div class="ex-year">2025</div>
-            <div class="ex-title">NFT NYC 24–25</div>
-            <div class="ex-location">New York · US</div>
-        </div>
+</div>
 
-        <div class="ex-item" data-video="nfc-lisboa.mp4">
-            <div class="ex-year">2025</div>
-            <div class="ex-title">NFC LISBOA 24–25</div>
-            <div class="ex-location">Lisboa · Portugal</div>
-        </div>
+</header>
 
-        <div class="ex-item" data-video="pepefest.mp4">
-            <div class="ex-year">2024</div>
-            <div class="ex-title">PEPE FEST / BEEPLE PEPE FEST</div>
-            <div class="ex-location">South Carolina · US</div>
-        </div>
 
-        <div class="ex-item" data-video="solana.mp4">
-            <div class="ex-year">2024</div>
-            <div class="ex-title">SOLANA FILM FESTIVAL</div>
-            <div class="ex-location">Web3</div>
-        </div>
+<!-- =========================================================
+     SELECTED WORKS
+========================================================= -->
 
-        <div class="ex-item" data-video="tianguis.mp4">
-            <div class="ex-year">2024</div>
-            <div class="ex-title">NFT TIANGUIS</div>
-            <div class="ex-location">Querétaro · México</div>
-        </div>
+<section
+    class="hero-carousel-section"
+    id="projects-carousel"
+>
 
-        <div class="ex-item" data-video="buda.mp4">
-            <div class="ex-year">2023</div>
-            <div class="ex-title">BUDA COLLECTIVE ARTIST</div>
-            <div class="ex-location">Garopaba · Brazil</div>
-        </div>
+<h2>
 
-        <div class="ex-item" data-video="japan.mp4">
-            <div class="ex-year">2023</div>
-            <div class="ex-title">JAPAN METAVERSE EXHIBITION</div>
-            <div class="ex-location">Spatial Gallery VR</div>
-        </div>
+Selected Works
 
-        <div class="ex-item" data-video="cryptovoxels.mp4">
-            <div class="ex-year">2023</div>
-            <div class="ex-title">COLLECTIVE EXHIBITION IN CRYPTOVOXELS</div>
-            <div class="ex-location">Cryptovoxels</div>
-        </div>
-    </section>
+</h2>
 
-    <!-- FOOTER -->
-    <footer class="footer" id="contact">
-        <h2>Have a Project ? <br> Let's Work together</h2>
-        <div class="social-text-links">
-            <a href="https://x.com/budastudio_nft" target="_blank" class="social-text-link">X</a>
-            <a href="https://be.net/lscarcia" target="_blank" class="social-text-link">Behance</a>
-            <a href="https://linkedin.com/in/lscarcia" target="_blank" class="social-text-link">LinkedIn</a>
-            <a href="https://linktr.ee/budastudio" target="_blank" class="social-text-link">Linktree</a>
-            <a href="https://instagram.com/budastudio_art" target="_blank" class="social-text-link">Instagram</a>
-        </div>
-    </footer>
 
-    <!-- SCRIPTS -->
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    <script>
-        // Smooth Scroll initialization
-        const lenis = new Lenis({ duration: 1.2, smooth: true });
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
+<div class="carousel-intro">
 
-        // Custom Cursor Movement & Scaling
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
+A selection from Leonardo M. Scarcia's visual practice,
+including animation, digital art, 3D work and independent
+projects developed through Buda Studio.
 
-        const interactiveElements = document.querySelectorAll('a, .card-floating-3d, .menu-link, .social-text-link, .ex-item, .carousel-btn');
-        interactiveElements.forEach((el) => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.width = '80px';
-                cursor.style.height = '80px';
-                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.width = '30px';
-                cursor.style.height = '30px';
-                cursor.style.backgroundColor = '#FFFFFF';
-            });
-        });
+</div>
 
-        // Background Video switching for Exhibitions
-        const bgVideo = document.getElementById("bgVideo");
-        const bgOverlay = document.getElementById("bgOverlay");
-        let active = "";
 
-        document.querySelectorAll(".ex-item").forEach(item => {
-            item.addEventListener("mouseenter", () => {
-                const file = item.dataset.video;
-                if (active !== file) {
+<div class="carousel-scene">
+
+<div
+    class="carousel-track"
+    id="carouselTrack"
+>
+
+
+<!-- =====================================================
+     WORK 1
+===================================================== -->
+
+<div class="card-floating-3d">
+
+<div class="card-header">
+
+<span class="tag">
+    Moving Image
+</span>
+
+<span class="network-badge">
+    2D / Motion
+</span>
+
+</div>
+
+
+<div class="image-wrapper">
+
+<video
+    autoplay
+    muted
+    loop
+    playsinline
+>
+
+<source
+    src="tu-video-2.mp4"
+    type="video/mp4"
+>
+
+</video>
+
+</div>
+
+
+<div class="project-info">
+
+<h3>
+    Visual Narratives
+</h3>
+
+<p>
+
+Animation, stop motion and moving image developed
+through artistic and visual storytelling projects.
+
+</p>
+
+
+<a
+    href="hhttps://www.youtube.com/@budastudioNFT"
+    target="_blank"
+    class="live-link"
+>
+
+Watch on Youtube →
+
+</a>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     WORK 2
+===================================================== -->
+
+<div class="card-floating-3d">
+
+<div class="card-header">
+
+<span class="tag">
+    Digital Art
+</span>
+
+<span class="network-badge">
+    Independent Project
+</span>
+
+</div>
+
+
+<div class="image-wrapper">
+
+<video
+    autoplay
+    muted
+    loop
+    playsinline
+>
+
+<source
+    src="tu-video-1.mp4"
+    type="video/mp4"
+>
+
+</video>
+
+</div>
+
+
+<div class="project-info">
+
+<h3>
+    Buda Collective Artist
+</h3>
+
+<p>
+
+An independent digital art initiative created,
+curated and programmed by Buda Studio from 2021–2026.
+
+</p>
+
+
+<a
+    href="https://budastudio.github.io/buda-collective-artist/"
+    target="_blank"
+    class="live-link"
+>
+
+Open gallery →
+
+</a>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     WORK 3
+===================================================== -->
+
+<div class="card-floating-3d">
+
+<div class="card-header">
+
+<span class="tag">
+    Digital Art
+</span>
+
+<span class="network-badge">
+    Recent Works
+</span>
+
+</div>
+
+
+<div class="image-wrapper">
+
+<video
+    autoplay
+    muted
+    loop
+    playsinline
+>
+
+<source
+    src="tu-video-4.mp4"
+    type="video/mp4"
+>
+
+</video>
+
+</div>
+
+
+<div class="project-info">
+
+<h3>
+    Last Drops
+</h3>
+
+<p>
+
+A curated selection of recent digital works,
+physical pieces and phygital experiments.
+
+</p>
+
+
+<a
+    href="https://budastudio.github.io/portfolio/carrouselnft.html"
+    target="_blank"
+    class="live-link"
+>
+
+Last Drops →
+
+</a>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     WORK 4
+===================================================== -->
+
+<div class="card-floating-3d">
+
+<div class="card-header">
+
+<span class="tag">
+    Digital / Moving Image
+</span>
+
+<span class="network-badge">
+    NFT Archive
+</span>
+
+</div>
+
+
+<div class="image-wrapper">
+
+<img
+    src="objk.jpg"
+    alt="Digital Art"
+>
+
+</div>
+
+
+<div class="project-info">
+
+<h3>
+    Digital & Moving Image
+</h3>
+
+<p>
+
+Animations, light studies, kinetic compositions
+and digital image works from the Buda Studio archive.
+
+</p>
+
+
+<a
+    href="https://objkt.com/@budastudio"
+    target="_blank"
+    class="live-link"
+>
+
+View Objkt.com →
+
+</a>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<div class="carousel-controls">
+
+<button
+    class="carousel-btn"
+    id="prevBtn"
+>
+← Prev
+</button>
+
+
+<button
+    class="carousel-btn"
+    id="nextBtn"
+>
+Next →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     ART PRACTICE
+========================================================= -->
+
+<section
+    class="practice-section"
+    id="practice"
+>
+
+<div class="practice-title">
+
+Art<br>
+Practice
+
+</div>
+
+
+<div class="practice-copy">
+
+<h3>
+Painting, Digital Art & Moving Image
+</h3>
+
+
+<p>
+
+My artistic practice includes original paintings,
+physical artworks, limited editions, digital art,
+animation, moving image and 3D work.
+
+</p>
+
+
+<p>
+
+The physical and digital sides of the practice are
+developed in parallel. The studio archive includes
+original works as well as digital pieces and selected
+editions made available through Buda Studio.
+
+</p>
+
+
+<p>
+
+Buda Studio's current Store presents selected original
+artworks, limited editions, physical objects, wearables
+and digital pieces.
+
+</p>
+
+
+<div class="practice-list">
+
+<span class="practice-item">
+    Painting
+</span>
+
+<span class="practice-item">
+    Digital Art
+</span>
+
+<span class="practice-item">
+    Animation
+</span>
+
+<span class="practice-item">
+    Moving Image
+</span>
+
+<span class="practice-item">
+    3D
+</span>
+
+<span class="practice-item">
+    Limited Editions
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section
+    class="about-section"
+    id="about"
+>
+
+
+<div class="about-content">
+
+
+<h2>
+
+About Leonardo
+
+</h2>
+
+
+<p>
+
+Leonardo M. Scarcia is an Argentine visual artist
+based in Santa Catarina, Brazil.
+
+</p>
+
+
+<p>
+
+His professional background includes visual art,
+graphic design, illustration, art direction,
+animation, motion graphics, 3D and digital image
+production.
+
+</p>
+
+
+<div class="bio-expand">
+
+
+<div class="bio-trigger">
+
+<span class="bio-plus">
+    +
+</span>
+
+<span class="bio-title">
+    Artist Biography
+</span>
+
+</div>
+
+
+<div class="bio-text">
+
+
+<p>
+
+Leonardo M. Scarcia began exhibiting his work
+publicly in 1994, participating in the Bienal de
+Arte Joven in Buenos Aires.
+
+</p>
+
+
+<p>
+
+Throughout the 1990s and 2000s, he continued exhibiting
+and developing his artistic practice while also building
+a professional career in graphic design, advertising,
+illustration, animation and art direction.
+
+</p>
+
+
+<p>
+
+His professional work expanded into motion graphics,
+audiovisual production, 3D, digital illustration,
+interactive experiences and visual storytelling.
+
+</p>
+
+
+<p>
+
+Since 2021, Scarcia has also developed an active
+practice within digital art and the NFT ecosystem,
+using Web3 as another channel for exhibiting and
+distributing his work internationally.
+
+</p>
+
+
+<p>
+
+His work has been presented through international
+digital art events and platforms, including NFT NYC,
+NFC Lisboa, Solana Film Festival, NFT Tianguis,
+Japan Metaverse Exhibition and other digital
+art initiatives.
+
+</p>
+
+
+<p>
+
+Today, his practice combines physical and digital
+artworks, painting, animation, moving image,
+3D experimentation and independent artistic projects
+developed through Buda Studio.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="bio-expand">
+
+
+<div class="bio-trigger">
+
+<span class="bio-plus">
+    +
+</span>
+
+<span class="bio-title">
+    Professional Background
+</span>
+
+</div>
+
+
+<div class="bio-text">
+
+
+<p>
+
+Over more than two decades, Leonardo has worked across
+graphic design, art direction, motion graphics,
+video editing, visual storytelling and digital
+production.
+
+</p>
+
+
+<p>
+
+His professional experience includes work for brands,
+agencies, independent projects and multidisciplinary
+teams, combining concept development, design,
+animation and visual communication.
+
+</p>
+
+
+<p>
+
+This background continues to inform his artistic practice,
+particularly in the areas of image construction,
+animation, composition, movement and digital media.
+
+</p>
+
+</div>
+
+</div>
+
+
+<a
+    href="CVlscarcia_2026.pdf"
+    download="CVlscarcia_2026.pdf"
+    class="pdf-link"
+>
+
+Download CV 2026
+
+</a>
+
+
+</div>
+
+
+<div class="about-image-wrapper">
+
+<img
+    src="./perfil.jpg"
+    alt="Leonardo M Scarcia"
+>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+     SELECTED EXHIBITIONS
+========================================================= -->
+
+<section
+    class="exhibitions"
+    id="exhibitions"
+>
+
+
+<div class="video-container">
+
+<video
+    id="bgVideo"
+    class="bg-video"
+    muted
+    loop
+    playsinline
+></video>
+
+<div
+    id="bgOverlay"
+    class="bg-overlay"
+></div>
+
+</div>
+
+
+<h2 class="section-title">
+
+SELECTED EXHIBITIONS
+
+</h2>
+
+
+<div
+    class="ex-item"
+    data-video="notable-vault.mp4"
+>
+
+<div class="ex-year">
+2026
+</div>
+
+<div class="ex-title">
+NFC LISBOA PEPE VAULT
+</div>
+
+<div class="ex-location">
+NFC Lisboa · Portugal
+</div>
+
+</div>
+
+
+<div
+    class="ex-item"
+    data-video="notable-pepe.mp4"
+>
+
+<div class="ex-year">
+2025
+</div>
+
+<div class="ex-title">
+NOTABLE PEPE CARDS 8 & 6
+</div>
+
+<div class="ex-location">
+Pepe WTF · US
+</div>
+
+</div>
+
+
+<div
+    class="ex-item"
+    data-video="nftnyc.mp4"
+>
+
+<div class="ex-year">
+2025
+</div>
+
+<div class="ex-title">
+NFT NYC 24–25
+</div>
+
+<div class="ex-location">
+New York · US
+</div>
+
+</div>
+
+
+<div
+    class="ex-item"
+    data-video="nfc-lisboa.mp4"
+>
+
+<div class="ex-year">
+2025
+</div>
+
+<div class="ex-title">
+NFC LISBOA 24–25
+</div>
+
+<div class="ex-location">
+Lisboa · Portugal
+</div>
+
+</div>
+
+
+<div
+    class="ex-item"
+    data-video="pepefest.mp4"
+>
+
+<div class="ex-year">
+2024
+</div>
+
+<div class="ex-title">
+PEPE FEST / BEEPLE PEPE FEST
+</div>
+
+<div class="ex-location">
+South Carolina · US
+</div>
+
+</div>
+
+
+<div
+    class="ex-item"
+    data-video="solana.mp4"
+>
+
+<div class="ex-year">
+2024
+</div>
+
+<div class="ex-title">
+SOLANA FILM FESTIVAL
+</div>
+
+<div class="ex-location">
+Web3
+</div>
+
+</div>
+
+
+<div
+    class="ex-item"
+    data-video="tianguis.mp4"
+>
+
+<div class="ex-year">
+2024
+</div>
+
+<div class="ex-title">
+NFT TIANGUIS
+</div>
+
+<div class="ex-location">
+Querétaro · México
+</div>
+
+</div>
+
+
+<div
+    class="ex-item"
+    data-video="buda.mp4"
+>
+
+<div class="ex-year">
+2023
+</div>
+
+<div class="ex-title">
+BUDA COLLECTIVE ARTIST
+</div>
+
+<div class="ex-location">
+Garopaba · Brazil
+</div>
+
+</div>
+
+
+<div
+    class="ex-item"
+    data-video="japan.mp4"
+>
+
+<div class="ex-year">
+2023
+</div>
+
+<div class="ex-title">
+JAPAN METAVERSE EXHIBITION
+</div>
+
+<div class="ex-location">
+Spatial Gallery VR
+</div>
+
+</div>
+
+
+<div
+    class="ex-item"
+    data-video="cryptovoxels.mp4"
+>
+
+<div class="ex-year">
+2023
+</div>
+
+<div class="ex-title">
+COLLECTIVE EXHIBITION IN CRYPTOVOXELS
+</div>
+
+<div class="ex-location">
+Cryptovoxels
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer
+    class="footer"
+    id="contact"
+>
+
+
+<h2>
+
+Exhibitions<br>
+Collaborations
+
+</h2>
+
+
+<div class="social-text-links">
+
+
+<a
+    href="https://x.com/budastudio_nft"
+    target="_blank"
+    class="social-text-link"
+>
+X
+</a>
+
+
+<a
+    href="https://be.net/lscarcia"
+    target="_blank"
+    class="social-text-link"
+>
+Behance
+</a>
+
+
+<a
+    href="https://linkedin.com/in/lscarcia"
+    target="_blank"
+    class="social-text-link"
+>
+LinkedIn
+</a>
+
+
+<a
+    href="https://linktr.ee/budastudio"
+    target="_blank"
+    class="social-text-link"
+>
+Linktree
+</a>
+
+
+<a
+    href="https://instagram.com/budastudio_art"
+    target="_blank"
+    class="social-text-link"
+>
+Instagram
+</a>
+
+
+</div>
+
+
+</footer>
+
+
+<!-- =========================================================
+     SCRIPTS
+========================================================= -->
+
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+
+<script>
+
+
+/* =========================================================
+   SMOOTH SCROLL
+========================================================= */
+
+const lenis =
+    new Lenis({
+        duration:1.2,
+        smooth:true
+    });
+
+
+function raf(time){
+
+    lenis.raf(time);
+
+    requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+
+
+/* =========================================================
+   CUSTOM CURSOR
+========================================================= */
+
+const cursor =
+    document.getElementById('cursor');
+
+
+document.addEventListener(
+    'mousemove',
+    (e)=>{
+
+        cursor.style.left =
+            e.clientX+'px';
+
+        cursor.style.top =
+            e.clientY+'px';
+
+    }
+);
+
+
+const interactiveElements =
+    document.querySelectorAll(
+        'a, .card-floating-3d, .menu-link, .social-text-link, .ex-item, .carousel-btn'
+    );
+
+
+interactiveElements.forEach(
+    (el)=>{
+
+        el.addEventListener(
+            'mouseenter',
+            ()=>{
+
+                cursor.style.width =
+                    '80px';
+
+                cursor.style.height =
+                    '80px';
+
+                cursor.style.backgroundColor =
+                    'rgba(255,255,255,.2)';
+
+            }
+        );
+
+
+        el.addEventListener(
+            'mouseleave',
+            ()=>{
+
+                cursor.style.width =
+                    '30px';
+
+                cursor.style.height =
+                    '30px';
+
+                cursor.style.backgroundColor =
+                    '#FFFFFF';
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   EXHIBITIONS BACKGROUND VIDEO
+========================================================= */
+
+const bgVideo =
+    document.getElementById("bgVideo");
+
+const bgOverlay =
+    document.getElementById("bgOverlay");
+
+let active = "";
+
+
+document
+.querySelectorAll(".ex-item")
+.forEach(
+    item=>{
+
+        item.addEventListener(
+            "mouseenter",
+            ()=>{
+
+                const file =
+                    item.dataset.video;
+
+
+                if(active !== file){
+
                     active = file;
-                    bgVideo.style.opacity = 0;
-                    setTimeout(() => {
-                        bgVideo.src = file;
-                        bgVideo.load();
-                        bgVideo.play().catch(() => {});
-                        bgVideo.style.opacity = 1;
-                    }, 150);
+
+                    bgVideo.style.opacity =
+                        0;
+
+
+                    setTimeout(
+                        ()=>{
+
+                            bgVideo.src =
+                                file;
+
+                            bgVideo.load();
+
+                            bgVideo
+                                .play()
+                                .catch(
+                                    ()=>{}
+                                );
+
+                            bgVideo.style.opacity =
+                                1;
+
+                        },
+                        150
+                    );
+
                 }
-                bgOverlay.style.opacity = 1;
-            });
-        });
 
-        document.getElementById("exhibitions").addEventListener("mouseleave", () => {
-            bgVideo.style.opacity = 0;
-            bgOverlay.style.opacity = 0;
-            setTimeout(() => { bgVideo.pause(); }, 450);
-        });
+                bgOverlay.style.opacity =
+                    1;
 
-        // Carrusel 3D Coverflow (Estilo Squarespace)
-        const cards = document.querySelectorAll('.card-floating-3d');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        
-        let currIndex = 0;
-        const totalCards = cards.length;
-        const cardSpread = 280; // Separación horizontal
-        const rotateAngle = 28;  // Ángulo de inclinación 3D
+            }
+        );
 
-        function update3DCarousel() {
-            cards.forEach((card, i) => {
-                let offset = i - currIndex;
+    }
+);
 
-                if (offset === 0) {
-                    // CARD CENTRAL
-                    card.style.transform = `translateX(0px) translateZ(120px) rotateY(0deg)`;
-                    card.style.opacity = '1';
-                    card.style.zIndex = '10';
-                    card.classList.add('active');
-                } else {
-                    card.classList.remove('active');
-                    const direction = offset > 0 ? 1 : -1;
-                    const absOffset = Math.abs(offset);
-                    
-                    const translateX = offset * cardSpread;
-                    const translateZ = -180 * absOffset;
-                    const rotateY = -direction * rotateAngle;
-                    const opacity = Math.max(0.2, 1 - absOffset * 0.35);
 
-                    card.style.transform = `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg)`;
-                    card.style.opacity = opacity;
-                    card.style.zIndex = 10 - absOffset;
-                }
-            });
+document
+.getElementById("exhibitions")
+.addEventListener(
+    "mouseleave",
+    ()=>{
+
+        bgVideo.style.opacity =
+            0;
+
+        bgOverlay.style.opacity =
+            0;
+
+        setTimeout(
+            ()=>{
+
+                bgVideo.pause();
+
+            },
+            450
+        );
+
+    }
+);
+
+
+/* =========================================================
+   3D CAROUSEL
+========================================================= */
+
+const cards =
+    document.querySelectorAll(
+        '.card-floating-3d'
+    );
+
+const prevBtn =
+    document.getElementById(
+        'prevBtn'
+    );
+
+const nextBtn =
+    document.getElementById(
+        'nextBtn'
+    );
+
+
+let currIndex = 0;
+
+const totalCards =
+    cards.length;
+
+const cardSpread =
+    280;
+
+const rotateAngle =
+    28;
+
+
+function update3DCarousel(){
+
+    cards.forEach(
+        (card,i)=>{
+
+            let offset =
+                i - currIndex;
+
+
+            if(offset === 0){
+
+                card.style.transform =
+                    `
+                    translateX(0px)
+                    translateZ(120px)
+                    rotateY(0deg)
+                    `;
+
+                card.style.opacity =
+                    '1';
+
+                card.style.zIndex =
+                    '10';
+
+                card.classList.add(
+                    'active'
+                );
+
+            }else{
+
+                card.classList.remove(
+                    'active'
+                );
+
+
+                const direction =
+                    offset > 0
+                    ? 1
+                    : -1;
+
+
+                const absOffset =
+                    Math.abs(offset);
+
+
+                const translateX =
+                    offset *
+                    cardSpread;
+
+
+                const translateZ =
+                    -180 *
+                    absOffset;
+
+
+                const rotateY =
+                    -direction *
+                    rotateAngle;
+
+
+                const opacity =
+                    Math.max(
+                        .2,
+                        1 -
+                        absOffset *
+                        .35
+                    );
+
+
+                card.style.transform =
+                    `
+                    translateX(${translateX}px)
+                    translateZ(${translateZ}px)
+                    rotateY(${rotateY}deg)
+                    `;
+
+                card.style.opacity =
+                    opacity;
+
+                card.style.zIndex =
+                    10 -
+                    absOffset;
+
+            }
+
         }
+    );
 
-        nextBtn.addEventListener('click', () => {
-            currIndex = (currIndex + 1) % totalCards;
-            update3DCarousel();
-        });
+}
 
-        prevBtn.addEventListener('click', () => {
-            currIndex = (currIndex - 1 + totalCards) % totalCards;
-            update3DCarousel();
-        });
 
-        cards.forEach((card, index) => {
-            card.addEventListener('click', () => {
-                currIndex = index;
-                update3DCarousel();
-            });
-        });
+nextBtn.addEventListener(
+    'click',
+    ()=>{
+
+        currIndex =
+            (currIndex + 1) %
+            totalCards;
 
         update3DCarousel();
-    </script>
+
+    }
+);
+
+
+prevBtn.addEventListener(
+    'click',
+    ()=>{
+
+        currIndex =
+            (currIndex - 1 + totalCards) %
+            totalCards;
+
+        update3DCarousel();
+
+    }
+);
+
+
+cards.forEach(
+    (card,index)=>{
+
+        card.addEventListener(
+            'click',
+            ()=>{
+
+                currIndex =
+                    index;
+
+                update3DCarousel();
+
+            }
+        );
+
+    }
+);
+
+
+update3DCarousel();
+
+</script>
+
+
 </body>
+
 </html>
