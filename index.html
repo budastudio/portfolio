@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,11 +13,14 @@
 
 <style>
 
+/* =========================================================
+   BASE
+========================================================= */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    cursor:none;
 }
 
 html{
@@ -31,38 +35,9 @@ body{
     overflow-x:hidden;
 }
 
-
-/* =========================================================
-   CUSTOM CURSOR
-========================================================= */
-
-.custom-cursor{
-    position:fixed;
-    top:0;
-    left:0;
-
-    width:30px;
-    height:30px;
-
-    border-radius:50%;
-
-    background-image:url('logo.png');
-    background-size:contain;
-    background-repeat:no-repeat;
-    background-position:center;
-
-    background-color:#FFFFFF;
-
-    pointer-events:none;
-
-    z-index:99999;
-
-    transform:translate(-50%,-50%);
-
-    transition:
-        width .3s cubic-bezier(.16,1,.3,1),
-        height .3s cubic-bezier(.16,1,.3,1),
-        background-color .3s;
+button,
+a{
+    cursor:pointer;
 }
 
 
@@ -71,15 +46,11 @@ body{
 ========================================================= */
 
 .navbar{
-
     display:flex;
-
     justify-content:space-between;
     align-items:center;
 
     padding:1.25rem 2.5rem;
-
-    font-size:1.1rem;
 
     position:fixed;
 
@@ -107,22 +78,16 @@ body{
 }
 
 .menu-items{
-
     display:flex;
     align-items:center;
     gap:2.2rem;
 }
 
 .menu-link{
-
     color:#F0F0F0;
-
     text-decoration:none;
-
     opacity:.6;
-
     transition:.3s;
-
     white-space:nowrap;
 }
 
@@ -137,24 +102,18 @@ body{
 ========================================================= */
 
 .language-switch{
-
     display:flex;
-
     align-items:center;
-
     gap:6px;
 
     margin-left:2px;
-
     padding-left:10px;
 
     border-left:1px solid rgba(255,255,255,.20);
 }
 
 .language-button{
-
     border:0;
-
     background:transparent;
 
     color:#FFFFFF;
@@ -162,14 +121,11 @@ body{
     font-family:inherit;
 
     font-size:.68rem;
-
     letter-spacing:.13em;
 
     padding:3px 2px;
 
     opacity:.45;
-
-    cursor:pointer;
 
     transition:.3s;
 }
@@ -189,11 +145,9 @@ body{
 ========================================================= */
 
 .hero{
-
     height:80vh;
 
     display:flex;
-
     align-items:center;
 
     padding:0 4rem;
@@ -206,20 +160,16 @@ body{
         url('bg-hero.jpg');
 
     background-size:cover;
-
     background-position:center;
-
     background-repeat:no-repeat;
 
     position:relative;
 }
 
 .hero::after{
-
     content:"";
 
     position:absolute;
-
     inset:auto 0 0 0;
 
     height:32%;
@@ -235,16 +185,12 @@ body{
 }
 
 .hero-content{
-
     position:relative;
-
     z-index:2;
 }
 
 .hero-content h1{
-
     font-size:8.5vw;
-
     font-weight:400;
 
     line-height:1.08;
@@ -255,9 +201,7 @@ body{
 }
 
 .hero-content p{
-
     font-size:1.6rem;
-
     font-weight:300;
 
     max-width:720px;
@@ -268,7 +212,6 @@ body{
 }
 
 .hero-meta{
-
     margin-top:1.4rem;
 
     font-size:.8rem;
@@ -288,7 +231,6 @@ body{
 ========================================================= */
 
 .hero-carousel-section{
-
     padding:6rem 4rem 10rem;
 
     background:
@@ -296,7 +238,7 @@ body{
             rgba(10,10,10,.82),
             rgba(10,10,10,.91)
         ),
-        url('bg_work.jpg');
+        url('bg-work.jpg');
 
     background-size:cover;
 
@@ -309,18 +251,14 @@ body{
     overflow:hidden;
 
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
 }
 
 .hero-carousel-section::before{
-
     content:"";
 
     position:absolute;
-
     inset:0;
 
     background:
@@ -334,14 +272,11 @@ body{
 }
 
 .hero-carousel-section > *{
-
     position:relative;
-
     z-index:2;
 }
 
 .hero-carousel-section h2{
-
     font-size:3vw;
 
     font-weight:400;
@@ -356,7 +291,6 @@ body{
 }
 
 .carousel-intro{
-
     max-width:760px;
 
     text-align:center;
@@ -376,7 +310,6 @@ body{
 ========================================================= */
 
 .carousel-scene{
-
     width:100%;
 
     max-width:1200px;
@@ -395,7 +328,6 @@ body{
 }
 
 .carousel-track{
-
     width:100%;
     height:100%;
 
@@ -409,7 +341,6 @@ body{
 }
 
 .card-floating-3d{
-
     position:absolute;
 
     width:360px;
@@ -435,15 +366,12 @@ body{
     border-radius:16px;
 
     backdrop-filter:blur(12px);
-
     -webkit-backdrop-filter:blur(12px);
 
     overflow:hidden;
 
     display:flex;
-
     flex-direction:column;
-
     justify-content:space-between;
 
     box-shadow:
@@ -452,33 +380,26 @@ body{
     user-select:none;
 
     transition:
-        transform .6s
-        cubic-bezier(.16,1,.3,1),
+        transform .6s cubic-bezier(.16,1,.3,1),
         opacity .4s ease,
         border-color .3s ease,
         box-shadow .3s ease;
 }
 
 .card-floating-3d.active{
-
     border-color:
         rgba(212,175,55,.48);
 
     box-shadow:
-        0 0 35px
-        rgba(212,175,55,.12),
-        0 20px 40px
-        rgba(0,0,0,.72);
+        0 0 35px rgba(212,175,55,.12),
+        0 20px 40px rgba(0,0,0,.72);
 }
 
 .card-header{
-
     padding:1rem 1.4rem;
 
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
 
     background:
@@ -492,7 +413,6 @@ body{
 }
 
 .card-header .tag{
-
     font-size:.7rem;
 
     text-transform:uppercase;
@@ -514,7 +434,6 @@ body{
 }
 
 .card-header .network-badge{
-
     font-size:.7rem;
 
     font-weight:500;
@@ -523,11 +442,9 @@ body{
 }
 
 .image-wrapper{
-
     position:relative;
 
     width:100%;
-
     height:220px;
 
     overflow:hidden;
@@ -537,9 +454,7 @@ body{
 
 .image-wrapper img,
 .image-wrapper video{
-
     width:100%;
-
     height:100%;
 
     display:block;
@@ -556,16 +471,13 @@ body{
 .image-wrapper img,
 .card-floating-3d:hover
 .image-wrapper video{
-
     transform:scale(1.045);
 }
 
 .project-info{
-
     padding:1.2rem 1.4rem;
 
     display:flex;
-
     flex-direction:column;
 
     gap:.5rem;
@@ -576,14 +488,11 @@ body{
 }
 
 .project-info h3{
-
     font-size:1.4rem;
-
     font-weight:400;
 }
 
 .project-info p{
-
     font-size:.85rem;
 
     font-weight:300;
@@ -594,7 +503,6 @@ body{
 }
 
 .live-link{
-
     display:inline-block;
 
     margin-top:.4rem;
@@ -607,22 +515,18 @@ body{
 
     opacity:.8;
 
-    transition:opacity .3s;
+    transition:.3s;
 
     font-weight:500;
 }
 
 .live-link:hover{
-
     opacity:1;
-
     text-decoration:underline;
-
     color:#D4AF37;
 }
 
 .carousel-controls{
-
     display:flex;
 
     gap:2rem;
@@ -633,7 +537,6 @@ body{
 }
 
 .carousel-btn{
-
     background:transparent;
 
     border:
@@ -652,7 +555,6 @@ body{
 }
 
 .carousel-btn:hover{
-
     background:#D4AF37;
 
     border-color:#D4AF37;
@@ -666,7 +568,6 @@ body{
 ========================================================= */
 
 .practice-section{
-
     padding:10rem 4rem;
 
     background:
@@ -690,17 +591,14 @@ body{
 }
 
 .practice-section::before{
-
     content:"";
 
     position:absolute;
 
     width:420px;
-
     height:420px;
 
     right:-170px;
-
     top:-170px;
 
     border-radius:50%;
@@ -716,7 +614,6 @@ body{
 }
 
 .practice-title{
-
     font-size:4.5vw;
 
     font-weight:400;
@@ -731,7 +628,6 @@ body{
 }
 
 .practice-copy{
-
     max-width:760px;
 
     position:relative;
@@ -740,7 +636,6 @@ body{
 }
 
 .practice-copy h3{
-
     font-size:2rem;
 
     font-weight:400;
@@ -749,7 +644,6 @@ body{
 }
 
 .practice-copy p{
-
     font-size:1.2rem;
 
     font-weight:300;
@@ -762,7 +656,6 @@ body{
 }
 
 .practice-list{
-
     display:flex;
 
     flex-wrap:wrap;
@@ -773,7 +666,6 @@ body{
 }
 
 .practice-item{
-
     border:
         1px solid
         rgba(212,175,55,.28);
@@ -797,7 +689,6 @@ body{
 ========================================================= */
 
 .about-section{
-
     padding:12rem 4rem;
 
     display:grid;
@@ -823,7 +714,6 @@ body{
 }
 
 .about-section::before{
-
     content:"";
 
     position:absolute;
@@ -842,14 +732,11 @@ body{
 
 .about-content,
 .about-image-wrapper{
-
     position:relative;
-
     z-index:2;
 }
 
 .about-content h2{
-
     font-size:5vw;
 
     font-weight:400;
@@ -860,7 +747,6 @@ body{
 }
 
 .about-content > p{
-
     font-size:1.35rem;
 
     font-weight:300;
@@ -875,7 +761,6 @@ body{
 }
 
 .about-image-wrapper{
-
     width:100%;
 
     aspect-ratio:1/1;
@@ -891,9 +776,7 @@ body{
 }
 
 .about-image-wrapper img{
-
     width:100%;
-
     height:100%;
 
     object-fit:cover;
@@ -905,14 +788,12 @@ body{
 ========================================================= */
 
 .bio-expand{
-
     margin-top:3rem;
 
     max-width:900px;
 }
 
 .bio-trigger{
-
     display:flex;
 
     align-items:center;
@@ -921,7 +802,6 @@ body{
 }
 
 .bio-plus{
-
     color:#D4AF37;
 
     font-size:28px;
@@ -933,12 +813,10 @@ body{
 }
 
 .bio-trigger:hover{
-
     opacity:.8;
 }
 
 .bio-title{
-
     color:#FFFFFF;
 
     font-size:.95rem;
@@ -951,7 +829,6 @@ body{
 }
 
 .bio-text{
-
     max-height:0;
 
     overflow:hidden;
@@ -965,7 +842,6 @@ body{
 }
 
 .bio-expand:hover .bio-text{
-
     max-height:2400px;
 
     opacity:1;
@@ -974,12 +850,10 @@ body{
 }
 
 .bio-expand:hover .bio-plus{
-
     transform:rotate(135deg);
 }
 
 .bio-text p{
-
     font-size:1.05rem;
 
     line-height:1.8;
@@ -990,13 +864,11 @@ body{
 }
 
 .pdf-link{
-
     color:#FFFFFF;
 
     text-decoration:none;
 
-    transition:
-        color .3s ease;
+    transition:.3s;
 
     display:inline-block;
 
@@ -1004,7 +876,6 @@ body{
 }
 
 .pdf-link:hover{
-
     color:#D4AF37;
 }
 
@@ -1014,7 +885,6 @@ body{
 ========================================================= */
 
 .exhibitions{
-
     position:relative;
 
     padding:12rem 4rem;
@@ -1024,7 +894,7 @@ body{
             rgba(12,12,12,.80),
             rgba(12,12,12,.90)
         ),
-        url('exhibitions.jpg');
+        url('bg-exhibitions.jpg');
 
     background-size:cover;
 
@@ -1036,7 +906,6 @@ body{
 }
 
 .exhibitions::after{
-
     content:"";
 
     position:absolute;
@@ -1056,7 +925,6 @@ body{
 }
 
 .video-container{
-
     position:absolute;
 
     inset:0;
@@ -1069,7 +937,6 @@ body{
 }
 
 .bg-video{
-
     position:absolute;
 
     width:100%;
@@ -1083,7 +950,6 @@ body{
 }
 
 .bg-overlay{
-
     position:absolute;
 
     inset:0;
@@ -1101,21 +967,18 @@ body{
 
 .section-title,
 .ex-item{
-
     position:relative;
 
     z-index:2;
 }
 
 .section-title{
-
     color:#FFFFFF;
 
     margin-bottom:1rem;
 }
 
 .ex-item{
-
     display:grid;
 
     grid-template-columns:
@@ -1131,12 +994,10 @@ body{
 }
 
 .ex-item:hover{
-
     transform:translateX(12px);
 }
 
 .ex-year{
-
     opacity:.40;
 
     font-size:30px;
@@ -1145,12 +1006,10 @@ body{
 }
 
 .ex-title{
-
     font-size:36px;
 }
 
 .ex-location{
-
     text-align:right;
 
     opacity:.7;
@@ -1162,7 +1021,6 @@ body{
 ========================================================= */
 
 .footer{
-
     padding:
         14rem
         4rem
@@ -1183,7 +1041,6 @@ body{
 }
 
 .footer h2{
-
     font-size:7vw;
 
     font-weight:400;
@@ -1194,7 +1051,6 @@ body{
 }
 
 .social-text-links{
-
     display:flex;
 
     justify-content:center;
@@ -1205,7 +1061,6 @@ body{
 }
 
 .social-text-link{
-
     color:#F0F0F0;
 
     text-decoration:none;
@@ -1226,7 +1081,6 @@ body{
 }
 
 .social-text-link:hover{
-
     opacity:1;
 
     transform:translateY(-2px);
@@ -1241,20 +1095,11 @@ body{
 
 @media(max-width:968px){
 
-    .custom-cursor{
-        display:none;
-    }
-
-    *{
-        cursor:auto;
-    }
-
     .navbar{
         padding:1.2rem 1.5rem;
     }
 
     .menu-items{
-
         gap:1rem;
 
         overflow-x:auto;
@@ -1269,33 +1114,27 @@ body{
     }
 
     .menu-link{
-
         font-size:.72rem;
 
         white-space:nowrap;
     }
 
     .language-switch{
-
         padding-left:5px;
-
         margin-left:0;
     }
 
     .language-button{
-
         font-size:.6rem;
     }
 
     .hero{
-
         height:75vh;
 
         padding:0 2rem;
     }
 
     .hero-content h1{
-
         font-size:
             clamp(
                 52px,
@@ -1307,12 +1146,10 @@ body{
     }
 
     .hero-content p{
-
         font-size:1.15rem;
     }
 
     .hero-carousel-section{
-
         padding:
             5rem
             1.5rem
@@ -1322,12 +1159,10 @@ body{
     }
 
     .hero-carousel-section h2{
-
         font-size:2.2rem;
     }
 
     .card-floating-3d{
-
         width:290px;
 
         height:420px;
@@ -1338,7 +1173,6 @@ body{
     }
 
     .practice-section{
-
         grid-template-columns:1fr;
 
         gap:3rem;
@@ -1347,12 +1181,10 @@ body{
     }
 
     .practice-title{
-
         font-size:3.2rem;
     }
 
     .about-section{
-
         grid-template-columns:1fr;
 
         gap:4rem;
@@ -1362,48 +1194,40 @@ body{
 
     .about-content h2,
     .section-title{
-
         font-size:2.5rem;
     }
 
     .about-content > p{
-
         font-size:1.12rem;
     }
 
     .exhibitions{
-
         padding:6rem 2rem;
 
         background-attachment:scroll;
     }
 
     .ex-item{
-
         grid-template-columns:1fr;
 
         gap:10px;
     }
 
     .ex-location{
-
         text-align:left;
     }
 
     .ex-title{
-
         font-size:27px;
     }
 
     .social-text-links{
-
         gap:1.5rem;
 
         flex-wrap:wrap;
     }
 
     .footer{
-
         padding:
             8rem
             2rem
@@ -1411,7 +1235,6 @@ body{
     }
 
     .footer h2{
-
         font-size:13vw;
     }
 
@@ -1423,12 +1246,6 @@ body{
 
 
 <body>
-
-
-<div
-    class="custom-cursor"
-    id="cursor">
-</div>
 
 
 <!-- =========================================================
@@ -1526,30 +1343,22 @@ body{
 
 <div class="hero-content">
 
-<h1
-    data-i18n="heroTitle">
-
+<h1 data-i18n="heroTitle">
 Visual Artist<br>
 Painter
-
 </h1>
 
 
-<p
-    data-i18n="heroDescription">
-
+<p data-i18n="heroDescription">
 Leonardo M. Scarcia is a multidisciplinary visual artist
 working across painting, digital art, animation and moving image.
-
 </p>
 
 
 <div
     class="hero-meta"
     data-i18n="heroMeta">
-
 Contemporary Visual Art · Buda Studio · Brazil
-
 </div>
 
 </div>
@@ -1574,11 +1383,9 @@ Selected Works
 <div
     class="carousel-intro"
     data-i18n="worksIntro">
-
 A selection from Leonardo M. Scarcia's visual practice,
 including animation, digital art, 3D work and independent
 projects developed through Buda Studio.
-
 </div>
 
 
@@ -1635,21 +1442,17 @@ projects developed through Buda Studio.
 </h3>
 
 <p data-i18n="work1Description">
-
 Animation, stop motion and moving image developed
 through artistic and visual storytelling projects.
-
 </p>
 
 
 <a
-    href="hhttps://www.youtube.com/@budastudioNFT"
+    href="https://www.youtube.com/@budastudioNFT"
     target="_blank"
     class="live-link"
     data-i18n="work1Link">
-
 Watch on Youtube →
-
 </a>
 
 </div>
@@ -1702,10 +1505,8 @@ Watch on Youtube →
 </h3>
 
 <p data-i18n="work2Description">
-
 An independent digital art initiative created,
 curated and programmed by Buda Studio from 2021–2026.
-
 </p>
 
 
@@ -1714,9 +1515,7 @@ curated and programmed by Buda Studio from 2021–2026.
     target="_blank"
     class="live-link"
     data-i18n="work2Link">
-
 Open gallery →
-
 </a>
 
 </div>
@@ -1769,10 +1568,8 @@ Open gallery →
 </h3>
 
 <p data-i18n="work3Description">
-
 A curated selection of recent digital works,
 physical pieces and phygital experiments.
-
 </p>
 
 
@@ -1781,9 +1578,7 @@ physical pieces and phygital experiments.
     target="_blank"
     class="live-link"
     data-i18n="work3Link">
-
 Last Drops →
-
 </a>
 
 </div>
@@ -1827,10 +1622,8 @@ Last Drops →
 </h3>
 
 <p data-i18n="work4Description">
-
 Animations, light studies, kinetic compositions
 and digital image works from the Buda Studio archive.
-
 </p>
 
 
@@ -1839,9 +1632,7 @@ and digital image works from the Buda Studio archive.
     target="_blank"
     class="live-link"
     data-i18n="work4Link">
-
 View Objkt.com →
-
 </a>
 
 </div>
@@ -1888,10 +1679,8 @@ Next →
 <div
     class="practice-title"
     data-i18n="practiceTitle">
-
 Art<br>
 Practice
-
 </div>
 
 
@@ -1903,30 +1692,24 @@ Painting, Digital Art & Moving Image
 
 
 <p data-i18n="practiceP1">
-
 My artistic practice includes original paintings,
 physical artworks, limited editions, digital art,
 animation, moving image and 3D work.
-
 </p>
 
 
 <p data-i18n="practiceP2">
-
 The physical and digital sides of the practice are
 developed in parallel. The studio archive includes
 original works as well as digital pieces and selected
 editions made available through Buda Studio.
-
 </p>
 
 
 <p data-i18n="practiceP3">
-
 Buda Studio's current Store presents selected original
 artworks, limited editions, physical objects, wearables
 and digital pieces.
-
 </p>
 
 
@@ -2126,9 +1909,7 @@ animation, composition, movement and digital media.
     download="CVlscarcia_2026.pdf"
     class="pdf-link"
     data-i18n="cvLink">
-
 Download CV 2026
-
 </a>
 
 </div>
@@ -2454,6 +2235,7 @@ Instagram
 
 <script>
 
+
 /* =========================================================
    TRANSLATIONS
 ========================================================= */
@@ -2482,7 +2264,8 @@ worksTitle:
 worksIntro:
 "A selection from Leonardo M. Scarcia's visual practice, including animation, digital art, 3D work and independent projects developed through Buda Studio.",
 
-work1Tag:"Moving Image",
+work1Tag:
+"Moving Image",
 
 work1Title:
 "Visual Narratives",
@@ -2541,12 +2324,23 @@ practiceP2:
 practiceP3:
 "Buda Studio's current Store presents selected original artworks, limited editions, physical objects, wearables and digital pieces.",
 
-tagPainting:"Painting",
-tagDigital:"Digital Art",
-tagAnimation:"Animation",
-tagMoving:"Moving Image",
-tag3D:"3D",
-tagEditions:"Limited Editions",
+tagPainting:
+"Painting",
+
+tagDigital:
+"Digital Art",
+
+tagAnimation:
+"Animation",
+
+tagMoving:
+"Moving Image",
+
+tag3D:
+"3D",
+
+tagEditions:
+"Limited Editions",
 
 aboutTitle:
 "About Leonardo",
@@ -2738,12 +2532,23 @@ practiceP2:
 practiceP3:
 "A Store atual do Buda Studio apresenta obras originais selecionadas, edições limitadas, objetos físicos, wearables e peças digitais.",
 
-tagPainting:"Pintura",
-tagDigital:"Arte Digital",
-tagAnimation:"Animação",
-tagMoving:"Imagem em Movimento",
-tag3D:"3D",
-tagEditions:"Edições Limitadas",
+tagPainting:
+"Pintura",
+
+tagDigital:
+"Arte Digital",
+
+tagAnimation:
+"Animação",
+
+tagMoving:
+"Imagem em Movimento",
+
+tag3D:
+"3D",
+
+tagEditions:
+"Edições Limitadas",
 
 aboutTitle:
 "Sobre Leonardo",
@@ -2949,74 +2754,6 @@ function raf(time){
 }
 
 requestAnimationFrame(raf);
-
-
-/* =========================================================
-   CUSTOM CURSOR
-========================================================= */
-
-const cursor =
-    document.getElementById('cursor');
-
-
-document.addEventListener(
-    'mousemove',
-    (e)=>{
-
-        cursor.style.left =
-            e.clientX+'px';
-
-        cursor.style.top =
-            e.clientY+'px';
-
-    }
-);
-
-
-const interactiveElements =
-    document.querySelectorAll(
-        'a, .card-floating-3d, .menu-link, .social-text-link, .ex-item, .carousel-btn, .language-button'
-    );
-
-
-interactiveElements.forEach(
-    (el)=>{
-
-        el.addEventListener(
-            'mouseenter',
-            ()=>{
-
-                cursor.style.width =
-                    '80px';
-
-                cursor.style.height =
-                    '80px';
-
-                cursor.style.backgroundColor =
-                    'rgba(255,255,255,.2)';
-
-            }
-        );
-
-
-        el.addEventListener(
-            'mouseleave',
-            ()=>{
-
-                cursor.style.width =
-                    '30px';
-
-                cursor.style.height =
-                    '30px';
-
-                cursor.style.backgroundColor =
-                    '#FFFFFF';
-
-            }
-        );
-
-    }
-);
 
 
 /* =========================================================
@@ -3288,3 +3025,6 @@ update3DCarousel();
 </body>
 
 </html>
+```
+
+Queda entonces con `bg-work.jpg` en **Selected Works** y `bg-exhibitions.jpg` en **Selected Exhibitions**, el header negro fijo arriba y el cursor personalizado eliminado. También corregí el typo de YouTube a `https://www.youtube.com/@budastudioNFT`.
