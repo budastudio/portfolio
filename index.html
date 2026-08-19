@@ -21,6 +21,10 @@
     cursor:none;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     font-family:'Inter',sans-serif;
     background:#0F0F0F;
@@ -101,6 +105,8 @@ body{
 
     display:flex;
 
+    align-items:center;
+
     gap:2.5rem;
 }
 
@@ -122,6 +128,61 @@ body{
 
 
 /* =========================================================
+   LANGUAGE SWITCH
+========================================================= */
+
+.language-switch{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    margin-left:5px;
+
+    padding-left:8px;
+
+    border-left:1px solid rgba(255,255,255,.25);
+}
+
+.language-button{
+
+    border:0;
+
+    background:transparent;
+
+    color:#FFFFFF;
+
+    font-family:inherit;
+
+    font-size:.68rem;
+
+    letter-spacing:.13em;
+
+    padding:3px 2px;
+
+    opacity:.45;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.language-button:hover{
+
+    opacity:1;
+}
+
+.language-button.active{
+
+    opacity:1;
+
+    color:#D4AF37;
+}
+
+
+/* =========================================================
    HERO
 ========================================================= */
 
@@ -137,8 +198,8 @@ body{
 
     background-image:
         linear-gradient(
-            rgba(15,15,15,.7),
-            rgba(15,15,15,.7)
+            rgba(15,15,15,.68),
+            rgba(15,15,15,.74)
         ),
         url('bg-hero.jpg');
 
@@ -147,6 +208,35 @@ body{
     background-position:center;
 
     background-repeat:no-repeat;
+
+    position:relative;
+}
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:auto 0 0 0;
+
+    height:32%;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(212,175,55,.08),
+            transparent
+        );
+
+    pointer-events:none;
+}
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
 }
 
 .hero-content h1{
@@ -170,7 +260,7 @@ body{
 
     max-width:720px;
 
-    opacity:.7;
+    opacity:.72;
 
     line-height:1.45;
 }
@@ -185,7 +275,9 @@ body{
 
     text-transform:uppercase;
 
-    opacity:.45;
+    color:#D4AF37;
+
+    opacity:.8;
 }
 
 
@@ -197,7 +289,18 @@ body{
 
     padding:6rem 4rem 10rem;
 
-    background:#0B0B0B;
+    background:
+        linear-gradient(
+            rgba(10,10,10,.82),
+            rgba(10,10,10,.91)
+        ),
+        url('bg_work.jpg');
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-attachment:fixed;
 
     position:relative;
 
@@ -208,6 +311,31 @@ body{
     flex-direction:column;
 
     align-items:center;
+}
+
+.hero-carousel-section::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at 50% 18%,
+            rgba(212,175,55,.09),
+            transparent 42%
+        );
+
+    pointer-events:none;
+}
+
+.hero-carousel-section > *{
+
+    position:relative;
+
+    z-index:2;
 }
 
 .hero-carousel-section h2{
@@ -235,7 +363,7 @@ body{
 
     line-height:1.7;
 
-    opacity:.55;
+    opacity:.58;
 
     margin-bottom:3rem;
 }
@@ -291,7 +419,12 @@ body{
     margin-left:-180px;
     margin-top:-240px;
 
-    background:rgba(255,255,255,.04);
+    background:
+        linear-gradient(
+            160deg,
+            rgba(255,255,255,.065),
+            rgba(212,175,55,.025)
+        );
 
     border:
         1px solid
@@ -327,11 +460,13 @@ body{
 .card-floating-3d.active{
 
     border-color:
-        rgba(255,255,255,.35);
+        rgba(212,175,55,.48);
 
     box-shadow:
         0 0 35px
-        rgba(255,255,255,.15);
+        rgba(212,175,55,.12),
+        0 20px 40px
+        rgba(0,0,0,.72);
 }
 
 .card-header{
@@ -345,7 +480,7 @@ body{
     align-items:center;
 
     background:
-        rgba(15,15,15,.6);
+        rgba(15,15,15,.66);
 
     border-bottom:
         1px solid
@@ -367,9 +502,13 @@ body{
     border-radius:20px;
 
     background:
-        rgba(255,255,255,.1);
+        rgba(212,175,55,.10);
 
-    opacity:.8;
+    border:
+        1px solid
+        rgba(212,175,55,.18);
+
+    opacity:.9;
 }
 
 .card-header .network-badge{
@@ -409,6 +548,14 @@ body{
         transform
         1.2s
         cubic-bezier(.16,1,.3,1);
+}
+
+.card-floating-3d:hover
+.image-wrapper img,
+.card-floating-3d:hover
+.image-wrapper video{
+
+    transform:scale(1.045);
 }
 
 .project-info{
@@ -468,6 +615,8 @@ body{
     opacity:1;
 
     text-decoration:underline;
+
+    color:#D4AF37;
 }
 
 .carousel-controls{
@@ -502,7 +651,9 @@ body{
 
 .carousel-btn:hover{
 
-    background:#FFFFFF;
+    background:#D4AF37;
+
+    border-color:#D4AF37;
 
     color:#000000;
 }
@@ -516,7 +667,12 @@ body{
 
     padding:10rem 4rem;
 
-    background:#101010;
+    background:
+        linear-gradient(
+            120deg,
+            #101010,
+            #12100c
+        );
 
     display:grid;
 
@@ -525,6 +681,36 @@ body{
     gap:6rem;
 
     align-items:start;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.practice-section::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:420px;
+
+    height:420px;
+
+    right:-170px;
+
+    top:-170px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(212,175,55,.10),
+            transparent 68%
+        );
+
+    pointer-events:none;
 }
 
 .practice-title{
@@ -536,11 +722,19 @@ body{
     line-height:1;
 
     text-transform:uppercase;
+
+    position:relative;
+
+    z-index:2;
 }
 
 .practice-copy{
 
     max-width:760px;
+
+    position:relative;
+
+    z-index:2;
 }
 
 .practice-copy h3{
@@ -580,7 +774,7 @@ body{
 
     border:
         1px solid
-        rgba(255,255,255,.15);
+        rgba(212,175,55,.28);
 
     border-radius:999px;
 
@@ -592,7 +786,7 @@ body{
 
     text-transform:uppercase;
 
-    opacity:.7;
+    opacity:.78;
 }
 
 
@@ -614,14 +808,42 @@ body{
 
     background-image:
         linear-gradient(
-            rgba(15,15,15,.85),
-            rgba(15,15,15,.85)
+            rgba(15,15,15,.82),
+            rgba(15,15,15,.90)
         ),
         url('bg-about.jpg');
 
     background-size:cover;
 
     background-position:center;
+
+    position:relative;
+}
+
+.about-section::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(212,175,55,.045),
+            transparent 35%
+        );
+
+    pointer-events:none;
+}
+
+.about-content,
+.about-image-wrapper{
+
+    position:relative;
+
+    z-index:2;
 }
 
 .about-content h2{
@@ -661,6 +883,9 @@ body{
     border-radius:2px;
 
     background-color:#1A1A1A;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.45);
 }
 
 .about-image-wrapper img{
@@ -695,7 +920,7 @@ body{
 
 .bio-plus{
 
-    color:#FFFFFF;
+    color:#D4AF37;
 
     font-size:28px;
 
@@ -739,7 +964,7 @@ body{
 
 .bio-expand:hover .bio-text{
 
-    max-height:2200px;
+    max-height:2400px;
 
     opacity:1;
 
@@ -762,6 +987,25 @@ body{
     margin-bottom:1.5rem;
 }
 
+.pdf-link{
+
+    color:#FFFFFF;
+
+    text-decoration:none;
+
+    transition:
+        color .3s ease;
+
+    display:inline-block;
+
+    margin-top:50px;
+}
+
+.pdf-link:hover{
+
+    color:#D4AF37;
+}
+
 
 /* =========================================================
    EXHIBITIONS
@@ -775,14 +1019,38 @@ body{
 
     background-image:
         linear-gradient(
-            rgba(15,15,15,.85),
-            rgba(15,15,15,.85)
+            rgba(12,12,12,.80),
+            rgba(12,12,12,.90)
         ),
-        url('bg-exhibitions.jpg');
+        url('exhibitions.jpg');
 
     background-size:cover;
 
     background-position:center;
+
+    background-attachment:fixed;
+
+    overflow:hidden;
+}
+
+.exhibitions::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(212,175,55,.08),
+            transparent 38%
+        );
+
+    pointer-events:none;
+
+    z-index:1;
 }
 
 .video-container{
@@ -818,7 +1086,11 @@ body{
 
     inset:0;
 
-    background:rgba(0,0,0,.55);
+    background:
+        linear-gradient(
+            rgba(0,0,0,.45),
+            rgba(0,0,0,.72)
+        );
 
     opacity:0;
 
@@ -831,6 +1103,13 @@ body{
     position:relative;
 
     z-index:2;
+}
+
+.section-title{
+
+    color:#FFFFFF;
+
+    margin-bottom:1rem;
 }
 
 .ex-item{
@@ -856,9 +1135,11 @@ body{
 
 .ex-year{
 
-    opacity:.35;
+    opacity:.40;
 
     font-size:30px;
+
+    color:#D4AF37;
 }
 
 .ex-title{
@@ -889,8 +1170,8 @@ body{
 
     background-image:
         linear-gradient(
-            rgba(15,15,15,.9),
-            rgba(15,15,15,.9)
+            rgba(15,15,15,.88),
+            rgba(15,15,15,.92)
         ),
         url('bg-footer.jpg');
 
@@ -908,25 +1189,6 @@ body{
     margin-bottom:4rem;
 
     text-transform:uppercase;
-}
-
-.pdf-link{
-
-    color:#FFFFFF;
-
-    text-decoration:none;
-
-    transition:
-        color .3s ease;
-
-    display:inline-block;
-
-    margin-top:50px;
-}
-
-.pdf-link:hover{
-
-    color:#888888;
 }
 
 .social-text-links{
@@ -966,6 +1228,8 @@ body{
     opacity:1;
 
     transform:translateY(-2px);
+
+    color:#D4AF37;
 }
 
 
@@ -987,7 +1251,77 @@ body{
 
     .navbar{
 
-        padding:2rem;
+        padding:
+            1.2rem
+            1.5rem;
+    }
+
+    .menu-items{
+
+        gap:1rem;
+
+        overflow-x:auto;
+
+        scrollbar-width:none;
+
+        max-width:72%;
+    }
+
+    .menu-items::-webkit-scrollbar{
+
+        display:none;
+    }
+
+    .menu-link{
+
+        font-size:.72rem;
+
+        white-space:nowrap;
+    }
+
+    .language-switch{
+
+        padding-left:5px;
+
+        margin-left:0;
+    }
+
+    .language-button{
+
+        font-size:.6rem;
+    }
+
+    .hero{
+
+        height:75vh;
+
+        padding:
+            0 2rem;
+    }
+
+    .hero-content h1{
+
+        font-size:
+            clamp(
+                52px,
+                12vw,
+                90px
+            );
+    }
+
+    .hero-content p{
+
+        font-size:1.15rem;
+    }
+
+    .hero-carousel-section{
+
+        padding:
+            5rem
+            1.5rem
+            8rem;
+
+        background-attachment:scroll;
     }
 
     .hero-carousel-section h2{
@@ -1006,20 +1340,25 @@ body{
         margin-top:-210px;
     }
 
-    .about-section{
-
-        grid-template-columns:1fr;
-
-        gap:4rem;
-
-        padding:6rem 2rem;
-    }
-
     .practice-section{
 
         grid-template-columns:1fr;
 
         gap:3rem;
+
+        padding:6rem 2rem;
+    }
+
+    .practice-title{
+
+        font-size:3.2rem;
+    }
+
+    .about-section{
+
+        grid-template-columns:1fr;
+
+        gap:4rem;
 
         padding:6rem 2rem;
     }
@@ -1030,9 +1369,16 @@ body{
         font-size:2.5rem;
     }
 
+    .about-content > p{
+
+        font-size:1.12rem;
+    }
+
     .exhibitions{
 
         padding:6rem 2rem;
+
+        background-attachment:scroll;
     }
 
     .ex-item{
@@ -1047,11 +1393,29 @@ body{
         text-align:left;
     }
 
+    .ex-title{
+
+        font-size:27px;
+    }
+
     .social-text-links{
 
         gap:1.5rem;
 
         flex-wrap:wrap;
+    }
+
+    .footer{
+
+        padding:
+            8rem
+            2rem
+            5rem;
+    }
+
+    .footer h2{
+
+        font-size:13vw;
     }
 
 }
@@ -1076,7 +1440,9 @@ body{
 
 <nav class="navbar">
 
-<div class="logo">
+<div
+    class="logo"
+    id="navLogo">
     © Leonardo M Scarcia
 </div>
 
@@ -1085,7 +1451,8 @@ body{
 
 <a
     href="#projects-carousel"
-    class="menu-link">
+    class="menu-link"
+    data-i18n="navWorks">
     Works
 </a>
 
@@ -1099,30 +1466,57 @@ body{
 
 <a
     href="#practice"
-    class="menu-link">
+    class="menu-link"
+    data-i18n="navPractice">
     Practice
 </a>
 
 
 <a
     href="#about"
-    class="menu-link">
+    class="menu-link"
+    data-i18n="navAbout">
     About
 </a>
 
 
 <a
     href="#exhibitions"
-    class="menu-link">
+    class="menu-link"
+    data-i18n="navExhibitions">
     Exhibitions
 </a>
 
 
 <a
     href="#contact"
-    class="menu-link">
+    class="menu-link"
+    data-i18n="navContact">
     Contact
 </a>
+
+
+<div class="language-switch">
+
+<button
+    class="language-button active"
+    id="enBtn"
+    type="button"
+    onclick="setLanguage('en')">
+    EN
+</button>
+
+<span style="opacity:.25;">/</span>
+
+<button
+    class="language-button"
+    id="ptBtn"
+    type="button"
+    onclick="setLanguage('pt')">
+    PT
+</button>
+
+</div>
 
 </div>
 
@@ -1137,7 +1531,7 @@ body{
 
 <div class="hero-content">
 
-<h1>
+<h1 data-i18n="heroTitle">
 
 Visual Artist<br>
 Painter
@@ -1145,7 +1539,7 @@ Painter
 </h1>
 
 
-<p>
+<p data-i18n="heroDescription">
 
 Leonardo M. Scarcia is a multidisciplinary visual artist
 working across painting, digital art, animation and moving image.
@@ -1153,7 +1547,9 @@ working across painting, digital art, animation and moving image.
 </p>
 
 
-<div class="hero-meta">
+<div
+    class="hero-meta"
+    data-i18n="heroMeta">
 
 Contemporary Visual Art · Buda Studio · Brazil
 
@@ -1173,14 +1569,16 @@ Contemporary Visual Art · Buda Studio · Brazil
     id="projects-carousel"
 >
 
-<h2>
+<h2 data-i18n="worksTitle">
 
 Selected Works
 
 </h2>
 
 
-<div class="carousel-intro">
+<div
+    class="carousel-intro"
+    data-i18n="worksIntro">
 
 A selection from Leonardo M. Scarcia's visual practice,
 including animation, digital art, 3D work and independent
@@ -1205,11 +1603,14 @@ projects developed through Buda Studio.
 
 <div class="card-header">
 
-<span class="tag">
+<span
+    class="tag"
+    data-i18n="work1Tag">
     Moving Image
 </span>
 
-<span class="network-badge">
+<span
+    class="network-badge">
     2D / Motion
 </span>
 
@@ -1237,11 +1638,11 @@ projects developed through Buda Studio.
 
 <div class="project-info">
 
-<h3>
+<h3 data-i18n="work1Title">
     Visual Narratives
 </h3>
 
-<p>
+<p data-i18n="work1Description">
 
 Animation, stop motion and moving image developed
 through artistic and visual storytelling projects.
@@ -1253,7 +1654,7 @@ through artistic and visual storytelling projects.
     href="hhttps://www.youtube.com/@budastudioNFT"
     target="_blank"
     class="live-link"
->
+    data-i18n="work1Link">
 
 Watch on Youtube →
 
@@ -1272,7 +1673,9 @@ Watch on Youtube →
 
 <div class="card-header">
 
-<span class="tag">
+<span
+    class="tag"
+    data-i18n="work2Tag">
     Digital Art
 </span>
 
@@ -1308,7 +1711,7 @@ Watch on Youtube →
     Buda Collective Artist
 </h3>
 
-<p>
+<p data-i18n="work2Description">
 
 An independent digital art initiative created,
 curated and programmed by Buda Studio from 2021–2026.
@@ -1320,7 +1723,7 @@ curated and programmed by Buda Studio from 2021–2026.
     href="https://budastudio.github.io/buda-collective-artist/"
     target="_blank"
     class="live-link"
->
+    data-i18n="work2Link">
 
 Open gallery →
 
@@ -1339,7 +1742,9 @@ Open gallery →
 
 <div class="card-header">
 
-<span class="tag">
+<span
+    class="tag"
+    data-i18n="work3Tag">
     Digital Art
 </span>
 
@@ -1371,11 +1776,11 @@ Open gallery →
 
 <div class="project-info">
 
-<h3>
+<h3 data-i18n="work3Title">
     Last Drops
 </h3>
 
-<p>
+<p data-i18n="work3Description">
 
 A curated selection of recent digital works,
 physical pieces and phygital experiments.
@@ -1387,7 +1792,7 @@ physical pieces and phygital experiments.
     href="https://budastudio.github.io/portfolio/carrouselnft.html"
     target="_blank"
     class="live-link"
->
+    data-i18n="work3Link">
 
 Last Drops →
 
@@ -1406,7 +1811,9 @@ Last Drops →
 
 <div class="card-header">
 
-<span class="tag">
+<span
+    class="tag"
+    data-i18n="work4Tag">
     Digital / Moving Image
 </span>
 
@@ -1429,11 +1836,11 @@ Last Drops →
 
 <div class="project-info">
 
-<h3>
+<h3 data-i18n="work4Title">
     Digital & Moving Image
 </h3>
 
-<p>
+<p data-i18n="work4Description">
 
 Animations, light studies, kinetic compositions
 and digital image works from the Buda Studio archive.
@@ -1445,7 +1852,7 @@ and digital image works from the Buda Studio archive.
     href="https://objkt.com/@budastudio"
     target="_blank"
     class="live-link"
->
+    data-i18n="work4Link">
 
 View Objkt.com →
 
@@ -1466,7 +1873,7 @@ View Objkt.com →
 <button
     class="carousel-btn"
     id="prevBtn"
->
+    type="button">
 ← Prev
 </button>
 
@@ -1474,7 +1881,7 @@ View Objkt.com →
 <button
     class="carousel-btn"
     id="nextBtn"
->
+    type="button">
 Next →
 </button>
 
@@ -1492,7 +1899,9 @@ Next →
     id="practice"
 >
 
-<div class="practice-title">
+<div
+    class="practice-title"
+    data-i18n="practiceTitle">
 
 Art<br>
 Practice
@@ -1502,12 +1911,14 @@ Practice
 
 <div class="practice-copy">
 
-<h3>
+<h3 data-i18n="practiceHeading">
+
 Painting, Digital Art & Moving Image
+
 </h3>
 
 
-<p>
+<p data-i18n="practiceP1">
 
 My artistic practice includes original paintings,
 physical artworks, limited editions, digital art,
@@ -1516,7 +1927,7 @@ animation, moving image and 3D work.
 </p>
 
 
-<p>
+<p data-i18n="practiceP2">
 
 The physical and digital sides of the practice are
 developed in parallel. The studio archive includes
@@ -1526,7 +1937,7 @@ editions made available through Buda Studio.
 </p>
 
 
-<p>
+<p data-i18n="practiceP3">
 
 Buda Studio's current Store presents selected original
 artworks, limited editions, physical objects, wearables
@@ -1537,27 +1948,39 @@ and digital pieces.
 
 <div class="practice-list">
 
-<span class="practice-item">
+<span
+    class="practice-item"
+    data-i18n="tagPainting">
     Painting
 </span>
 
-<span class="practice-item">
+<span
+    class="practice-item"
+    data-i18n="tagDigital">
     Digital Art
 </span>
 
-<span class="practice-item">
+<span
+    class="practice-item"
+    data-i18n="tagAnimation">
     Animation
 </span>
 
-<span class="practice-item">
+<span
+    class="practice-item"
+    data-i18n="tagMoving">
     Moving Image
 </span>
 
-<span class="practice-item">
+<span
+    class="practice-item"
+    data-i18n="tag3D">
     3D
 </span>
 
-<span class="practice-item">
+<span
+    class="practice-item"
+    data-i18n="tagEditions">
     Limited Editions
 </span>
 
@@ -1581,14 +2004,14 @@ and digital pieces.
 <div class="about-content">
 
 
-<h2>
+<h2 data-i18n="aboutTitle">
 
 About Leonardo
 
 </h2>
 
 
-<p>
+<p data-i18n="aboutP1">
 
 Leonardo M. Scarcia is an Argentine visual artist
 based in Santa Catarina, Brazil.
@@ -1596,7 +2019,7 @@ based in Santa Catarina, Brazil.
 </p>
 
 
-<p>
+<p data-i18n="aboutP2">
 
 His professional background includes visual art,
 graphic design, illustration, art direction,
@@ -1615,7 +2038,9 @@ production.
     +
 </span>
 
-<span class="bio-title">
+<span
+    class="bio-title"
+    data-i18n="bioTitle">
     Artist Biography
 </span>
 
@@ -1625,7 +2050,7 @@ production.
 <div class="bio-text">
 
 
-<p>
+<p data-i18n="bioP1">
 
 Leonardo M. Scarcia began exhibiting his work
 publicly in 1994, participating in the Bienal de
@@ -1634,7 +2059,7 @@ Arte Joven in Buenos Aires.
 </p>
 
 
-<p>
+<p data-i18n="bioP2">
 
 Throughout the 1990s and 2000s, he continued exhibiting
 and developing his artistic practice while also building
@@ -1644,7 +2069,7 @@ illustration, animation and art direction.
 </p>
 
 
-<p>
+<p data-i18n="bioP3">
 
 His professional work expanded into motion graphics,
 audiovisual production, 3D, digital illustration,
@@ -1653,7 +2078,7 @@ interactive experiences and visual storytelling.
 </p>
 
 
-<p>
+<p data-i18n="bioP4">
 
 Since 2021, Scarcia has also developed an active
 practice within digital art and the NFT ecosystem,
@@ -1663,7 +2088,7 @@ distributing his work internationally.
 </p>
 
 
-<p>
+<p data-i18n="bioP5">
 
 His work has been presented through international
 digital art events and platforms, including NFT NYC,
@@ -1674,7 +2099,7 @@ art initiatives.
 </p>
 
 
-<p>
+<p data-i18n="bioP6">
 
 Today, his practice combines physical and digital
 artworks, painting, animation, moving image,
@@ -1697,7 +2122,9 @@ developed through Buda Studio.
     +
 </span>
 
-<span class="bio-title">
+<span
+    class="bio-title"
+    data-i18n="professionalTitle">
     Professional Background
 </span>
 
@@ -1707,7 +2134,7 @@ developed through Buda Studio.
 <div class="bio-text">
 
 
-<p>
+<p data-i18n="professionalP1">
 
 Over more than two decades, Leonardo has worked across
 graphic design, art direction, motion graphics,
@@ -1717,7 +2144,7 @@ production.
 </p>
 
 
-<p>
+<p data-i18n="professionalP2">
 
 His professional experience includes work for brands,
 agencies, independent projects and multidisciplinary
@@ -1727,7 +2154,7 @@ animation and visual communication.
 </p>
 
 
-<p>
+<p data-i18n="professionalP3">
 
 This background continues to inform his artistic practice,
 particularly in the areas of image construction,
@@ -1744,7 +2171,7 @@ animation, composition, movement and digital media.
     href="CVlscarcia_2026.pdf"
     download="CVlscarcia_2026.pdf"
     class="pdf-link"
->
+    data-i18n="cvLink">
 
 Download CV 2026
 
@@ -1795,7 +2222,9 @@ Download CV 2026
 </div>
 
 
-<h2 class="section-title">
+<h2
+    class="section-title"
+    data-i18n="exhibitionsTitle">
 
 SELECTED EXHIBITIONS
 
@@ -1811,11 +2240,15 @@ SELECTED EXHIBITIONS
 2026
 </div>
 
-<div class="ex-title">
+<div
+    class="ex-title"
+    data-i18n="ex1Title">
 NFC LISBOA PEPE VAULT
 </div>
 
-<div class="ex-location">
+<div
+    class="ex-location"
+    data-i18n="ex1Location">
 NFC Lisboa · Portugal
 </div>
 
@@ -1831,11 +2264,15 @@ NFC Lisboa · Portugal
 2025
 </div>
 
-<div class="ex-title">
+<div
+    class="ex-title"
+    data-i18n="ex2Title">
 NOTABLE PEPE CARDS 8 & 6
 </div>
 
-<div class="ex-location">
+<div
+    class="ex-location"
+    data-i18n="ex2Location">
 Pepe WTF · US
 </div>
 
@@ -1851,11 +2288,14 @@ Pepe WTF · US
 2025
 </div>
 
-<div class="ex-title">
+<div
+    class="ex-title"
+    data-i18n="ex3Title">
 NFT NYC 24–25
 </div>
 
-<div class="ex-location">
+<div
+    class="ex-location">
 New York · US
 </div>
 
@@ -1871,11 +2311,15 @@ New York · US
 2025
 </div>
 
-<div class="ex-title">
+<div
+    class="ex-title"
+    data-i18n="ex4Title">
 NFC LISBOA 24–25
 </div>
 
-<div class="ex-location">
+<div
+    class="ex-location"
+    data-i18n="ex4Location">
 Lisboa · Portugal
 </div>
 
@@ -1891,11 +2335,15 @@ Lisboa · Portugal
 2024
 </div>
 
-<div class="ex-title">
+<div
+    class="ex-title"
+    data-i18n="ex5Title">
 PEPE FEST / BEEPLE PEPE FEST
 </div>
 
-<div class="ex-location">
+<div
+    class="ex-location"
+    data-i18n="ex5Location">
 South Carolina · US
 </div>
 
@@ -1911,11 +2359,15 @@ South Carolina · US
 2024
 </div>
 
-<div class="ex-title">
+<div
+    class="ex-title"
+    data-i18n="ex6Title">
 SOLANA FILM FESTIVAL
 </div>
 
-<div class="ex-location">
+<div
+    class="ex-location"
+    data-i18n="ex6Location">
 Web3
 </div>
 
@@ -1931,11 +2383,15 @@ Web3
 2024
 </div>
 
-<div class="ex-title">
+<div
+    class="ex-title"
+    data-i18n="ex7Title">
 NFT TIANGUIS
 </div>
 
-<div class="ex-location">
+<div
+    class="ex-location"
+    data-i18n="ex7Location">
 Querétaro · México
 </div>
 
@@ -1951,11 +2407,15 @@ Querétaro · México
 2023
 </div>
 
-<div class="ex-title">
+<div
+    class="ex-title"
+    data-i18n="ex8Title">
 BUDA COLLECTIVE ARTIST
 </div>
 
-<div class="ex-location">
+<div
+    class="ex-location"
+    data-i18n="ex8Location">
 Garopaba · Brazil
 </div>
 
@@ -1971,11 +2431,15 @@ Garopaba · Brazil
 2023
 </div>
 
-<div class="ex-title">
+<div
+    class="ex-title"
+    data-i18n="ex9Title">
 JAPAN METAVERSE EXHIBITION
 </div>
 
-<div class="ex-location">
+<div
+    class="ex-location"
+    data-i18n="ex9Location">
 Spatial Gallery VR
 </div>
 
@@ -1991,11 +2455,15 @@ Spatial Gallery VR
 2023
 </div>
 
-<div class="ex-title">
+<div
+    class="ex-title"
+    data-i18n="ex10Title">
 COLLECTIVE EXHIBITION IN CRYPTOVOXELS
 </div>
 
-<div class="ex-location">
+<div
+    class="ex-location"
+    data-i18n="ex10Location">
 Cryptovoxels
 </div>
 
@@ -2015,7 +2483,7 @@ Cryptovoxels
 >
 
 
-<h2>
+<h2 data-i18n="footerTitle">
 
 Exhibitions<br>
 Collaborations
@@ -2029,8 +2497,7 @@ Collaborations
 <a
     href="https://x.com/budastudio_nft"
     target="_blank"
-    class="social-text-link"
->
+    class="social-text-link">
 X
 </a>
 
@@ -2038,8 +2505,7 @@ X
 <a
     href="https://be.net/lscarcia"
     target="_blank"
-    class="social-text-link"
->
+    class="social-text-link">
 Behance
 </a>
 
@@ -2047,8 +2513,7 @@ Behance
 <a
     href="https://linkedin.com/in/lscarcia"
     target="_blank"
-    class="social-text-link"
->
+    class="social-text-link">
 LinkedIn
 </a>
 
@@ -2056,8 +2521,7 @@ LinkedIn
 <a
     href="https://linktr.ee/budastudio"
     target="_blank"
-    class="social-text-link"
->
+    class="social-text-link">
 Linktree
 </a>
 
@@ -2065,14 +2529,12 @@ Linktree
 <a
     href="https://instagram.com/budastudio_art"
     target="_blank"
-    class="social-text-link"
->
+    class="social-text-link">
 Instagram
 </a>
 
 
 </div>
-
 
 </footer>
 
@@ -2085,6 +2547,522 @@ Instagram
 
 
 <script>
+
+/* =========================================================
+   TRANSLATIONS
+========================================================= */
+
+const translations = {
+
+en: {
+
+navWorks:
+"Works",
+
+navPractice:
+"Practice",
+
+navAbout:
+"About",
+
+navExhibitions:
+"Exhibitions",
+
+navContact:
+"Contact",
+
+heroTitle:
+"Visual Artist<br>Painter",
+
+heroDescription:
+"Leonardo M. Scarcia is a multidisciplinary visual artist working across painting, digital art, animation and moving image.",
+
+heroMeta:
+"Contemporary Visual Art · Buda Studio · Brazil",
+
+worksTitle:
+"Selected Works",
+
+worksIntro:
+"A selection from Leonardo M. Scarcia's visual practice, including animation, digital art, 3D work and independent projects developed through Buda Studio.",
+
+work1Tag:
+"Moving Image",
+
+work1Title:
+"Visual Narratives",
+
+work1Description:
+"Animation, stop motion and moving image developed through artistic and visual storytelling projects.",
+
+work1Link:
+"Watch on Youtube →",
+
+work2Tag:
+"Digital Art",
+
+work2Description:
+"An independent digital art initiative created, curated and programmed by Buda Studio from 2021–2026.",
+
+work2Link:
+"Open gallery →",
+
+work3Tag:
+"Digital Art",
+
+work3Title:
+"Last Drops",
+
+work3Description:
+"A curated selection of recent digital works, physical pieces and phygital experiments.",
+
+work3Link:
+"Last Drops →",
+
+work4Tag:
+"Digital / Moving Image",
+
+work4Title:
+"Digital & Moving Image",
+
+work4Description:
+"Animations, light studies, kinetic compositions and digital image works from the Buda Studio archive.",
+
+work4Link:
+"View Objkt.com →",
+
+practiceTitle:
+"Art<br>Practice",
+
+practiceHeading:
+"Painting, Digital Art & Moving Image",
+
+practiceP1:
+"My artistic practice includes original paintings, physical artworks, limited editions, digital art, animation, moving image and 3D work.",
+
+practiceP2:
+"The physical and digital sides of the practice are developed in parallel. The studio archive includes original works as well as digital pieces and selected editions made available through Buda Studio.",
+
+practiceP3:
+"Buda Studio's current Store presents selected original artworks, limited editions, physical objects, wearables and digital pieces.",
+
+tagPainting:
+"Painting",
+
+tagDigital:
+"Digital Art",
+
+tagAnimation:
+"Animation",
+
+tagMoving:
+"Moving Image",
+
+tag3D:
+"3D",
+
+tagEditions:
+"Limited Editions",
+
+aboutTitle:
+"About Leonardo",
+
+aboutP1:
+"Leonardo M. Scarcia is an Argentine visual artist based in Santa Catarina, Brazil.",
+
+aboutP2:
+"His professional background includes visual art, graphic design, illustration, art direction, animation, motion graphics, 3D and digital image production.",
+
+bioTitle:
+"Artist Biography",
+
+bioP1:
+"Leonardo M. Scarcia began exhibiting his work publicly in 1994, participating in the Bienal de Arte Joven in Buenos Aires.",
+
+bioP2:
+"Throughout the 1990s and 2000s, he continued exhibiting and developing his artistic practice while also building a professional career in graphic design, advertising, illustration, animation and art direction.",
+
+bioP3:
+"His professional work expanded into motion graphics, audiovisual production, 3D, digital illustration, interactive experiences and visual storytelling.",
+
+bioP4:
+"Since 2021, Scarcia has also developed an active practice within digital art and the NFT ecosystem, using Web3 as another channel for exhibiting and distributing his work internationally.",
+
+bioP5:
+"His work has been presented through international digital art events and platforms, including NFT NYC, NFC Lisboa, Solana Film Festival, NFT Tianguis, Japan Metaverse Exhibition and other digital art initiatives.",
+
+bioP6:
+"Today, his practice combines physical and digital artworks, painting, animation, moving image, 3D experimentation and independent artistic projects developed through Buda Studio.",
+
+professionalTitle:
+"Professional Background",
+
+professionalP1:
+"Over more than two decades, Leonardo has worked across graphic design, art direction, motion graphics, video editing, visual storytelling and digital production.",
+
+professionalP2:
+"His professional experience includes work for brands, agencies, independent projects and multidisciplinary teams, combining concept development, design, animation and visual communication.",
+
+professionalP3:
+"This background continues to inform his artistic practice, particularly in the areas of image construction, animation, composition, movement and digital media.",
+
+cvLink:
+"Download CV 2026",
+
+exhibitionsTitle:
+"SELECTED EXHIBITIONS",
+
+ex1Title:
+"NFC LISBOA PEPE VAULT",
+
+ex1Location:
+"NFC Lisboa · Portugal",
+
+ex2Title:
+"NOTABLE PEPE CARDS 8 & 6",
+
+ex2Location:
+"Pepe WTF · US",
+
+ex4Title:
+"NFC LISBOA 24–25",
+
+ex4Location:
+"Lisboa · Portugal",
+
+ex5Title:
+"PEPE FEST / BEEPLE PEPE FEST",
+
+ex5Location:
+"South Carolina · US",
+
+ex6Title:
+"SOLANA FILM FESTIVAL",
+
+ex6Location:
+"Web3",
+
+ex7Title:
+"NFT TIANGUIS",
+
+ex7Location:
+"Querétaro · México",
+
+ex8Title:
+"BUDA COLLECTIVE ARTIST",
+
+ex8Location:
+"Garopaba · Brazil",
+
+ex9Title:
+"JAPAN METAVERSE EXHIBITION",
+
+ex9Location:
+"Spatial Gallery VR",
+
+ex10Title:
+"COLLECTIVE EXHIBITION IN CRYPTOVOXELS",
+
+ex10Location:
+"Cryptovoxels",
+
+footerTitle:
+"Exhibitions<br>Collaborations"
+
+},
+
+pt: {
+
+navWorks:
+"Trabalhos",
+
+navPractice:
+"Prática",
+
+navAbout:
+"Sobre",
+
+navExhibitions:
+"Exposições",
+
+navContact:
+"Contato",
+
+heroTitle:
+"Artista Visual<br>Pintor",
+
+heroDescription:
+"Leonardo M. Scarcia é um artista visual multidisciplinar que trabalha com pintura, arte digital, animação e imagem em movimento.",
+
+heroMeta:
+"Arte Visual Contemporânea · Buda Studio · Brasil",
+
+worksTitle:
+"Trabalhos Selecionados",
+
+worksIntro:
+"Uma seleção da produção visual de Leonardo M. Scarcia, incluindo animação, arte digital, trabalhos em 3D e projetos independentes desenvolvidos através do Buda Studio.",
+
+work1Tag:
+"Imagem em Movimento",
+
+work1Title:
+"Narrativas Visuais",
+
+work1Description:
+"Animação, stop motion e imagem em movimento desenvolvidos através de projetos artísticos e de narrativa visual.",
+
+work1Link:
+"Assistir no Youtube →",
+
+work2Tag:
+"Arte Digital",
+
+work2Description:
+"Uma iniciativa independente de arte digital criada, curada e programada pelo Buda Studio entre 2021 e 2026.",
+
+work2Link:
+"Abrir galeria →",
+
+work3Tag:
+"Arte Digital",
+
+work3Title:
+"Last Drops",
+
+work3Description:
+"Uma seleção de trabalhos digitais recentes, obras físicas e experimentações phygital.",
+
+work3Link:
+"Last Drops →",
+
+work4Tag:
+"Digital / Imagem em Movimento",
+
+work4Title:
+"Digital & Moving Image",
+
+work4Description:
+"Animações, estudos de luz, composições cinéticas e trabalhos de imagem digital do arquivo do Buda Studio.",
+
+work4Link:
+"Ver no Objkt.com →",
+
+practiceTitle:
+"Prática<br>Artística",
+
+practiceHeading:
+"Pintura, Arte Digital e Imagem em Movimento",
+
+practiceP1:
+"Minha prática artística inclui pinturas originais, obras físicas, edições limitadas, arte digital, animação, imagem em movimento e trabalhos em 3D.",
+
+practiceP2:
+"As vertentes física e digital da produção são desenvolvidas em paralelo. O arquivo do estúdio reúne obras originais, trabalhos digitais e edições selecionadas disponibilizadas através do Buda Studio.",
+
+practiceP3:
+"A Store atual do Buda Studio apresenta obras originais selecionadas, edições limitadas, objetos físicos, wearables e peças digitais.",
+
+tagPainting:
+"Pintura",
+
+tagDigital:
+"Arte Digital",
+
+tagAnimation:
+"Animação",
+
+tagMoving:
+"Imagem em Movimento",
+
+tag3D:
+"3D",
+
+tagEditions:
+"Edições Limitadas",
+
+aboutTitle:
+"Sobre Leonardo",
+
+aboutP1:
+"Leonardo M. Scarcia é um artista visual argentino radicado em Santa Catarina, Brasil.",
+
+aboutP2:
+"Sua trajetória profissional inclui artes visuais, design gráfico, ilustração, direção de arte, animação, motion graphics, 3D e produção de imagem digital.",
+
+bioTitle:
+"Biografia Artística",
+
+bioP1:
+"Leonardo M. Scarcia começou a expor publicamente seu trabalho em 1994, participando da Bienal de Arte Joven em Buenos Aires.",
+
+bioP2:
+"Durante as décadas de 1990 e 2000, continuou expondo e desenvolvendo sua prática artística enquanto construía também uma trajetória profissional em design gráfico, publicidade, ilustração, animação e direção de arte.",
+
+bioP3:
+"Seu trabalho profissional se expandiu para motion graphics, produção audiovisual, 3D, ilustração digital, experiências interativas e narrativa visual.",
+
+bioP4:
+"Desde 2021, Scarcia também desenvolve uma prática ativa no campo da arte digital e do ecossistema NFT, utilizando a Web3 como outro canal para apresentar e distribuir seu trabalho internacionalmente.",
+
+bioP5:
+"Seu trabalho foi apresentado em eventos e plataformas internacionais de arte digital, incluindo NFT NYC, NFC Lisboa, Solana Film Festival, NFT Tianguis, Japan Metaverse Exhibition e outras iniciativas de arte digital.",
+
+bioP6:
+"Atualmente, sua prática reúne obras físicas e digitais, pintura, animação, imagem em movimento, experimentações em 3D e projetos artísticos independentes desenvolvidos através do Buda Studio.",
+
+professionalTitle:
+"Trajetória Profissional",
+
+professionalP1:
+"Há mais de duas décadas, Leonardo atua nas áreas de design gráfico, direção de arte, motion graphics, edição de vídeo, narrativa visual e produção digital.",
+
+professionalP2:
+"Sua experiência profissional inclui trabalhos para marcas, agências, projetos independentes e equipes multidisciplinares, combinando desenvolvimento conceitual, design, animação e comunicação visual.",
+
+professionalP3:
+"Essa experiência continua influenciando sua prática artística, especialmente nos campos da construção da imagem, animação, composição, movimento e mídia digital.",
+
+cvLink:
+"Baixar CV 2026",
+
+exhibitionsTitle:
+"EXPOSIÇÕES SELECIONADAS",
+
+ex1Title:
+"NFC LISBOA PEPE VAULT",
+
+ex1Location:
+"NFC Lisboa · Portugal",
+
+ex2Title:
+"NOTABLE PEPE CARDS 8 & 6",
+
+ex2Location:
+"Pepe WTF · EUA",
+
+ex4Title:
+"NFC LISBOA 24–25",
+
+ex4Location:
+"Lisboa · Portugal",
+
+ex5Title:
+"PEPE FEST / BEEPLE PEPE FEST",
+
+ex5Location:
+"South Carolina · EUA",
+
+ex6Title:
+"SOLANA FILM FESTIVAL",
+
+ex6Location:
+"Web3",
+
+ex7Title:
+"NFT TIANGUIS",
+
+ex7Location:
+"Querétaro · México",
+
+ex8Title:
+"BUDA COLLECTIVE ARTIST",
+
+ex8Location:
+"Garopaba · Brasil",
+
+ex9Title:
+"JAPAN METAVERSE EXHIBITION",
+
+ex9Location:
+"Spatial Gallery VR",
+
+ex10Title:
+"COLLECTIVE EXHIBITION IN CRYPTOVOXELS",
+
+ex10Location:
+"Cryptovoxels",
+
+footerTitle:
+"Exposições<br>Colaborações"
+
+}
+
+};
+
+
+/* =========================================================
+   LANGUAGE ENGINE
+========================================================= */
+
+function setLanguage(lang){
+
+    const dictionary =
+        translations[lang];
+
+    document.documentElement.lang =
+        lang === 'pt'
+        ? 'pt-BR'
+        : 'en';
+
+
+    document
+    .querySelectorAll('[data-i18n]')
+    .forEach(
+        element => {
+
+            const key =
+                element.dataset.i18n;
+
+            if(dictionary[key] !== undefined){
+
+                element.innerHTML =
+                    dictionary[key];
+
+            }
+
+        }
+    );
+
+
+    document
+    .getElementById('enBtn')
+    .classList
+    .toggle(
+        'active',
+        lang === 'en'
+    );
+
+
+    document
+    .getElementById('ptBtn')
+    .classList
+    .toggle(
+        'active',
+        lang === 'pt'
+    );
+
+
+    localStorage.setItem(
+        'budaPortfolioLanguage',
+        lang
+    );
+
+}
+
+
+/* =========================================================
+   INITIAL LANGUAGE
+========================================================= */
+
+const savedLanguage =
+    localStorage.getItem(
+        'budaPortfolioLanguage'
+    );
+
+setLanguage(
+    savedLanguage || 'en'
+);
 
 
 /* =========================================================
@@ -2103,6 +3081,7 @@ function raf(time){
     lenis.raf(time);
 
     requestAnimationFrame(raf);
+
 }
 
 requestAnimationFrame(raf);
@@ -2132,7 +3111,7 @@ document.addEventListener(
 
 const interactiveElements =
     document.querySelectorAll(
-        'a, .card-floating-3d, .menu-link, .social-text-link, .ex-item, .carousel-btn'
+        'a, .card-floating-3d, .menu-link, .social-text-link, .ex-item, .carousel-btn, .language-button'
     );
 
 
@@ -2219,10 +3198,10 @@ document
                             bgVideo.load();
 
                             bgVideo
-                                .play()
-                                .catch(
-                                    ()=>{}
-                                );
+                            .play()
+                            .catch(
+                                ()=>{}
+                            );
 
                             bgVideo.style.opacity =
                                 1;
